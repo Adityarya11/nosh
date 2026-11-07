@@ -1,0 +1,374 @@
+{
+  "dairy": {
+    "families": [
+      "milk",
+      "cream",
+      "butter",
+      "cheese",
+      "yogurt",
+      "yoghurt",
+      "ghee",
+      "whey",
+      "buttermilk",
+      "custard",
+      "ice cream",
+      "half-and-half",
+      "casein",
+      "kefir",
+      "curd",
+      "paneer",
+      "mozzarella",
+      "parmesan",
+      "cheddar",
+      "ricotta",
+      "mascarpone",
+      "feta",
+      "gouda",
+      "brie"
+    ],
+    "products": [
+      "cream of chicken soup",
+      "cream of mushroom soup",
+      "cream of celery soup",
+      "cream of potato soup",
+      "cream of broccoli soup",
+      "condensed milk",
+      "evaporated milk",
+      "sweetened condensed milk",
+      "milk chocolate",
+      "white chocolate",
+      "sour cream",
+      "heavy cream",
+      "whipping cream",
+      "half and half"
+    ],
+    "may_contain": [
+      "chocolate",
+      "margarine",
+      "bread",
+      "cracker",
+      "biscuit",
+      "cake mix",
+      "pudding",
+      "ranch dressing",
+      "caramel",
+      "toffee",
+      "nougat"
+    ]
+  },
+  "egg": {
+    "families": [
+      "egg",
+      "mayonnaise",
+      "meringue",
+      "eggnog"
+    ],
+    "products": [
+      "egg white",
+      "egg yolk",
+      "egg noodle",
+      "egg substitute",
+      "mayonnaise"
+    ],
+    "may_contain": [
+      "pasta",
+      "noodle",
+      "cake mix",
+      "cracker",
+      "bread",
+      "ice cream",
+      "custard",
+      "dressing",
+      "marshmallow"
+    ]
+  },
+  "gluten": {
+    "families": [
+      "flour",
+      "bread",
+      "pasta",
+      "noodle",
+      "spaghetti",
+      "macaroni",
+      "penne",
+      "lasagna",
+      "linguine",
+      "fettuccine",
+      "couscous",
+      "barley",
+      "rye",
+      "wheat",
+      "semolina",
+      "cracker",
+      "tortilla",
+      "biscuit",
+      "cookie",
+      "bulgur",
+      "seitan",
+      "farro",
+      "pita",
+      "bagel",
+      "bun",
+      "roll",
+      "crouton",
+      "pretzel",
+      "orzo",
+      "beer",
+      "ravioli",
+      "gnocchi"
+    ],
+    "products": [
+      "all-purpose flour",
+      "bread flour",
+      "cake flour",
+      "whole wheat flour",
+      "self-rising flour",
+      "bread crumb",
+      "breadcrumb",
+      "soy sauce",
+      "cream of chicken soup",
+      "cream of mushroom soup",
+      "cream of celery soup"
+    ],
+    "may_contain": [
+      "oat",
+      "oats",
+      "broth",
+      "soup",
+      "worcestershire sauce",
+      "seasoning",
+      "marinade",
+      "dressing",
+      "malt",
+      "licorice",
+      "gravy"
+    ]
+  },
+  "nuts": {
+    "families": [
+      "almond",
+      "walnut",
+      "pecan",
+      "cashew",
+      "pistachio",
+      "hazelnut",
+      "macadamia",
+      "pine nut",
+      "brazil nut",
+      "chestnut",
+      "nut",
+      "praline",
+      "marzipan",
+      "nutella"
+    ],
+    "products": [
+      "almond butter",
+      "almond milk",
+      "almond extract",
+      "almond flour",
+      "nut butter",
+      "mixed nuts"
+    ],
+    "may_contain": [
+      "granola",
+      "pesto",
+      "trail mix",
+      "baklava",
+      "candy",
+      "chocolate"
+    ]
+  },
+  "peanut": {
+    "families": [
+      "peanut"
+    ],
+    "products": [
+      "peanut butter",
+      "peanut oil",
+      "peanuts"
+    ],
+    "may_contain": [
+      "granola",
+      "satay",
+      "trail mix",
+      "mixed nuts",
+      "candy",
+      "chocolate",
+      "pad thai"
+    ]
+  },
+  "soy": {
+    "families": [
+      "soy",
+      "tofu",
+      "tempeh",
+      "edamame",
+      "miso"
+    ],
+    "products": [
+      "soy sauce",
+      "soy milk",
+      "soybean"
+    ],
+    "may_contain": [
+      "margarine",
+      "vegetable broth",
+      "worcestershire sauce",
+      "teriyaki sauce",
+      "chocolate"
+    ]
+  },
+  "shellfish": {
+    "families": [
+      "shrimp",
+      "crab",
+      "lobster",
+      "crayfish",
+      "crawfish",
+      "prawn",
+      "clam",
+      "mussel",
+      "oyster",
+      "scallop",
+      "squid",
+      "calamari",
+      "crabmeat",
+      "langoustine"
+    ],
+    "products": [
+      "shrimp paste"
+    ],
+    "may_contain": [
+      "fish sauce",
+      "seafood seasoning",
+      "bouillabaisse"
+    ]
+  },
+  "fish": {
+    "families": [
+      "fish",
+      "salmon",
+      "tuna",
+      "cod",
+      "tilapia",
+      "trout",
+      "halibut",
+      "anchovy",
+      "sardine",
+      "mackerel",
+      "haddock",
+      "catfish",
+      "snapper",
+      "bass",
+      "swordfish",
+      "herring",
+      "flounder",
+      "sole",
+      "mahi"
+    ],
+    "products": [
+      "fish sauce",
+      "anchovy paste"
+    ],
+    "may_contain": [
+      "worcestershire sauce",
+      "caesar dressing",
+      "caesar salad dressing"
+    ]
+  },
+  "pork": {
+    "families": [
+      "pork",
+      "bacon",
+      "ham",
+      "prosciutto",
+      "pancetta",
+      "sausage",
+      "lard",
+      "chorizo",
+      "salami",
+      "pepperoni",
+      "bratwurst"
+    ],
+    "products": [
+      "pork chop",
+      "ground pork",
+      "pork loin",
+      "pork shoulder",
+      "salt pork"
+    ],
+    "may_contain": [
+      "gelatin",
+      "hot dog"
+    ]
+  },
+  "vegetarian": {
+    "families": [
+      "beef",
+      "chicken",
+      "turkey",
+      "lamb",
+      "veal",
+      "duck",
+      "venison",
+      "goose",
+      "rabbit",
+      "gelatin",
+      "steak",
+      "meatball",
+      "hot dog",
+      "turkey bacon",
+      "brisket",
+      "liver",
+      "oxtail",
+      "rib",
+      "tenderloin"
+    ],
+    "products": [
+      "chicken broth",
+      "beef broth",
+      "chicken stock",
+      "beef stock",
+      "ground beef",
+      "ground turkey",
+      "fish sauce",
+      "anchovy paste",
+      "cream of chicken soup",
+      "lard",
+      "suet",
+      "bone broth"
+    ],
+    "may_contain": [
+      "worcestershire sauce",
+      "broth",
+      "bouillon",
+      "stock",
+      "caesar dressing",
+      "marshmallow",
+      "jello"
+    ],
+    "also_excludes": [
+      "pork",
+      "fish",
+      "shellfish"
+    ]
+  },
+  "vegan": {
+    "families": [
+      "honey",
+      "gelatin"
+    ],
+    "products": [],
+    "may_contain": [
+      "sugar",
+      "wine",
+      "beer",
+      "marshmallow"
+    ],
+    "also_excludes": [
+      "vegetarian",
+      "dairy",
+      "egg"
+    ]
+  }
+}

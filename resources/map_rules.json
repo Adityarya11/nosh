@@ -1,0 +1,512 @@
+{
+  "singular_exceptions": [
+    "molasses",
+    "hummus",
+    "couscous",
+    "asparagus",
+    "swiss",
+    "watercress",
+    "grits",
+    "citrus",
+    "lemongrass",
+    "bass",
+    "cress",
+    "hibiscus",
+    "octopus",
+    "series",
+    "species",
+    "greens"
+  ],
+  "aliases": {
+    "garlic clove": "garlic",
+    "clove garlic": "garlic",
+    "cloves garlic": "garlic",
+    "garlic powder": "garlic powder",
+    "egg white": "egg white",
+    "egg yolk": "egg yolk",
+    "all purpose flour": "all-purpose flour",
+    "plain flour": "all-purpose flour",
+    "confectioners sugar": "powdered sugar",
+    "confectioner's sugar": "powdered sugar",
+    "icing sugar": "powdered sugar",
+    "granulated sugar": "white sugar",
+    "white granulated sugar": "white sugar",
+    "sugar": "white sugar",
+    "pepper": "black pepper",
+    "ground black pepper": "black pepper",
+    "freshly ground black pepper": "black pepper",
+    "salt and pepper": "salt and pepper",
+    "kosher salt": "salt",
+    "sea salt": "salt",
+    "table salt": "salt",
+    "green onion": "scallion",
+    "spring onion": "scallion",
+    "yellow onion": "onion",
+    "white onion": "onion",
+    "red onion": "red onion",
+    "vegetable oil": "vegetable oil",
+    "canola oil": "vegetable oil",
+    "cooking oil": "vegetable oil",
+    "olive oil": "olive oil",
+    "oil": "vegetable oil",
+    "butter": "butter",
+    "margarine": "margarine",
+    "chicken breast": "chicken breast",
+    "chicken broth": "chicken broth",
+    "chicken stock": "chicken broth",
+    "beef stock": "beef broth",
+    "vegetable stock": "vegetable broth",
+    "eggs": "egg",
+    "large egg": "egg",
+    "tomato": "tomato",
+    "plum tomato": "tomato",
+    "roma tomato": "tomato"
+  },
+  "family_phrases": [
+    [
+      "pepper flake",
+      "chile"
+    ],
+    [
+      "crushed red pepper",
+      "chile"
+    ],
+    [
+      "cayenne pepper",
+      "chile"
+    ],
+    [
+      "black pepper",
+      "black pepper"
+    ],
+    [
+      "white pepper",
+      "black pepper"
+    ],
+    [
+      "bell pepper",
+      "bell pepper"
+    ],
+    [
+      "green pepper",
+      "bell pepper"
+    ],
+    [
+      "red pepper",
+      "bell pepper"
+    ],
+    [
+      "cream of coconut",
+      "coconut"
+    ],
+    [
+      "cream cheese frosting",
+      "frosting"
+    ],
+    [
+      "marshmallow cream",
+      "marshmallow"
+    ],
+    [
+      "milk powder",
+      "milk"
+    ],
+    [
+      "cream of tartar",
+      "tartar"
+    ],
+    [
+      "cream of",
+      "soup"
+    ],
+    [
+      "peanut butter",
+      "peanut"
+    ],
+    [
+      "peanut oil",
+      "peanut"
+    ],
+    [
+      "almond butter",
+      "almond"
+    ],
+    [
+      "almond milk",
+      "almond"
+    ],
+    [
+      "almond extract",
+      "almond"
+    ],
+    [
+      "almond flour",
+      "almond"
+    ],
+    [
+      "coconut milk",
+      "coconut"
+    ],
+    [
+      "coconut cream",
+      "coconut"
+    ],
+    [
+      "coconut oil",
+      "coconut"
+    ],
+    [
+      "coconut flour",
+      "coconut"
+    ],
+    [
+      "cocoa butter",
+      "cocoa"
+    ],
+    [
+      "apple butter",
+      "apple"
+    ],
+    [
+      "butter bean",
+      "bean"
+    ],
+    [
+      "butter lettuce",
+      "lettuce"
+    ],
+    [
+      "buttermilk",
+      "buttermilk"
+    ],
+    [
+      "rice flour",
+      "rice"
+    ],
+    [
+      "rice vinegar",
+      "vinegar"
+    ],
+    [
+      "rice milk",
+      "rice"
+    ],
+    [
+      "soy milk",
+      "soy"
+    ],
+    [
+      "soy sauce",
+      "soy"
+    ],
+    [
+      "oat milk",
+      "oat"
+    ],
+    [
+      "milk chocolate",
+      "chocolate"
+    ],
+    [
+      "ice cream",
+      "ice cream"
+    ],
+    [
+      "whipped cream",
+      "cream"
+    ],
+    [
+      "sour cream",
+      "cream"
+    ],
+    [
+      "cream cheese",
+      "cheese"
+    ],
+    [
+      "cottage cheese",
+      "cheese"
+    ],
+    [
+      "egg noodle",
+      "noodle"
+    ],
+    [
+      "egg white",
+      "egg"
+    ],
+    [
+      "egg yolk",
+      "egg"
+    ],
+    [
+      "egg substitute",
+      "egg"
+    ],
+    [
+      "bread crumb",
+      "bread"
+    ],
+    [
+      "breadcrumb",
+      "bread"
+    ],
+    [
+      "garlic powder",
+      "garlic"
+    ],
+    [
+      "onion powder",
+      "onion"
+    ],
+    [
+      "onion soup",
+      "soup"
+    ],
+    [
+      "chicken broth",
+      "chicken"
+    ],
+    [
+      "beef broth",
+      "beef"
+    ],
+    [
+      "vegetable broth",
+      "vegetable"
+    ],
+    [
+      "chicken breast",
+      "chicken"
+    ],
+    [
+      "chicken thigh",
+      "chicken"
+    ],
+    [
+      "chicken stock",
+      "chicken"
+    ],
+    [
+      "ground beef",
+      "beef"
+    ],
+    [
+      "ground turkey",
+      "turkey"
+    ],
+    [
+      "ground pork",
+      "pork"
+    ],
+    [
+      "baking powder",
+      "baking powder"
+    ],
+    [
+      "baking soda",
+      "baking soda"
+    ],
+    [
+      "brown sugar",
+      "sugar"
+    ],
+    [
+      "powdered sugar",
+      "sugar"
+    ],
+    [
+      "white sugar",
+      "sugar"
+    ],
+    [
+      "vanilla extract",
+      "vanilla"
+    ],
+    [
+      "vanilla bean",
+      "vanilla"
+    ],
+    [
+      "olive oil",
+      "oil"
+    ],
+    [
+      "tomato sauce",
+      "tomato"
+    ],
+    [
+      "tomato paste",
+      "tomato"
+    ],
+    [
+      "tomato puree",
+      "tomato"
+    ],
+    [
+      "tomato juice",
+      "tomato"
+    ],
+    [
+      "cooking spray",
+      "cooking spray"
+    ],
+    [
+      "anchovy",
+      "anchovy"
+    ],
+    [
+      "salmon",
+      "salmon"
+    ],
+    [
+      "tuna",
+      "tuna"
+    ],
+    [
+      "cod",
+      "cod"
+    ],
+    [
+      "tilapia",
+      "tilapia"
+    ],
+    [
+      "halibut",
+      "halibut"
+    ],
+    [
+      "trout",
+      "trout"
+    ],
+    [
+      "shrimp",
+      "shrimp"
+    ],
+    [
+      "crab",
+      "crab"
+    ],
+    [
+      "lobster",
+      "lobster"
+    ],
+    [
+      "bacon",
+      "bacon"
+    ],
+    [
+      "sausage",
+      "sausage"
+    ],
+    [
+      "pork",
+      "pork"
+    ],
+    [
+      "chicken",
+      "chicken"
+    ],
+    [
+      "beef",
+      "beef"
+    ],
+    [
+      "turkey",
+      "turkey"
+    ],
+    [
+      "lamb",
+      "lamb"
+    ],
+    [
+      "ham",
+      "ham"
+    ],
+    [
+      "steak",
+      "steak"
+    ],
+    [
+      "snapper",
+      "snapper"
+    ],
+    [
+      "bass",
+      "bass"
+    ],
+    [
+      "catfish",
+      "catfish"
+    ],
+    [
+      "haddock",
+      "haddock"
+    ],
+    [
+      "mackerel",
+      "mackerel"
+    ],
+    [
+      "sardine",
+      "sardine"
+    ],
+    [
+      "swordfish",
+      "swordfish"
+    ],
+    [
+      "herring",
+      "herring"
+    ],
+    [
+      "flounder",
+      "flounder"
+    ],
+    [
+      "sole",
+      "sole"
+    ],
+    [
+      "clam",
+      "clam"
+    ],
+    [
+      "mussel",
+      "mussel"
+    ],
+    [
+      "oyster",
+      "oyster"
+    ],
+    [
+      "scallop",
+      "scallop"
+    ],
+    [
+      "squid",
+      "squid"
+    ],
+    [
+      "prawn",
+      "prawn"
+    ]
+  ],
+  "irregular_singulars": {
+    "leaves": "leaf",
+    "loaves": "loaf",
+    "halves": "half"
+  },
+  "generic_heads": [
+    "leaf",
+    "fillet",
+    "rib",
+    "seed",
+    "flake",
+    "root",
+    "head",
+    "stalk",
+    "sprig",
+    "clove"
+  ]
+}

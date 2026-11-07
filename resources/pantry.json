@@ -1,0 +1,39 @@
+{
+  "families": [
+    "salt",
+    "black pepper",
+    "water",
+    "sugar",
+    "flour",
+    "oil",
+    "butter",
+    "vinegar",
+    "baking soda",
+    "baking powder",
+    "cornstarch",
+    "vanilla",
+    "cooking spray",
+    "shortening",
+    "yeast",
+    "cinnamon",
+    "paprika",
+    "oregano",
+    "cumin",
+    "ice"
+  ],
+  "canonicals": [
+    "salt",
+    "black pepper",
+    "water",
+    "sugar",
+    "all-purpose flour",
+    "vegetable oil",
+    "olive oil",
+    "baking soda",
+    "baking powder",
+    "vanilla extract",
+    "cooking spray",
+    "white sugar",
+    "brown sugar"
+  ]
+}
