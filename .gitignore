@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Assignment + dataset (never public)
+*.pdf
+recipes_raw/
+
+# Built artifacts and caches
+data/
+
+# Local-only dev checks (not a deliverable)
+tests/
+
+# Secrets
+.env
