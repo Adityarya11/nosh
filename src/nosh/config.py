@@ -52,3 +52,7 @@ LLM_PROVIDER = os.getenv("NOSH_LLM_PROVIDER", "gemini")
 # Model names are read from env so they can be updated without code changes; set them in .env
 GEMINI_MODEL = os.getenv("NOSH_GEMINI_MODEL", "")
 ANTHROPIC_MODEL = os.getenv("NOSH_ANTHROPIC_MODEL", "")
+
+STEP_BOILERPLATE = ["watch how to make this recipe."]
+HEADER_MAX_WORDS = 3
+MAP_COVERAGE_TARGET = 0.85
