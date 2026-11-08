@@ -4,7 +4,7 @@ from typing import Literal, NamedTuple
 
 from nosh.config import NEGATION_PREFIXES
 from nosh.data.ingredients import clean_name
-from nosh.restrictions import resolve_group
+from nosh.restrictions import ingredient_alias_group, resolve_group
 from nosh.store import resolve_term, term_has_lines
 
 
@@ -29,6 +29,9 @@ def resolve(text: str) -> Resolved:
         return Resolved("group", group, note)
     name = clean_name(bare)
     if name and term_has_lines(resolve_term(name)):
-        return Resolved("ingredient", name, None)
+        owner = ingredient_alias_group(bare)
+        note = (f"I read '{bare}' as the ingredient {name} only, not the whole {owner} group; say 'no {owner}' to exclude all of it."
+                if owner else None)
+        return Resolved("ingredient", name, note)
     return Resolved("none", None, f"I found no restriction or ingredient line matching '{bare or text}' in the dataset, "
                                   "so I did not apply it.")

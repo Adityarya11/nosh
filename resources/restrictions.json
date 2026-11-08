@@ -2,10 +2,7 @@
   "dairy": {
     "aliases": [
       "dairy",
-      "lactose",
-      "milk",
-      "cheese",
-      "butter"
+      "lactose"
     ],
     "families": [
       "milk",
@@ -187,6 +184,11 @@
       "creamy almond butter",
       "swiss chard",
       "cream sherry"
+    ],
+    "ingredient_aliases": [
+      "milk",
+      "cheese",
+      "butter"
     ]
   },
   "egg": {
@@ -588,7 +590,6 @@
   "shellfish": {
     "aliases": [
       "shellfish",
-      "shrimp",
       "crustacean"
     ],
     "families": [
@@ -642,6 +643,9 @@
       "crabapple",
       "scallop squash",
       "oyster mushroom"
+    ],
+    "ingredient_aliases": [
+      "shrimp"
     ]
   },
   "fish": {

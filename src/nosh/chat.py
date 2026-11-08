@@ -1,10 +1,11 @@
 """One chat turn: extract slots, update the session, probe coverage, decide, execute, render."""
 
-from nosh import render
+from nosh import render, render_match
 from nosh.llm import LLMUnavailable
 from nosh.router.actions import (
     Action,
     Clarify,
+    Match,
     Search,
     SearchNoMatch,
     Stats,
@@ -13,6 +14,7 @@ from nosh.router.actions import (
 from nosh.router.decide import decide
 from nosh.router.slots import Slots, extract_slots
 from nosh.session import SessionState
+from nosh.tasks.match import run_match
 from nosh.tasks.search import Coverage, probe, run_search
 from nosh.tasks.stats import compute
 
@@ -43,6 +45,15 @@ def _execute(action: Action, session: SessionState, coverage: Coverage | None) -
     if isinstance(action, Search):
         session.active_action = action
         return _search(action, session, coverage)
+    if isinstance(action, Match):
+        session.active_action = action
+        f = session.filters
+        result = run_match(
+            action.have, f.exclude_groups, f.exclude_ingredients, f.max_steps, f.preferences
+        )
+        session.last_results = [r.id for r in result.rows]
+        session.last_titles = [r.title for r in result.rows]
+        return render_match.match(result)
     if isinstance(action, Stats):
         session.active_action = action
         request = action.request.model_copy(

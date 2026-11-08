@@ -3,6 +3,10 @@
 "canonical": "a deep-fat thermometer",
 "family": "thermometer"
 },
+"a few green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "a handful flat-leaf parsley": {
 "canonical": "a handful flat-leaf parsley",
 "family": "parsley"
@@ -421,6 +425,10 @@
 "canonical": "baby corn",
 "family": "corn"
 },
+"baby green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "baby spinach": {
 "canonical": "baby spinach",
 "family": "spinach"
@@ -741,6 +749,14 @@
 "berry": {
 "canonical": "berry",
 "family": "berry"
+},
+"bia green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"bias-cut green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "bibb lettuce": {
 "canonical": "bibb lettuce",
@@ -1127,6 +1143,10 @@
 "canonical": "bunch cilantro",
 "family": "cilantro"
 },
+"bunch green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "bunch parsley": {
 "canonical": "bunch parsley",
 "family": "parsley"
@@ -1134,6 +1154,10 @@
 "bunch watercress": {
 "canonical": "bunch watercress",
 "family": "watercress"
+},
+"bundle green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "bundle thyme": {
 "canonical": "bundle thyme",
@@ -2773,6 +2797,10 @@
 "shellfish": "banned"
 }
 },
+"diagonally green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "dijon mustard": {
 "canonical": "dijon mustard",
 "family": "mustard"
@@ -4025,6 +4053,30 @@
 "canonical": "scallion",
 "family": "scallion"
 },
+"green onion and of the top": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"green onion and or sesame seed": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"green onion and top": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"green onion flake": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"green onion stalk": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"green onion with top": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "green pea": {
 "canonical": "green pea",
 "family": "pea"
@@ -4824,9 +4876,17 @@
 "canonical": "juice of orange",
 "family": "juice"
 },
+"julienne green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "julienned carrot": {
 "canonical": "julienned carrot",
 "family": "carrot"
+},
+"julienned green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "jumbo lump crabmeat": {
 "canonical": "jumbo lump crabmeat",
@@ -5503,6 +5563,10 @@
 "dairy": "banned"
 }
 },
+"matchstick-size strip green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "matzo meal": {
 "canonical": "matzo meal",
 "family": "meal",
@@ -6037,6 +6101,10 @@
 "dairy": "banned"
 }
 },
+"ounce green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "oyster": {
 "canonical": "oyster",
 "family": "oyster",
@@ -6480,6 +6548,10 @@
 "canonical": "pimiento",
 "family": "pimiento"
 },
+"pinch green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "pine nut": {
 "canonical": "pine nut",
 "family": "nut",
@@ -6580,6 +6652,13 @@
 "plain breadcrumb": {
 "canonical": "plain breadcrumb",
 "family": "bread",
+"groups": {
+"gluten": "banned"
+}
+},
+"plain flour": {
+"canonical": "all-purpose flour",
+"family": "flour",
 "groups": {
 "gluten": "banned"
 }
@@ -6808,6 +6887,10 @@
 "groups": {
 "shellfish": "banned"
 }
+},
+"pre-sliced green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "preserved lemon": {
 "canonical": "preserved lemon",
@@ -7763,6 +7846,10 @@
 "canonical": "seasoning salt",
 "family": "salt"
 },
+"section green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "seedless cucumber": {
 "canonical": "seedless cucumber",
 "family": "cucumber"
@@ -7914,6 +8001,10 @@
 "groups": {
 "dairy": "banned"
 }
+},
+"shaved green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "shaved parmesan": {
 "canonical": "shaved parmesan",
@@ -8088,6 +8179,10 @@
 "canonical": "slice ginger",
 "family": "ginger"
 },
+"slice green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "slice prosciutto": {
 "canonical": "slice prosciutto",
 "family": "prosciutto",
@@ -8101,6 +8196,10 @@
 "groups": {
 "nuts": "banned"
 }
+},
+"slivered green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "smoked bacon": {
 "canonical": "smoked bacon",
@@ -8363,6 +8462,10 @@
 "gluten": "may_contain"
 }
 },
+"stem green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "stewed tomato": {
 "canonical": "stewed tomato",
 "family": "tomato"
@@ -8412,9 +8515,17 @@
 "pork": "banned"
 }
 },
+"strip green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
 "strip lemon zest": {
 "canonical": "strip lemon zest",
 "family": "zest"
+},
+"strip of green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "strip orange zest": {
 "canonical": "strip orange zest",
@@ -8730,6 +8841,10 @@
 "groups": {
 "pork": "banned"
 }
+},
+"thin-sliced green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "thyme": {
 "canonical": "thyme",
@@ -9366,6 +9481,10 @@
 "gluten": "banned"
 }
 },
+"white granulated sugar": {
+"canonical": "white sugar",
+"family": "sugar"
+},
 "white grape juice": {
 "canonical": "white grape juice",
 "family": "juice"
@@ -9559,6 +9678,14 @@
 "whole grain mustard": {
 "canonical": "whole grain mustard",
 "family": "mustard"
+},
+"whole green onion": {
+"canonical": "scallion",
+"family": "scallion"
+},
+"whole green onion green onion": {
+"canonical": "scallion",
+"family": "scallion"
 },
 "whole kernel corn": {
 "canonical": "whole kernel corn",

@@ -72,6 +72,12 @@ def resolve_group(text: str) -> tuple[str | None, str | None]:
     return None, None
 
 
+# an ingredient that belongs to a group ("cheese" for dairy) is excluded as that ingredient only
+def ingredient_alias_group(text: str) -> str | None:
+    padded = pad(text)
+    return next((g for g, spec in _groups().items() if phrase_re(spec.get("ingredient_aliases", [])).search(padded)), None)
+
+
 def constituents(group: str) -> list[str]:
     out = [group]
     for other in _groups()[group].get("also_excludes", []):

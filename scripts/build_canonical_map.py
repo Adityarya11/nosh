@@ -31,6 +31,10 @@ def main() -> None:
             entry["groups"] = tags
         mapping[name] = entry
         covered += n
+    for name, canonical in rules["aliases"].items():  # aliases are mapped even when the name is rare
+        if name in counts and name not in mapping:
+            family = family_of(canonical)
+            mapping[name] = {"canonical": canonical, "family": family, **({"groups": t} if (t := group_tags(name, canonical, family)) else {})}
     out = RESOURCES_DIR / "canonical_map.json"
     out.write_text(json.dumps(mapping, indent=0, sort_keys=True), encoding="utf-8")
     print(f"{len(counts)} distinct names; mapped {len(mapping)} names covering {covered / total:.1%} of {total} lines")

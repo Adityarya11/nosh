@@ -91,3 +91,7 @@ ALIAS_FUZZY_MIN_SIM = 0.8
 NEGATION_PREFIXES = ["no", "without", "exclude", "excluding"]
 # recipes with no instruction steps sort after every recipe that has steps when "fewer steps" is a sort key
 STEP_SORT_LAST = 1_000_000
+
+# T2 ranking: preference words move a key to the front; default key order is matched, extras, steps, ID
+MATCH_PREF_KEYS = {"step": "steps_key", "extra": "extra_n"}
+MATCH_TOP_K = 5

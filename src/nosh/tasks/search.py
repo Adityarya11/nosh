@@ -152,7 +152,7 @@ def _add_ingredient_names(candidates: list[Candidate]) -> None:
         c.ingredients = names[c.id]
 
 
-def _flagged_lines(ids: list[str], groups: list[str], terms: list[Term]) -> dict[str, list[FlaggedLine]]:
+def flagged_lines(ids: list[str], groups: list[str], terms: list[Term]) -> dict[str, list[FlaggedLine]]:
     out: dict[str, list[FlaggedLine]] = {i: [] for i in ids}
     if groups:
         sql = ("SELECT f.recipe_id, i.raw_line, f.grp, f.level FROM line_flags f JOIN recipe_ingredients i "
@@ -180,7 +180,7 @@ def _flagged_lines(ids: list[str], groups: list[str], terms: list[Term]) -> dict
 def _near_misses(pool_sql: str, params: list, query: str | None, groups: list[str], terms: list[Term],
                  max_steps: int | None) -> list[NearMiss]:
     pool = _fetch(pool_sql, params, query, SEARCH_TOP_K)
-    lines = _flagged_lines([c.id for c in pool], groups, terms)
+    lines = flagged_lines([c.id for c in pool], groups, terms)
     return [NearMiss(recipe=c, lines=lines.get(c.id, [])[:EVIDENCE_LINES],
                      too_many_steps=max_steps is not None and not MIN_RANKABLE_STEPS <= c.n_steps <= max_steps) for c in pool]
 
