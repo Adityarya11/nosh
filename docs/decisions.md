@@ -249,6 +249,62 @@ Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
   raw line itself has lost the letters. "creme fraeche" and "frache" are keywords for that reason.
 - The keyword and safe lists are my judgement; they are plain data and should be reviewed by the author.
 
+## D22. Step 4: search, coverage probe, session, slots, decide, chat
+
+- Search (`tasks/search.py`): title search is DuckDB BM25 with `conjunctive := 1`, so "banana bread" means titles with
+  both words (3,503 titles contain either word; 191 contain both). If nothing matches, the pool falls back to the 50
+  nearest titles by rapidfuzz `token_sort_ratio`, and the output says "fuzzy title" and is ordered by ID. Ingredient
+  search is the same SQL as stats (`match_where`). Hard constraints (restriction groups, `max_steps` with the
+  zero-step floor) are SQL filters, so every shown result passes them. Order: BM25 score, ties by recipe ID.
+- Coverage probe: candidates are the BM25 top 20 plus the fuzzy top 20; each title is scored by the share of query
+  words (stopwords removed, singularized) that match a title word at rapidfuzz ratio >= 85; the best score maps to
+  exact (>= 0.99), near (>= 0.70) or none. Raw `token_sort_ratio` was rejected because it punishes extra title words
+  ("penne" vs "Meaty Penne" = 62). Values were set by probing 8 queries (penne, banana bread, banana custard pie,
+  pasta with cream sauce, spagetti carbonara, chicken tikka masala, xylophone stew, pasta cream): "banana custard
+  pie" scores 0.67 (none), "xylophone stew" 0.50 (none), the rest 1.0. That is a calibration on a handful of
+  queries, not on the eval set; re-tune in step 8 and record the final numbers here.
+- No match for the title (probe `none`) returns `SearchNoMatch` with the three nearest titles and sets
+  `pending_offer` to a `Substitute` on the nearest recipe; nothing is adapted until the user says yes, and the
+  substitution task itself comes in steps 6-7 (a yes now answers "not available yet").
+- Constraint with no survivors: "No match found" first, then up to 5 closest alternatives, each listing the flagged
+  ingredient line that violates the constraint (rule 5). Results that survive state, once, that none of their lines
+  matched the restriction list and that this is a text match, not a safety guarantee.
+- Every answer with an exclusion states the sub-recipe count (D21): `store.sub_recipe_excluded_in` for search,
+  `sub_recipe_excluded` for stats, one shared sentence in `render.sub_recipe_note`.
+- Session (`session.py`): `mode`, `active_action`, `filters` (exclude groups, max steps, preferences), `last_results`,
+  `active_recipe_id`, `pending_offer` (valid for one turn) and `history` (last `HISTORY_TURNS`). New restrictions
+  persist until dropped ("dairy is fine now"). A restriction phrase is mapped to a group by the `aliases` list in
+  restrictions.json; a phrase with no group ("no cilantro") is reported as not applied, never silently dropped.
+  Ordinal references ("the second one") resolve against `last_results`.
+  A misspelled group name ("diary", "glutan") is accepted when its Damerau-Levenshtein similarity to the group name is
+  at least `ALIAS_FUZZY_MIN_SIM` (0.8) and the word has 5+ letters, and the reply says how it was read ("I read
+  'diary' as 'dairy'"). Typos are matched against group names only, not aliases: matching aliases would read
+  "batter" or "bitter" as "butter" and silently exclude dairy. First real test: "I cannot have diary" was refused
+  as unknown (correct but unhelpful), which led to this rule.
+- Slots (`router/slots.py`, `prompts/slots.txt`): the spec's `Slots` model, one structured call per turn at
+  temperature 0. `decide` (`router/decide.py`) is the pure function from AGENTS.md section 6, same order. Stats
+  requests are built in code from the slots: `have_ingredients` are the counted ingredients (ALL unless the detail says
+  "or"/"any"), the number and "most"/"fewest" come from regexes on `aggregate_detail`. A pinned mode only allows its own
+  task plus unsupported/clarify.
+- `chat.py` (not in the AGENTS.md layout) holds one turn so the CLI stays thin and the turn can be driven without a
+  terminal. `cli.py` adds `nosh chat [--mode ...]`; without a key or model name it prints what is missing and exits.
+- `llm.py`: Gemini by default through `google-genai` (structured output via `response_schema`), Anthropic through
+  `messages.parse(output_format=...)` with no sampling parameters (several current Claude models reject them), JSON
+  cache in `data/llm_cache/` keyed by provider, model, schema, temperature, system and user text. Model names are NOT
+  defaulted: the docs searched for Gemini gave inconsistent names, so `.env` must set `NOSH_GEMINI_MODEL`.
+  First real Gemini call (gemini-3.8-flash, user's key) extracted slots correctly, so the API accepts the `Slots` schema
+  with its defaults. The Anthropic path is untested.
+- Constraints (F17): a stated constraint is resolved by `constraints.resolve` as a restriction group (exact alias, then
+  group-name typo), then an ingredient present in the dataset (`resolve_term` plus a whole-word raw-line regex), and is
+  reported "not applied" only when it matches no line. `Filters.exclude_ingredients` holds ingredient exclusions; they
+  apply to search and stats, and they also drop recipes with a sub-recipe line, counted in the sub-recipe sentence.
+- Each shown result carries its canonical ingredient names and "no X match in N lines" for every active exclusion.
+  Sort order is BM25, then fewer steps (zero-step recipes last, `STEP_SORT_LAST`), then ID (F18).
+- `llm.py` retries transient Gemini errors (429, 500, 503, 504) up to `LLM_CALL_RETRIES` times with a doubling wait,
+  after a live 503 overload on gemini-3.8-flash. `.env.example` pins `gemini-3.6-flash`, the model that worked live.
+
+- Match and Substitute are routed by `decide` but answer "not available yet" until steps 5-7.
+
 ## Out of scope
 
 - Indian dietary restrictions (Navratri, Thursday, Jain): dataset is American. Mentioned only as a

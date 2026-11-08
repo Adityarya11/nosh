@@ -244,3 +244,56 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
   round (10k+ recipe hits -> 191 recipes -> about 800 lines). Detection by vocabulary converges but never reaches
   zero, so the README states it as a limitation and the bot never claims a recipe is allergen-free, only that no
   listed ingredient matched.
+
+## F16. Misspelled restriction ignored ("I cannot have diary") (step 4 live run)
+
+- **Symptom:** the first live Gemini run passed "diary" through as the constraint; no group matched, so the
+  reply said it was not applied and still showed all 284 penne recipes.
+- **Found by:** live `nosh chat` run: penne -> "I cannot have diary".
+- **Fix:** fuzzy match against restriction *group names only* (5+ letters, similarity >= 0.8); the reply states
+  "I read 'diary' as 'dairy'". Aliases are not fuzzy-matched, because "batter"/"bitter" would become "butter" and
+  silently exclude dairy.
+- **Status:** FIXED. Live re-run 2026-11-08: penne -> "I cannot have diary" -> 41 of 284, filters: exclude dairy,
+  1 recipe excluded only for a sub-recipe line; "dairy is fine now" -> back to 284.
+
+## F17. Plain ingredient exclusions are not applied ("no cilantro") (step 4 live run)
+
+- **Symptom:** "no cilantro" -> "I have no restriction list for 'no cilantro', so I did not apply it." Only the 11
+  restriction groups can be excluded. The spec needs arbitrary ingredients ("exclude peanuts", "Exclude eggs too").
+  Also, the slot came through as "no cilantro" with the negation still attached.
+- **Found by:** live `nosh chat` run.
+- **Why it matters:** honest (not silent), but it fails the T1/T2 requirement that a newly stated restriction applies.
+- **Fix:** resolve a constraint in order: group name (exact, then fuzzy) -> ingredient term (resolve_term:
+  family/canonical plus a whole-word raw-line scan) -> only if it matches no line in the dataset, say "not applied".
+  Strip leading "no/without/exclude" in code as a backstop, and ask for the bare ingredient in prompts/slots.txt.
+- **Implementation:** `constraints.resolve` (strips leading no/without/exclude/excluding, then group name exact ->
+  fuzzy -> ingredient term -> "not applied"). An ingredient exclusion matches the normalized name (family/canonical
+  via `term_sql`) OR a whole-word regex on the accent-folded raw line (plural-aware: egg/eggs, cherry/cherries), so
+  "cilantro leaf" is caught although its family is "leaf". Like the restriction groups, an ingredient exclusion also
+  drops recipes with a "recipe follows"-type line (their ingredients are hidden) and counts them in the sub-recipe
+  sentence. `prompts/slots.txt` now asks for bare names ("cilantro", "dairy"). Also applies to stats
+  (`StatsRequest.exclude_terms`), not just search.
+- **Evidence (item 2):** each result prints its canonical ingredient names and "Checked: no <restriction or
+  ingredient> match in N lines" for every active exclusion.
+- **Status:** FIXED. Live run 2026-11-08 (gemini-3.6-flash): "penne" -> 284 title matches; "no cilantro" -> filters:
+  exclude cilantro, 271 of 284 (13 recipes dropped: 5 have a cilantro line, 8 only a sub-recipe line); "I cannot have
+  dairy" on top -> 38 of 284. Independent check (BM25 ids + Python regex over the raw lines + `is_sub_recipe`):
+  5 recipes with a cilantro line, 8 with only a sub-recipe line, 271 remaining, 38 after dairy + cilantro; the code
+  gives 271 and 38. Constraint resolution checked offline: "no cilantro" -> ingredient, "without eggs" -> egg group,
+  "exclude peanuts" -> peanut group, "Exclude eggs too" -> egg group, "no jalapeno" -> ingredient,
+  "no zzzfoo" -> not applied (no line in the dataset matches).
+- **Side effect:** "no cheese" or "no butter" resolve to the dairy group (they are dairy aliases), which is stricter
+  than excluding that one ingredient.
+
+
+## F18. Search order is mostly ID order (step 4 review, minor)
+
+- **Symptom:** BM25 over titles gives only 10 distinct scores across 284 penne titles; the top 5 all score 3.2639,
+  so the visible order is the recipe-ID tie-break. Truthfully labelled, but arbitrary for a user.
+- **Found by:** listing match_bm25 scores for "penne".
+- **Fix (optional):** a meaningful second key (e.g. fewer steps, then ID), stated in the "Order:" line.
+- **Status:** FIXED. Second sort key is fewer steps (recipes with no instruction steps sort after all others), then ID;
+  the "Order:" line says so ("title relevance (BM25), then fewer steps (recipes without steps last), then recipe
+  ID"; ingredient-only and fuzzy searches skip the BM25 part). Live: the top 5 for "penne" changed from
+  Meaty Penne (5 steps), Penne Without the Vodka (6), Penne Primavera (3), Baked Penne (4), Penne with Eggplant (2) to
+  Penne with Eggplant (2), Ratatouille with Penne (2), Cheesy Penne (2), Penne Primavera (3), Penne Rustica (3).
