@@ -18,7 +18,7 @@ RAW_FILES = {
 }
 DATASET_URL = "https://storage.googleapis.com/recipe-box/recipes_raw.zip"
 
-STEP_RULE = "v1"
+STEP_RULE = "v2"
 MAP_VERSION = "v1"
 UNTITLED = "(untitled)"
 
@@ -53,6 +53,18 @@ LLM_PROVIDER = os.getenv("NOSH_LLM_PROVIDER", "gemini")
 GEMINI_MODEL = os.getenv("NOSH_GEMINI_MODEL", "")
 ANTHROPIC_MODEL = os.getenv("NOSH_ANTHROPIC_MODEL", "")
 
-STEP_BOILERPLATE = ["watch how to make this recipe."]
+STEP_BOILERPLATE_EXACT = ["watch how to make this recipe."]
+STEP_BOILERPLATE_CONTAINS = ["©", "copyright", "all rights reserved"]
+STEP_BOILERPLATE_PREFIX = ["recipe courtesy of", "photograph by", "photography by", "photo by"]
 HEADER_MAX_WORDS = 3
 MAP_COVERAGE_TARGET = 0.85
+
+MIN_RANKABLE_STEPS = 1
+STATS_TOP_N = 5
+STATS_NOTE_TOP = 6
+LEAK_REPORT_TOP = 6
+
+# lines that point to another recipe hide its ingredients, so they count as "may contain" for every restriction
+SUB_RECIPE_PHRASES = ["recipe follows", "recipe to follow", "recipe below", "see recipe", "see below"]
+FUZZY_MIN_RATIO = 85
+FUZZY_MAX_LEN_DIFF = 3

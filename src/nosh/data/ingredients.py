@@ -2,6 +2,7 @@
 
 import json
 import re
+import unicodedata
 from functools import lru_cache
 from typing import NamedTuple
 
@@ -43,6 +44,11 @@ def _drop_re() -> re.Pattern:
 
 
 @lru_cache(maxsize=1)
+def _noise_re() -> re.Pattern:
+    return re.compile(r"^(?:(?:" + "|".join(_load("descriptors.json")["leading_noise"]) + r")\s+)+")
+
+
+@lru_cache(maxsize=1)
 def _singular_exceptions() -> set[str]:
     return set(_load("map_rules.json")["singular_exceptions"])
 
@@ -55,6 +61,11 @@ def _rules() -> dict:
 @lru_cache(maxsize=1)
 def _irregular() -> dict[str, str]:
     return _load("map_rules.json")["irregular_singulars"]
+
+
+# NFD, not NFKD: NFKD would turn ½ into 1⁄2 and ™ into "tm"
+def fold(text: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c))
 
 
 def clean_line(line: str) -> str:
@@ -119,17 +130,16 @@ def clean_name(text: str) -> str:
         part = re.sub(r"\s+(?:or|such as)\s+.*$", "", part)
         part = _drop_re().sub(" ", part)
         part = re.sub(r"[^a-z0-9' -]", " ", part)
-        part = LEADING_UNIT_RE.sub("", " ".join(part.split()))
+        part = _noise_re().sub("", LEADING_UNIT_RE.sub("", " ".join(part.split())))
         words = [w.strip("-'") for w in part.split()]
         words = [w for w in words if w]
         if words:
-            words[-1] = singularize(words[-1])
-            return " ".join(words)
+            return " ".join(singularize(w) for w in words)
     return ""
 
 
 def parse_line(raw_line: str) -> Parsed:
-    qty, rest = _split_qty(raw_line)
+    qty, rest = _split_qty(fold(raw_line))
     unit, rest = _split_unit(rest)
     while rest.lower().startswith("plus "):
         _, rest = _split_qty(rest[5:])
@@ -139,7 +149,7 @@ def parse_line(raw_line: str) -> Parsed:
 
 
 @lru_cache(maxsize=1)
-def canonical_map() -> dict[str, dict[str, str]]:
+def canonical_map() -> dict[str, dict]:
     path = RESOURCES_DIR / "canonical_map.json"
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
@@ -153,6 +163,9 @@ def family_of(canonical: str) -> str:
         if f" {phrase} " in padded:
             return family
     words = canonical.split()
+    products = [w for w in words if w in rules["product_words"]]
+    if products:
+        return products[-1]
     while len(words) > 1 and words[-1] in rules["generic_heads"]:
         words.pop()
     return words[-1] if words else ""
@@ -163,3 +176,7 @@ def normalize(name: str) -> tuple[str, str, bool]:
     if entry:
         return entry["canonical"], entry["family"], True
     return name, family_of(name), False
+
+
+def modifier_words() -> list[str]:
+    return sorted(_rules()["modifier_words"])
