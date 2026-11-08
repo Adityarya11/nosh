@@ -1,12 +1,13 @@
 """Read-only query helpers over DuckDB: connection, build metadata, ingredient-term matching."""
 
+import re
 from functools import lru_cache
 from typing import NamedTuple
 
 import duckdb
 
 from nosh.config import DB_PATH, STATS_NOTE_TOP
-from nosh.data.ingredients import clean_name, modifier_words, normalize
+from nosh.data.ingredients import clean_name, fold, modifier_words, normalize
 from nosh.restrictions import constituents
 
 
@@ -65,21 +66,60 @@ def _expand(groups: list[str]) -> list[str]:
     return sorted({g for grp in groups for g in constituents(grp)})
 
 
-# recipes that pass every filter except that a "recipe follows"-type line is their only flag in the excluded groups
-def sub_recipe_excluded(all_of: list[Term], any_of: list[Term], exclude_groups: list[str]) -> int:
-    if not exclude_groups:
+# whole-word pattern for the raw ingredient line; "egg" also matches "eggs", "cherry" also matches "cherries"
+def raw_pattern(name: str) -> str:
+    words = fold(name).lower().split()
+    if not words:
+        return "(?!)"
+    head, last = [re.escape(w) for w in words[:-1]], words[-1]
+    tail = re.escape(last[:-1]) + "(?:y|ies)" if last.endswith("y") else re.escape(last) + "(?:e?s)?"
+    return r"\b" + r"\s+".join(head + [tail]) + r"\b"
+
+
+# an ingredient exclusion matches the normalized name OR the raw line, because the parser can lose words
+def term_line_sql(term: Term) -> tuple[str, list]:
+    sql, params = term_sql(term)
+    return (f"({sql} OR regexp_matches(strip_accents(lower(i.raw_line)), ?))",
+            [*params, raw_pattern(clean_name(term.text))])
+
+
+def term_hits(terms: list[Term]) -> tuple[str, list]:
+    parts = [term_line_sql(t) for t in terms]
+    return "(" + " OR ".join(s for s, _ in parts) + ")", [x for _, p in parts for x in p]
+
+
+def term_has_lines(term: Term) -> bool:
+    sql, params = term_line_sql(term)
+    return connect().execute(f"SELECT 1 FROM recipe_ingredients i WHERE {sql} LIMIT 1", params).fetchone() is not None
+
+
+# recipes in the id set excluded only because a "recipe follows"-type line carries the flag (or hides a term)
+def sub_recipe_excluded_in(ids_sql: str, ids_params: list, groups: list[str], terms: list[Term]) -> int:
+    if not groups and not terms:
         return 0
-    where, params = match_where(all_of, any_of, [])
-    groups = _expand(exclude_groups)
-    marks = ", ".join("?" for _ in groups)
-    sql = (f"SELECT COUNT(*) FROM recipes r WHERE {where} "
-           "AND EXISTS (SELECT 1 FROM sub_recipe_lines s WHERE s.recipe_id = r.id) "
-           f"AND NOT EXISTS (SELECT 1 FROM line_flags f WHERE f.recipe_id = r.id AND f.grp IN ({marks}) "
-           "AND NOT EXISTS (SELECT 1 FROM sub_recipe_lines s WHERE s.recipe_id = f.recipe_id AND s.pos = f.pos))")
-    return connect().execute(sql, [*params, *groups]).fetchone()[0]
+    sub = "SELECT 1 FROM sub_recipe_lines s WHERE s.recipe_id = {a}.recipe_id AND s.pos = {a}.pos"
+    clauses, params = [f"EXISTS (SELECT 1 FROM sub_recipe_lines s WHERE s.recipe_id = r.id)"], []
+    if groups:
+        expanded = _expand(groups)
+        clauses.append(f"NOT EXISTS (SELECT 1 FROM line_flags f WHERE f.recipe_id = r.id AND f.grp IN "
+                       f"({', '.join('?' for _ in expanded)}) AND NOT EXISTS ({sub.format(a='f')}))")
+        params += expanded
+    if terms:
+        hits, hit_params = term_hits(terms)
+        clauses.append(f"NOT EXISTS (SELECT 1 FROM recipe_ingredients i WHERE i.recipe_id = r.id AND {hits} "
+                       f"AND NOT EXISTS ({sub.format(a='i')}))")
+        params += hit_params
+    sql = f"SELECT COUNT(*) FROM recipes r WHERE r.id IN ({ids_sql}) AND " + " AND ".join(clauses)
+    return connect().execute(sql, [*ids_params, *params]).fetchone()[0]
 
 
-def match_where(all_of: list[Term], any_of: list[Term], exclude_groups: list[str]) -> tuple[str, list]:
+def sub_recipe_excluded(all_of: list[Term], any_of: list[Term], groups: list[str], terms: list[Term]) -> int:
+    where, params = match_where(all_of, any_of, [], [])
+    return sub_recipe_excluded_in(f"SELECT r.id FROM recipes r WHERE {where}", params, groups, terms)
+
+
+def match_where(all_of: list[Term], any_of: list[Term], exclude_groups: list[str],
+                exclude_terms: list[Term]) -> tuple[str, list]:
     clauses, params = [], []
     for t in all_of:
         sql, p = term_sql(t)
@@ -94,4 +134,13 @@ def match_where(all_of: list[Term], any_of: list[Term], exclude_groups: list[str
         clauses.append("NOT EXISTS (SELECT 1 FROM line_flags f WHERE f.recipe_id = r.id AND f.grp IN ("
                        + ", ".join("?" for _ in groups) + "))")
         params += groups
+    if exclude_terms:
+        hits, hit_params = term_hits(exclude_terms)
+        clauses.append(f"NOT EXISTS (SELECT 1 FROM recipe_ingredients i WHERE i.recipe_id = r.id AND {hits})")
+        clauses.append("NOT EXISTS (SELECT 1 FROM sub_recipe_lines s WHERE s.recipe_id = r.id)")
+        params += hit_params
     return (" AND ".join(clauses) or "TRUE"), params
+
+
+def recipe_exists(recipe_id: str) -> bool:
+    return connect().execute("SELECT 1 FROM recipes WHERE id = ?", [recipe_id]).fetchone() is not None
