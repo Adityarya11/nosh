@@ -297,3 +297,52 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
   ID"; ingredient-only and fuzzy searches skip the BM25 part). Live: the top 5 for "penne" changed from
   Meaty Penne (5 steps), Penne Without the Vodka (6), Penne Primavera (3), Baked Penne (4), Penne with Eggplant (2) to
   Penne with Eggplant (2), Ratatouille with Penne (2), Cheesy Penne (2), Penne Primavera (3), Penne Rustica (3).
+
+## F19. The spec's own T2 example ranked 2/4 matches above 4/4 (step 5 live run)
+
+- **Symptom:** the exact spec request ("I have eggs, onions, tomatoes, and rice ... as many of these as possible,
+  no peanuts, at most six steps. Prefer recipes that need the fewest additional ingredients.") returned a top 5
+  that each match only 2 of 4 ingredients (Tempura Onion Rings, a tomato salad, ...). After "Exclude eggs too",
+  #4 was "QA", a 1-line junk record matching only rice.
+- **Cause:** the "fewest additional ingredients" preference moved the extras key to position 1, above "most of
+  your ingredients matched". Recipes with 0 non-staple extras are mostly tiny recipes using 1-2 of the items.
+  The step-5 checkpoint was run without the preference sentence, so it showed 4/4 matches.
+- **Found by:** live `nosh chat` run of the spec request verbatim.
+- **Fix:** "matched" stays the first key (the request says "as many of these as possible"); preferences reorder
+  only the keys below it (fewest extras, fewest steps, ID).
+- **Status:** FIXED. `order_keys()` inserts a preference after "matched". Spec request verbatim, live: top 5 all match
+  4/4 (47,522 candidates; 3/4 after "Exclude eggs too", 23,919 candidates, five 2-step recipes, no "QA"). With "fewest
+  steps" the order is matched, steps, extras, ID and the top-5 step counts are 2,3,3,3,3. An independent Python recomputation
+  over the raw DB lines gives equal candidate counts, top-5 IDs and matched counts in all three runs.
+- **Interview point:** run the spec's examples verbatim; a paraphrased checkpoint hid a ranking bug.
+
+## F20. Pantry staples by family are too broad (step 5 review)
+
+- **Symptom:** pantry families include all of oil, vinegar, flour, butter, so cake flour, balsamic vinegar, and
+  (by the same rule) sesame oil or almond flour count as staples the user is assumed to have.
+- **Fix:** pantry by canonical (salt, black pepper, water, sugar, all-purpose flour, vegetable/olive oil, butter,
+  baking soda/powder, ...), not whole families. Staples are shown either way, so this is a ranking-accuracy fix.
+- **Status:** FIXED. `pantry.json` is now 39 canonicals (was 20 families + 13 canonicals); a family such as oil, vinegar or
+  flour no longer makes sesame oil, balsamic vinegar or cake flour a staple. The independent check uses the same list and
+  agrees on the top 5 and the extras counts.
+
+## F21. "no cheese" / "no butter" exclude the whole dairy group (step 5 report)
+
+- **Symptom:** dairy aliases resolve to the group, so "no cheese" also drops recipes with milk or yogurt.
+  Over-exclusion is safe, but it changes the user's stated constraint and shrinks results.
+- **Fix:** only group names (dairy, egg, gluten, nuts, ...) resolve to groups; aliases resolve as ingredients
+  (family/canonical + whole-word raw-line scan). State the reading in the reply.
+- **Status:** FIXED. `restrictions.json` keeps group names and synonyms (dairy, lactose, crustacean, ...) in `aliases` and moves
+  milk/cheese/butter (dairy) and shrimp (shellfish) to `ingredient_aliases`. "no cheese" now resolves to the ingredient cheese
+  and the reply says: "I read 'cheese' as the ingredient cheese only, not the whole dairy group; say 'no dairy' to exclude all of
+  it." Verified for cheese, butter, milk, shrimp; "no dairy" and "dairy" still resolve to the group with no note.
+
+## F22. Small form leaks in ingredient matching (step 5 review, minor)
+
+- **Symptom:** "onion" matches green-onion tail names ("whole green onion", "green onion with top", about 50
+  recipes) although "scallion" is separate; "egg" matches egg noodles (3); "rice" matches rice cereal (about 8).
+- **Fix:** add noodle and cereal to modifier_words; alias green onion -> scallion.
+- **Status:** FIXED. noodle and cereal are modifier words, and 29 green-onion name variants alias to scallion (the map script
+  now includes aliased names even when rare). Recipes whose only "onion" match was a green-onion line: 73 before, 6 after (the
+  rest are lines such as "onion powder with green onion ..."). Recipes whose only egg match is an egg-noodle line: 0; whose only
+  rice match is a rice-cereal line: 0. Map rebuilt; the leak probe scan is still 0 unflagged in all 11 groups.

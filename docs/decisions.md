@@ -303,7 +303,36 @@ Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
 - `llm.py` retries transient Gemini errors (429, 500, 503, 504) up to `LLM_CALL_RETRIES` times with a doubling wait,
   after a live 503 overload on gemini-3.8-flash. `.env.example` pins `gemini-3.6-flash`, the model that worked live.
 
-- Match and Substitute are routed by `decide` but answer "not available yet" until steps 5-7.
+- Substitute is routed by `decide` but answers "not available yet" until steps 6-7.
+
+## D23. Step 5: T2 ingredient matching (`tasks/match.py`, `render_match.py`)
+
+- User ingredients are parsed with the dataset's own parser (`parse_line`: quantity, unit, name) and matched with the
+  same `resolve_term` / `term_sql` rule as stats, so "tomatoes" means the tomato family minus the modified forms
+  (paste, sauce, juice, ...). Candidates are the recipes that use at least one of them and pass the hard filters.
+- Hard filters run in SQL before ranking: restriction groups, ingredient exclusions (D22, including sub-recipe lines)
+  and `max_steps`. "exclude eggs too" is a follow-up that re-runs the active match with the new filter.
+- One SELECT returns, per recipe, which of the user's ingredients it uses and the ranking keys. `matched` = user
+  ingredients used; `missing` = the rest; `extra_required` = distinct canonical names on lines that match none of
+  the user's ingredients, split into pantry staples (family in `pantry.json` families or canonical in its canonicals)
+  and non-staples. Only non-staples are ranked; staples are listed, not hidden.
+- Order (lexicographic): most matched, fewest non-staple extras, fewest steps (zero-step recipes last, `STEP_SORT_LAST`),
+  recipe ID. A preference word moves a key to the front (`MATCH_PREF_KEYS`: "step" -> steps, "extra" -> extras).
+  "Why here" is built in code from the keys: row 1 states its values, every later row names the first key on which
+  it differs from the row above (or says it ties).
+- Quantities are compared only when the user gave one: same unit dimension from `units.json` (volume/mass converted
+  to a base unit; count units only when the unit is identical, or both are bare counts) and the recipe line parsed a
+  quantity; otherwise the row says "name-level match; quantity sufficiency not verified".
+- If every candidate is excluded the answer says "No match found under your constraints" first, then up to 5 closest
+  alternatives from the unconstrained ranking, each with the flagged line or step count that violates the constraint.
+  If the user listed an ingredient and also excluded it, a note says every result lacks it.
+- Verified on real data (independent Python recomputation over the raw lines, `tests/verify_t2.py`): "eggs, onions,
+  tomatoes, rice": 65,177 candidates, top-5 IDs, matched counts and extras equal; after "exclude eggs too": 29,263
+  candidates, top-5 equal, 0 egg lines in the shown recipes, 1,939 recipes excluded only by a sub-recipe line (line-level
+  independent count 1,939).
+- Known limitation: equipment lines parsed as ingredients ("wooden skewer", "toothpick", "parchment paper", "a deep-fat
+  thermometer", "cheesecloth", ...) count as non-staple extras: 2,025 lines in 1,967 recipes (1.6%).
+- `render_match.py` is a separate file because `render.py` was near the 200-line guideline.
 
 ## Out of scope
 
@@ -315,3 +344,7 @@ Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
 
 - Hermes/Claude: AGENTS.md and spec drafting.
 - Claude Code: implementation (to be logged per module as it happens).
+
+D23 addendum (step 5 review): "matched" is always the first ranking key and preferences only reorder the keys below it. Pantry staples
+are matched by canonical only. Only group names and synonyms in `restrictions.json` `aliases` resolve to a group; names in
+`ingredient_aliases` (milk, cheese, butter, shrimp) exclude that ingredient and the reply states the reading.
