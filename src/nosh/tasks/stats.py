@@ -14,6 +14,7 @@ class StatsRequest(BaseModel):
     all_of: list[str] = []
     any_of: list[str] = []
     exclude_groups: list[str] = []
+    exclude_terms: list[str] = []
     n: int = STATS_TOP_N
     order: Literal["fewest", "most"] = "fewest"
 
@@ -47,13 +48,14 @@ def _norm_note(term: Term) -> str:
 def compute(req: StatsRequest) -> StatsResult:
     con = connect()
     all_of, any_of = [resolve_term(t) for t in req.all_of], [resolve_term(t) for t in req.any_of]
-    where, params = match_where(all_of, any_of, req.exclude_groups)
+    excluded = [resolve_term(t) for t in req.exclude_terms]
+    where, params = match_where(all_of, any_of, req.exclude_groups, excluded)
     total, dropped = totals()
     matched = con.execute(f"SELECT COUNT(*) FROM recipes r WHERE {where}", params).fetchone()[0]
     result = StatsResult(request=req, n_matched=matched, n_total=total, n_dropped=dropped,
                          norm_notes=[_norm_note(t) for t in all_of + any_of])
-    if req.exclude_groups:
-        result.n_sub_recipe_excluded = sub_recipe_excluded(all_of, any_of, req.exclude_groups)
+    if req.exclude_groups or excluded:
+        result.n_sub_recipe_excluded = sub_recipe_excluded(all_of, any_of, req.exclude_groups, excluded)
     if req.kind == "top_ingredients":
         result.rows = _top_ingredients(where, params, req.n)
     elif req.kind == "mean_median":
