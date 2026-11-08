@@ -1,5 +1,12 @@
 {
   "dairy": {
+    "aliases": [
+      "dairy",
+      "lactose",
+      "milk",
+      "cheese",
+      "butter"
+    ],
     "families": [
       "milk",
       "cream",
@@ -183,6 +190,9 @@
     ]
   },
   "egg": {
+    "aliases": [
+      "egg"
+    ],
     "families": [
       "egg",
       "mayonnaise",
@@ -238,6 +248,12 @@
     ]
   },
   "gluten": {
+    "aliases": [
+      "gluten",
+      "wheat",
+      "celiac",
+      "coeliac"
+    ],
     "families": [
       "flour",
       "bread",
@@ -443,6 +459,10 @@
     ]
   },
   "nuts": {
+    "aliases": [
+      "nut",
+      "tree nut"
+    ],
     "families": [
       "almond",
       "walnut",
@@ -498,6 +518,10 @@
     ]
   },
   "peanut": {
+    "aliases": [
+      "peanut",
+      "groundnut"
+    ],
     "families": [
       "peanut"
     ],
@@ -523,6 +547,10 @@
     ]
   },
   "soy": {
+    "aliases": [
+      "soy",
+      "soya"
+    ],
     "families": [
       "soy",
       "tofu",
@@ -558,6 +586,11 @@
     ]
   },
   "shellfish": {
+    "aliases": [
+      "shellfish",
+      "shrimp",
+      "crustacean"
+    ],
     "families": [
       "shrimp",
       "crab",
@@ -612,6 +645,9 @@
     ]
   },
   "fish": {
+    "aliases": [
+      "fish"
+    ],
     "families": [
       "fish",
       "salmon",
@@ -689,6 +725,9 @@
     ]
   },
   "pork": {
+    "aliases": [
+      "pork"
+    ],
     "families": [
       "pork",
       "bacon",
@@ -751,6 +790,10 @@
     ]
   },
   "vegetarian": {
+    "aliases": [
+      "vegetarian",
+      "meat"
+    ],
     "families": [
       "beef",
       "chicken",
@@ -844,6 +887,9 @@
     ]
   },
   "vegan": {
+    "aliases": [
+      "vegan"
+    ],
     "families": [
       "honey",
       "gelatin"

@@ -6,8 +6,9 @@ from functools import lru_cache
 from typing import Literal, NamedTuple
 
 from rapidfuzz import fuzz
+from rapidfuzz.distance import DamerauLevenshtein
 
-from nosh.config import FUZZY_MAX_LEN_DIFF, FUZZY_MIN_RATIO, RESOURCES_DIR, SUB_RECIPE_PHRASES
+from nosh.config import ALIAS_FUZZY_MIN_LEN, ALIAS_FUZZY_MIN_SIM, FUZZY_MAX_LEN_DIFF, FUZZY_MIN_RATIO, RESOURCES_DIR, SUB_RECIPE_PHRASES
 from nosh.data.ingredients import canonical_map, fold, singularize
 
 Level = Literal["banned", "may_contain"]
@@ -46,6 +47,29 @@ def _groups() -> dict[str, dict]:
 
 def known_groups() -> list[str]:
     return list(_groups())
+
+
+# typos are matched against the group names only; matching every alias would read "batter" as "butter"
+def _typo_match(text: str) -> tuple[str, str] | None:
+    for word in pad(text).split():
+        if len(word) < ALIAS_FUZZY_MIN_LEN:
+            continue
+        for group in (g for g in _groups() if len(g) >= ALIAS_FUZZY_MIN_LEN):
+            if DamerauLevenshtein.normalized_similarity(word, group) >= ALIAS_FUZZY_MIN_SIM:
+                return group, word
+    return None
+
+
+# maps a phrase like "no dairy" or "cannot have peanuts" to a group; a near-miss spelling ("diary") is accepted
+# and reported in the returned note so the user can see how it was read
+def resolve_group(text: str) -> tuple[str | None, str | None]:
+    padded = pad(text)
+    for group, spec in _groups().items():
+        if phrase_re(spec["aliases"]).search(padded):
+            return group, None
+    if typo := _typo_match(text):
+        return typo[0], f"I read '{typo[1]}' as '{typo[0]}'."
+    return None, None
 
 
 def constituents(group: str) -> list[str]:
