@@ -4,6 +4,7 @@ This is the decision document for the assignment as described at [TASK](AIIntern
 
 Running log of architecture decisions for the Recipe Box chatbot (GenAI intern take-home).
 Tools and dependencies, with their roles and rejected alternatives, are in `docs/stack.md`.
+Problems caught during the build (symptom, how found, fix, verification) are in `docs/findings.md`.
 Each entry: what I chose, what I rejected, and why. Numbers come from probes run on the raw dataset on 2026-11-06; re-run them from code before quoting in the README.
 
 Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
@@ -187,6 +188,66 @@ Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
   it covers the most frequent names up to `MAP_COVERAGE_TARGET` (85% of lines). Unmapped names use
   the same family rules at build time, so restriction groups still apply to the tail.
 - DuckDB `fts` extension is installed on first build (needs network once).
+
+## D20. Stats matching and zero-step recipes (step 3)
+
+- Step rankings and step averages leave out recipes with `n_steps` below `MIN_RANKABLE_STEPS` (1). The rule lives
+  in `data/steps.py` (`RANKABLE_SQL`, `no_instructions_note`) and every step answer states the excluded count.
+  Without it, "fewest steps" would return recipes with no instructions.
+- Step rule is now **v2**: besides v1 (dedupe repeated text, newline split, sentence fallback) it drops boilerplate
+  lines before counting: copyright, (c), "all rights reserved", "recipe courtesy of", "photograph by", and any
+  line equal to the recipe title. Patterns are in `config.py`. A lone text block is filtered per sentence so one
+  copyright sentence cannot erase the whole text. Zero-step recipes went from 33 (v1) to 44 (v2).
+- A bare ingredient term ("garlic") matches its whole family, except rows whose canonical contains a modifier
+  word (powder, paste, sauce, puree, juice, butter, oil, milk, extract, flour, salt, broth, stock, ...) that is
+  not part of the term itself. The words live in `modifier_words` in `resources/map_rules.json`; this replaced an
+  explicit `distinct_forms` name list because a rule covers unseen names. A specific term ("heavy cream") matches
+  that canonical only. Every stats answer lists the names counted and the modified forms left out.
+- "Most common ingredients" counts recipes per family, so the filter terms themselves appear in the list.
+
+## D21. Restrictions: banned, may-contain, safe lists, group tags (step 3 review)
+
+- Each group in `resources/restrictions.json` has `families` and `products` (level `banned`; a product matches as a
+  whole phrase, so "condensed cream of chicken soup" is banned for dairy), `definite_keywords` (whole-word hit:
+  `banned`, e.g. named cheeses, cake mix, puff pastry, mayonnaise, almond meal), `maybe_keywords` (whole-word hit:
+  `may_contain`, e.g. chocolate, margarine, oats, pesto, broth) and `safe` phrases. A safe phrase is removed from the
+  text first ("coconut milk", "cream of tartar", "spaghetti squash"), and a safe hit also overrides a family ban.
+- Every canonical_map.json entry carries a `groups` tag (group -> level). `scripts/build_canonical_map.py` drafts the
+  tags from the keyword lists; I reviewed the whole tagged list and the whole untagged list by hand and fixed the
+  gaps in restrictions.json (yolk, crema, bare "worcestershire", ladyfinger, pie shell, pasta shapes, foie gras,
+  egg/spring roll wrapper), then regenerated. No LLM was used for this pass (llm.py does not exist yet); the review
+  is mine and should be checked by the author. `classify` uses the tag for names in the map and the keyword lists for
+  the rest (about 15% of lines).
+- Keywords are also checked on the raw ingredient line, because the parser can lose words. The raw scan uses the same
+  definite/maybe levels; the stricter of name-level and raw-level wins. A tag cannot clear a raw-line hit, so false
+  positives are fixed with `safe` phrases, not by editing a tag.
+- Lines containing "recipe follows", "recipe to follow", "recipe below", "see recipe" or "see below"
+  (`SUB_RECIPE_PHRASES`) are `may_contain` for every group, because the referenced sub-recipe's ingredients are not in
+  the list. 8,392 lines in 6,345 recipes (5.2%) are affected, so any hard constraint drops those recipes.
+  `sub_recipe_lines` records them; every answer that applies an exclusion states how many matching recipes were
+  excluded only because of such a line (`store.sub_recipe_excluded`, `render.sub_recipe_note`).
+- Misspellings: a group may list `fuzzy_keywords` (egg: mayonnaise). Tokens within `FUZZY_MIN_RATIO` 85 of one
+  (rapidfuzz ratio, length difference at most 3) count as a definite hit.
+- Hard constraints exclude both levels. `may_contain` is shown as a label. Composite groups (vegetarian, vegan)
+  use `also_excludes` and combine their parts' flags.
+- Flags are computed at build time into `line_flags(recipe_id, pos, grp, level)`; queries use it.
+  `restrictions.check_line` is the same logic at chat time to re-check LLM output (rule 9).
+- Unicode: `fold()` in ingredients.py applies NFD and strips combining marks before parsing and before restriction
+  matching. NFKD was not used because it rewrites the vulgar fractions (143 lines) and the trademark sign (396 lines).
+- Irregular plurals (`irregular_singulars`): cookies, brownies, pies, smoothies, veggies, chilies and similar,
+  which the generic "ies" rule turned into "cooky", "py", "chily".
+- `nosh build` prints a leak report per restriction with line and recipe counts, a safe-list audit, the
+  keyword-inside-longer-word list, and an independent probe scan: `resources/leak_probes.json` is a separate term
+  list (named cheeses, wrapper and dough words, fish and shellfish names, ...), and the report counts lines and
+  recipes that carry those terms but no flag from the group or its constituents. The probe list is not derived from
+  the keyword lists, so it can find what they miss.
+- Conservative by design: a hard "no dairy" excludes 62.3% of recipes (59.2% with a definite hit), gluten 54.6%,
+  vegetarian 46.4%, vegan 84.7%. Known over-flags: "vegan shredded cheese blend", "butter flavored shortening",
+  tortilla chips (gluten), rye whiskey, "an ice cream maker". Known gaps by design: curry paste (shrimp paste),
+  kimchi, gochujang, ranch and tartar sauce are not flagged.
+- Source text is sometimes corrupted (U+FFFD, "&241;"); 3 canonicals still contain "cr me" or "jalape o" because the
+  raw line itself has lost the letters. "creme fraeche" and "frache" are keywords for that reason.
+- The keyword and safe lists are my judgement; they are plain data and should be reviewed by the author.
 
 ## Out of scope
 
