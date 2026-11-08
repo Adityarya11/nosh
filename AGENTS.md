@@ -49,6 +49,7 @@ Every module must be readable and explainable in a few sentences. Clarity beats 
 
 ## 3. Code norms
 
+- **Commit Authorship:** Never give the co-authored message only give git commit -m <"the message to commit">
 - **File header:** every `.py` file starts with exactly one line saying what the file does, e.g.
   `"""Ingredient line parser: strips quantities, units and prep notes."""`. Nothing more.
 - **No triple-quoted prose blocks anywhere.** No multi-line docstrings, no essay comments. Functions
