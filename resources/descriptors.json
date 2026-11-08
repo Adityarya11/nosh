@@ -82,7 +82,18 @@
     "warm",
     "additional",
     "dozen",
-    "head"
+    "head",
+    "reduced-fat",
+    "reduced-sodium",
+    "low-fat",
+    "low-sodium",
+    "fat-free",
+    "nonfat",
+    "lowfat",
+    "low-salt",
+    "sodium-free",
+    "sack",
+    "undiluted"
   ],
   "drop_phrases": [
     "to taste",
@@ -115,5 +126,12 @@
     "for deep-fat frying",
     "for pan frying",
     "to cover"
+  ],
+  "leading_noise": [
+    "or",
+    "and",
+    "from",
+    "very",
+    "extra"
   ]
 }

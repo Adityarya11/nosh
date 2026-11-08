@@ -3,10 +3,6 @@
 "canonical": "a deep-fat thermometer",
 "family": "thermometer"
 },
-"a deep-fry thermometer": {
-"canonical": "a deep-fry thermometer",
-"family": "thermometer"
-},
 "a handful flat-leaf parsley": {
 "canonical": "a handful flat-leaf parsley",
 "family": "parsley"
@@ -39,10 +35,6 @@
 "canonical": "adobo seasoning",
 "family": "seasoning"
 },
-"agave": {
-"canonical": "agave",
-"family": "agave"
-},
 "agave nectar": {
 "canonical": "agave nectar",
 "family": "nectar"
@@ -65,15 +57,24 @@
 },
 "alfredo sauce": {
 "canonical": "alfredo sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "all purpose flour": {
 "canonical": "all-purpose flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "all-purpose flour": {
 "canonical": "all-purpose flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "allspice": {
 "canonical": "allspice",
@@ -85,43 +86,73 @@
 },
 "almond": {
 "canonical": "almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond butter": {
 "canonical": "almond butter",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond extract": {
 "canonical": "almond extract",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond flour": {
 "canonical": "almond flour",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond meal": {
 "canonical": "almond meal",
-"family": "meal"
+"family": "meal",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond milk": {
 "canonical": "almond milk",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "almond paste": {
 "canonical": "almond paste",
-"family": "paste"
+"family": "paste",
+"groups": {
+"nuts": "banned"
+}
 },
 "amaretto": {
 "canonical": "amaretto",
-"family": "amaretto"
+"family": "amaretto",
+"groups": {
+"nuts": "may_contain"
+}
 },
 "amaretto liqueur": {
 "canonical": "amaretto liqueur",
-"family": "liqueur"
+"family": "liqueur",
+"groups": {
+"nuts": "may_contain"
+}
 },
 "american cheese": {
 "canonical": "american cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "an adjustable-blade slicer": {
 "canonical": "an adjustable-blade slicer",
@@ -133,7 +164,10 @@
 },
 "an ice cream maker": {
 "canonical": "an ice cream maker",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "an instant-read thermometer": {
 "canonical": "an instant-read thermometer",
@@ -157,59 +191,57 @@
 },
 "anchovy": {
 "canonical": "anchovy",
-"family": "anchovy"
+"family": "anchovy",
+"groups": {
+"fish": "banned"
+}
 },
 "anchovy fillet": {
 "canonical": "anchovy fillet",
-"family": "anchovy"
+"family": "anchovy",
+"groups": {
+"fish": "banned"
+}
 },
-"anchovy fillets in oil": {
-"canonical": "anchovy fillets in oil",
-"family": "anchovy"
+"anchovy fillet in oil": {
+"canonical": "anchovy fillet in oil",
+"family": "anchovy",
+"groups": {
+"fish": "banned"
+}
 },
 "anchovy paste": {
 "canonical": "anchovy paste",
-"family": "anchovy"
+"family": "anchovy",
+"groups": {
+"fish": "banned",
+"vegetarian": "banned"
+}
 },
 "and": {
 "canonical": "and",
 "family": "and"
 },
-"and apple": {
-"canonical": "and apple",
-"family": "apple"
-},
-"and cucumber": {
-"canonical": "and cucumber",
-"family": "cucumber"
-},
-"and deveined shrimp": {
-"canonical": "and deveined shrimp",
-"family": "shrimp"
-},
-"and ginger": {
-"canonical": "and ginger",
-"family": "ginger"
-},
-"and potato": {
-"canonical": "and potato",
-"family": "potato"
-},
-"and tomato": {
-"canonical": "and tomato",
-"family": "tomato"
-},
 "andouille sausage": {
 "canonical": "andouille sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "angel food cake": {
 "canonical": "angel food cake",
-"family": "cake"
+"family": "cake",
+"groups": {
+"gluten": "banned"
+}
 },
 "angel hair pasta": {
 "canonical": "angel hair pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "angostura bitter": {
 "canonical": "angostura bitter",
@@ -265,11 +297,10 @@
 },
 "applewood smoked bacon": {
 "canonical": "applewood smoked bacon",
-"family": "bacon"
-},
-"applewood-smoked bacon": {
-"canonical": "applewood-smoked bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "apricot": {
 "canonical": "apricot",
@@ -307,9 +338,9 @@
 "canonical": "artichoke heart",
 "family": "heart"
 },
-"artichoke hearts in water": {
-"canonical": "artichoke hearts in water",
-"family": "hearts"
+"artichoke heart in water": {
+"canonical": "artichoke heart in water",
+"family": "heart"
 },
 "arugula": {
 "canonical": "arugula",
@@ -321,15 +352,26 @@
 },
 "asiago": {
 "canonical": "asiago",
-"family": "asiago"
+"family": "asiago",
+"groups": {
+"dairy": "banned"
+}
 },
 "asiago cheese": {
 "canonical": "asiago cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "asian fish sauce": {
 "canonical": "asian fish sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"fish": "banned",
+"shellfish": "may_contain",
+"vegetarian": "banned"
+}
 },
 "asian pear": {
 "canonical": "asian pear",
@@ -379,10 +421,6 @@
 "canonical": "baby corn",
 "family": "corn"
 },
-"baby red potato": {
-"canonical": "baby red potato",
-"family": "potato"
-},
 "baby spinach": {
 "canonical": "baby spinach",
 "family": "spinach"
@@ -393,34 +431,52 @@
 },
 "bacon": {
 "canonical": "bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bacon bit": {
 "canonical": "bacon bit",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bacon dripping": {
 "canonical": "bacon dripping",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bacon fat": {
 "canonical": "bacon fat",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bacon grease": {
 "canonical": "bacon grease",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bacon slice": {
 "canonical": "bacon slice",
-"family": "bacon"
-},
-"bag": {
-"canonical": "bag",
-"family": "bag"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "bag baby spinach": {
 "canonical": "bag baby spinach",
+"family": "spinach"
+},
+"bag baby spinach leaf": {
+"canonical": "bag baby spinach leaf",
 "family": "spinach"
 },
 "bag cranberry": {
@@ -429,11 +485,21 @@
 },
 "bag semisweet chocolate chip": {
 "canonical": "bag semisweet chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
+},
+"bag spinach": {
+"canonical": "bag spinach",
+"family": "spinach"
 },
 "baguette": {
 "canonical": "baguette",
-"family": "baguette"
+"family": "baguette",
+"groups": {
+"gluten": "banned"
+}
 },
 "baked bean": {
 "canonical": "baked bean",
@@ -441,7 +507,10 @@
 },
 "baking mix": {
 "canonical": "baking mix",
-"family": "mix"
+"family": "mix",
+"groups": {
+"gluten": "banned"
+}
 },
 "baking potato": {
 "canonical": "baking potato",
@@ -454,10 +523,6 @@
 "baking soda": {
 "canonical": "baking soda",
 "family": "baking soda"
-},
-"balsamic vinaigrette": {
-"canonical": "balsamic vinaigrette",
-"family": "vinaigrette"
 },
 "balsamic vinegar": {
 "canonical": "balsamic vinegar",
@@ -483,10 +548,6 @@
 "canonical": "banana liqueur",
 "family": "liqueur"
 },
-"banana pepper": {
-"canonical": "banana pepper",
-"family": "pepper"
-},
 "barbecue sauce": {
 "canonical": "barbecue sauce",
 "family": "sauce"
@@ -497,7 +558,10 @@
 },
 "barley": {
 "canonical": "barley",
-"family": "barley"
+"family": "barley",
+"groups": {
+"gluten": "banned"
+}
 },
 "bartlett pear": {
 "canonical": "bartlett pear",
@@ -517,7 +581,10 @@
 },
 "basil pesto": {
 "canonical": "basil pesto",
-"family": "pesto"
+"family": "pesto",
+"groups": {
+"nuts": "may_contain"
+}
 },
 "basil sprig": {
 "canonical": "basil sprig",
@@ -537,7 +604,10 @@
 },
 "bay scallop": {
 "canonical": "bay scallop",
-"family": "scallop"
+"family": "scallop",
+"groups": {
+"shellfish": "banned"
+}
 },
 "bbq sauce": {
 "canonical": "bbq sauce",
@@ -549,59 +619,101 @@
 },
 "beef": {
 "canonical": "beef",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef bouillon": {
 "canonical": "beef bouillon",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef bouillon cube": {
 "canonical": "beef bouillon cube",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef brisket": {
 "canonical": "beef brisket",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef broth": {
 "canonical": "beef broth",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef chuck": {
 "canonical": "beef chuck",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef chuck roast": {
 "canonical": "beef chuck roast",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef consomme": {
 "canonical": "beef consomme",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef short rib": {
 "canonical": "beef short rib",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef sirloin": {
 "canonical": "beef sirloin",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef sirloin steak": {
 "canonical": "beef sirloin steak",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef stew meat": {
 "canonical": "beef stew meat",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef stock": {
 "canonical": "beef broth",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beef tenderloin": {
 "canonical": "beef tenderloin",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "beefsteak tomato": {
 "canonical": "beefsteak tomato",
@@ -609,7 +721,10 @@
 },
 "beer": {
 "canonical": "beer",
-"family": "beer"
+"family": "beer",
+"groups": {
+"gluten": "banned"
+}
 },
 "beet": {
 "canonical": "beet",
@@ -639,10 +754,6 @@
 "canonical": "bing cherry",
 "family": "cherry"
 },
-"biscuit baking mix": {
-"canonical": "biscuit baking mix",
-"family": "mix"
-},
 "bitter": {
 "canonical": "bitter",
 "family": "bitter"
@@ -653,11 +764,17 @@
 },
 "bittersweet chocolate": {
 "canonical": "bittersweet chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "bittersweet chocolate chip": {
 "canonical": "bittersweet chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "black": {
 "canonical": "black",
@@ -669,7 +786,10 @@
 },
 "black forest ham": {
 "canonical": "black forest ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "black mustard seed": {
 "canonical": "black mustard seed",
@@ -695,10 +815,6 @@
 "canonical": "black tea bag",
 "family": "bag"
 },
-"black truffle": {
-"canonical": "black truffle",
-"family": "truffle"
-},
 "black-eyed pea": {
 "canonical": "black-eyed pea",
 "family": "pea"
@@ -709,19 +825,31 @@
 },
 "blanched almond": {
 "canonical": "blanched almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "blanched hazelnut": {
 "canonical": "blanched hazelnut",
-"family": "hazelnut"
+"family": "hazelnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "blanched slivered almond": {
 "canonical": "blanched slivered almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "blanched whole almond": {
 "canonical": "blanched whole almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "blood orange": {
 "canonical": "blood orange",
@@ -733,15 +861,24 @@
 },
 "blue cheese": {
 "canonical": "blue cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "blue cheese crumble": {
 "canonical": "blue cheese crumble",
-"family": "crumble"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "blue cheese dressing": {
 "canonical": "blue cheese dressing",
-"family": "dressing"
+"family": "dressing",
+"groups": {
+"dairy": "banned"
+}
 },
 "blueberry": {
 "canonical": "blueberry",
@@ -769,15 +906,24 @@
 },
 "bone-in chicken breast": {
 "canonical": "bone-in chicken breast",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "bone-in chicken thigh": {
 "canonical": "bone-in chicken thigh",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "bone-in pork chop": {
 "canonical": "bone-in pork chop",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "bosc pear": {
 "canonical": "bosc pear",
@@ -787,13 +933,23 @@
 "canonical": "boston lettuce",
 "family": "lettuce"
 },
+"bottle beer": {
+"canonical": "bottle beer",
+"family": "beer",
+"groups": {
+"gluten": "banned"
+}
+},
 "bottled caper": {
 "canonical": "bottled caper",
 "family": "caper"
 },
 "bottled clam juice": {
 "canonical": "bottled clam juice",
-"family": "clam"
+"family": "clam",
+"groups": {
+"shellfish": "banned"
+}
 },
 "bottled horseradish": {
 "canonical": "bottled horseradish",
@@ -813,10 +969,13 @@
 },
 "bow tie pasta": {
 "canonical": "bow tie pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
-"box confectioners sugar": {
-"canonical": "box confectioners sugar",
+"box confectioner sugar": {
+"canonical": "box confectioner sugar",
 "family": "sugar"
 },
 "box frozen spinach": {
@@ -829,27 +988,38 @@
 },
 "bread": {
 "canonical": "bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "bread crumb": {
 "canonical": "bread crumb",
-"family": "bread"
-},
-"bread cube": {
-"canonical": "bread cube",
-"family": "cube"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "bread flour": {
 "canonical": "bread flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "breadcrumb": {
 "canonical": "breadcrumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "breakfast sausage": {
 "canonical": "breakfast sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "brewed coffee": {
 "canonical": "brewed coffee",
@@ -859,21 +1029,19 @@
 "canonical": "brewed espresso",
 "family": "espresso"
 },
-"brie": {
-"canonical": "brie",
-"family": "brie"
-},
 "brie cheese": {
 "canonical": "brie cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "brioche": {
 "canonical": "brioche",
-"family": "brioche"
-},
-"brioche bun": {
-"canonical": "brioche bun",
-"family": "bun"
+"family": "brioche",
+"groups": {
+"egg": "banned"
+}
 },
 "broccoli": {
 "canonical": "broccoli",
@@ -913,15 +1081,14 @@
 },
 "brownie mix": {
 "canonical": "brownie mix",
-"family": "mix"
+"family": "mix",
+"groups": {
+"gluten": "banned"
+}
 },
-"brussels sprout": {
-"canonical": "brussels sprout",
+"brussel sprout": {
+"canonical": "brussel sprout",
 "family": "sprout"
-},
-"bucatini": {
-"canonical": "bucatini",
-"family": "bucatini"
 },
 "buckwheat flour": {
 "canonical": "buckwheat flour",
@@ -931,21 +1098,30 @@
 "canonical": "bulb fennel",
 "family": "fennel"
 },
-"bulbs fennel": {
-"canonical": "bulbs fennel",
-"family": "fennel"
+"bulb garlic": {
+"canonical": "bulb garlic",
+"family": "garlic"
 },
 "bulgur": {
 "canonical": "bulgur",
-"family": "bulgur"
+"family": "bulgur",
+"groups": {
+"gluten": "banned"
+}
 },
 "bulk italian sausage": {
 "canonical": "bulk italian sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "bulk pork sausage": {
 "canonical": "bulk pork sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "bunch cilantro": {
 "canonical": "bunch cilantro",
@@ -955,9 +1131,9 @@
 "canonical": "bunch parsley",
 "family": "parsley"
 },
-"bunch scallion": {
-"canonical": "bunch scallion",
-"family": "scallion"
+"bunch watercress": {
+"canonical": "bunch watercress",
+"family": "watercress"
 },
 "bundle thyme": {
 "canonical": "bundle thyme",
@@ -969,27 +1145,28 @@
 },
 "butter": {
 "canonical": "butter",
-"family": "butter"
-},
-"butter bean": {
-"canonical": "butter bean",
-"family": "bean"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "butter flavored shortening": {
 "canonical": "butter flavored shortening",
-"family": "shortening"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "butter lettuce": {
 "canonical": "butter lettuce",
 "family": "lettuce"
 },
-"butter lettuce leaf": {
-"canonical": "butter lettuce leaf",
-"family": "lettuce"
-},
 "buttermilk": {
 "canonical": "buttermilk",
-"family": "buttermilk"
+"family": "buttermilk",
+"groups": {
+"dairy": "banned"
+}
 },
 "butternut squash": {
 "canonical": "butternut squash",
@@ -997,11 +1174,18 @@
 },
 "butterscotch chip": {
 "canonical": "butterscotch chip",
-"family": "chip"
+"family": "chip",
+"groups": {
+"dairy": "banned"
+}
 },
 "buttery round cracker": {
 "canonical": "buttery round cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"dairy": "may_contain",
+"gluten": "banned"
+}
 },
 "button mushroom": {
 "canonical": "button mushroom",
@@ -1025,15 +1209,24 @@
 },
 "cake": {
 "canonical": "cake",
-"family": "cake"
+"family": "cake",
+"groups": {
+"gluten": "banned"
+}
 },
 "cake flour": {
 "canonical": "cake flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "calamari": {
 "canonical": "calamari",
-"family": "calamari"
+"family": "calamari",
+"groups": {
+"shellfish": "banned"
+}
 },
 "calvado": {
 "canonical": "calvado",
@@ -1045,7 +1238,10 @@
 },
 "canadian bacon": {
 "canonical": "canadian bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "candied cherry": {
 "canonical": "candied cherry",
@@ -1065,7 +1261,10 @@
 },
 "canned beef broth": {
 "canonical": "canned beef broth",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "canned black bean": {
 "canonical": "canned black bean",
@@ -1073,23 +1272,22 @@
 },
 "canned chicken broth": {
 "canonical": "canned chicken broth",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "canned chickpea": {
 "canonical": "canned chickpea",
 "family": "chickpea"
 },
-"canned chipotle chiles in adobo": {
-"canonical": "canned chipotle chiles in adobo",
-"family": "chiles"
+"canned chipotle chile in adobo": {
+"canonical": "canned chipotle chile in adobo",
+"family": "chile"
 },
 "canned crushed tomato": {
 "canonical": "canned crushed tomato",
 "family": "tomato"
-},
-"canned low-salt chicken broth": {
-"canonical": "canned low-salt chicken broth",
-"family": "chicken"
 },
 "canned plum tomato": {
 "canonical": "canned plum tomato",
@@ -1103,10 +1301,6 @@
 "canonical": "canned pumpkin puree",
 "family": "puree"
 },
-"canned pure pumpkin": {
-"canonical": "canned pure pumpkin",
-"family": "pumpkin"
-},
 "canned tomato": {
 "canonical": "canned tomato",
 "family": "tomato"
@@ -1114,10 +1308,6 @@
 "canned unsweetened coconut milk": {
 "canonical": "canned unsweetened coconut milk",
 "family": "coconut"
-},
-"canned vegetable broth": {
-"canonical": "canned vegetable broth",
-"family": "vegetable"
 },
 "cannellini": {
 "canonical": "cannellini",
@@ -1137,7 +1327,7 @@
 },
 "canola oil to cook": {
 "canonical": "canola oil to cook",
-"family": "cook"
+"family": "oil"
 },
 "cantaloupe": {
 "canonical": "cantaloupe",
@@ -1149,15 +1339,24 @@
 },
 "caramel": {
 "canonical": "caramel",
-"family": "caramel"
+"family": "caramel",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "caramel ice cream topping": {
 "canonical": "caramel ice cream topping",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "caramel sauce": {
 "canonical": "caramel sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "caraway seed": {
 "canonical": "caraway seed",
@@ -1185,7 +1384,10 @@
 },
 "cashew": {
 "canonical": "cashew",
-"family": "cashew"
+"family": "cashew",
+"groups": {
+"nuts": "banned"
+}
 },
 "caster sugar": {
 "canonical": "caster sugar",
@@ -1193,7 +1395,10 @@
 },
 "catfish fillet": {
 "canonical": "catfish fillet",
-"family": "catfish"
+"family": "catfish",
+"groups": {
+"fish": "banned"
+}
 },
 "cauliflower": {
 "canonical": "cauliflower",
@@ -1205,7 +1410,10 @@
 },
 "caviar": {
 "canonical": "caviar",
-"family": "caviar"
+"family": "caviar",
+"groups": {
+"fish": "banned"
+}
 },
 "cayenne": {
 "canonical": "cayenne",
@@ -1257,11 +1465,17 @@
 },
 "center-cut pork chop": {
 "canonical": "center-cut pork chop",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "center-cut salmon fillet": {
 "canonical": "center-cut salmon fillet",
-"family": "salmon"
+"family": "salmon",
+"groups": {
+"fish": "banned"
+}
 },
 "champagne": {
 "canonical": "champagne",
@@ -1279,29 +1493,30 @@
 "canonical": "chanterelle mushroom",
 "family": "mushroom"
 },
-"chardonnay": {
-"canonical": "chardonnay",
-"family": "chardonnay"
-},
 "chayote": {
 "canonical": "chayote",
 "family": "chayote"
 },
 "cheddar": {
 "canonical": "cheddar",
-"family": "cheddar"
+"family": "cheddar",
+"groups": {
+"dairy": "banned"
+}
 },
 "cheddar cheese": {
 "canonical": "cheddar cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "cheese": {
 "canonical": "cheese",
-"family": "cheese"
-},
-"cheese tortellini": {
-"canonical": "cheese tortellini",
-"family": "tortellini"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "cheesecloth": {
 "canonical": "cheesecloth",
@@ -1323,97 +1538,142 @@
 "canonical": "chervil",
 "family": "chervil"
 },
-"chervil leaf": {
-"canonical": "chervil leaf",
-"family": "chervil"
-},
 "chestnut": {
 "canonical": "chestnut",
-"family": "chestnut"
+"family": "chestnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "chia seed": {
 "canonical": "chia seed",
 "family": "chia"
 },
-"chick pea": {
-"canonical": "chick pea",
-"family": "pea"
-},
 "chicken": {
 "canonical": "chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken bouillon": {
 "canonical": "chicken bouillon",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken bouillon cube": {
 "canonical": "chicken bouillon cube",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken bouillon granule": {
 "canonical": "chicken bouillon granule",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken breast": {
 "canonical": "chicken breast",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken breast cube": {
 "canonical": "chicken breast cube",
-"family": "chicken"
-},
-"chicken breast half": {
-"canonical": "chicken breast half",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken breast meat": {
 "canonical": "chicken breast meat",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken breast strip": {
 "canonical": "chicken breast strip",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken breast with skin": {
 "canonical": "chicken breast with skin",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken broth": {
 "canonical": "chicken broth",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken cutlet": {
 "canonical": "chicken cutlet",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken drumstick": {
 "canonical": "chicken drumstick",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken leg": {
 "canonical": "chicken leg",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken liver": {
 "canonical": "chicken liver",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken stock": {
 "canonical": "chicken broth",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken tender": {
 "canonical": "chicken tender",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken thigh": {
 "canonical": "chicken thigh",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chicken wing": {
 "canonical": "chicken wing",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "chickpea": {
 "canonical": "chickpea",
@@ -1487,17 +1747,29 @@
 "canonical": "chinese rice wine",
 "family": "wine"
 },
+"chipotle chile in adobo sauce": {
+"canonical": "chipotle chile in adobo sauce",
+"family": "chile"
+},
 "chipotle chile powder": {
 "canonical": "chipotle chile powder",
 "family": "powder"
+},
+"chipotle in adobo": {
+"canonical": "chipotle in adobo",
+"family": "chipotle"
 },
 "chipotle pepper": {
 "canonical": "chipotle pepper",
 "family": "pepper"
 },
-"chipotle peppers in adobo sauce": {
-"canonical": "chipotle peppers in adobo sauce",
-"family": "peppers"
+"chipotle pepper in adobo": {
+"canonical": "chipotle pepper in adobo",
+"family": "pepper"
+},
+"chipotle pepper in adobo sauce": {
+"canonical": "chipotle pepper in adobo sauce",
+"family": "pepper"
 },
 "chipotle powder": {
 "canonical": "chipotle powder",
@@ -1513,63 +1785,99 @@
 },
 "chocolate": {
 "canonical": "chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "chocolate cake mix": {
 "canonical": "chocolate cake mix",
-"family": "mix"
+"family": "cake",
+"groups": {
+"dairy": "may_contain",
+"egg": "may_contain",
+"gluten": "banned"
+}
 },
 "chocolate chip": {
 "canonical": "chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "chocolate frosting": {
 "canonical": "chocolate frosting",
-"family": "frosting"
-},
-"chocolate hazelnut spread": {
-"canonical": "chocolate hazelnut spread",
-"family": "spread"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "chocolate ice cream": {
 "canonical": "chocolate ice cream",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
-"chocolate sandwich cooky": {
-"canonical": "chocolate sandwich cooky",
-"family": "cooky"
+"chocolate sandwich cookie": {
+"canonical": "chocolate sandwich cookie",
+"family": "cookie",
+"groups": {
+"dairy": "may_contain",
+"gluten": "banned"
+}
 },
 "chocolate sauce": {
 "canonical": "chocolate sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "chocolate shaving": {
 "canonical": "chocolate shaving",
-"family": "shaving"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "chocolate syrup": {
 "canonical": "chocolate syrup",
-"family": "syrup"
+"family": "syrup",
+"groups": {
+"dairy": "may_contain"
+}
 },
-"chocolate wafer cooky": {
-"canonical": "chocolate wafer cooky",
-"family": "cooky"
+"chocolate wafer cookie": {
+"canonical": "chocolate wafer cookie",
+"family": "cookie",
+"groups": {
+"dairy": "may_contain",
+"gluten": "banned"
+}
 },
 "chocolate-hazelnut spread": {
 "canonical": "chocolate-hazelnut spread",
-"family": "spread"
+"family": "spread",
+"groups": {
+"dairy": "may_contain",
+"nuts": "banned"
+}
 },
 "chorizo": {
 "canonical": "chorizo",
-"family": "chorizo"
+"family": "chorizo",
+"groups": {
+"pork": "banned"
+}
 },
 "chorizo sausage": {
 "canonical": "chorizo sausage",
-"family": "sausage"
-},
-"chow mein noodle": {
-"canonical": "chow mein noodle",
-"family": "noodle"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "chuck roast": {
 "canonical": "chuck roast",
@@ -1577,7 +1885,10 @@
 },
 "chunky peanut butter": {
 "canonical": "chunky peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "chunky salsa": {
 "canonical": "chunky salsa",
@@ -1585,11 +1896,10 @@
 },
 "ciabatta roll": {
 "canonical": "ciabatta roll",
-"family": "roll"
-},
-"cider": {
-"canonical": "cider",
-"family": "cider"
+"family": "roll",
+"groups": {
+"gluten": "banned"
+}
 },
 "cider vinegar": {
 "canonical": "cider vinegar",
@@ -1603,9 +1913,9 @@
 "canonical": "cilantro leaf",
 "family": "cilantro"
 },
-"cilantro leaves with tender stem": {
-"canonical": "cilantro leaves with tender stem",
-"family": "leaves"
+"cilantro leaf with tender stem": {
+"canonical": "cilantro leaf with tender stem",
+"family": "cilantro"
 },
 "cilantro sprig": {
 "canonical": "cilantro sprig",
@@ -1625,19 +1935,24 @@
 },
 "clam": {
 "canonical": "clam",
-"family": "clam"
+"family": "clam",
+"groups": {
+"shellfish": "banned"
+}
 },
 "clam juice": {
 "canonical": "clam juice",
-"family": "clam"
+"family": "clam",
+"groups": {
+"shellfish": "banned"
+}
 },
 "clarified butter": {
 "canonical": "clarified butter",
-"family": "butter"
-},
-"cleaned squid": {
-"canonical": "cleaned squid",
-"family": "squid"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "clementine": {
 "canonical": "clementine",
@@ -1653,11 +1968,10 @@
 },
 "clover honey": {
 "canonical": "clover honey",
-"family": "honey"
-},
-"cloves garlic": {
-"canonical": "garlic",
-"family": "garlic"
+"family": "honey",
+"groups": {
+"vegan": "banned"
+}
 },
 "club soda": {
 "canonical": "club soda",
@@ -1673,7 +1987,10 @@
 },
 "coarse bread crumb": {
 "canonical": "coarse bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "coarse ground black pepper": {
 "canonical": "coarse ground black pepper",
@@ -1706,10 +2023,6 @@
 "coarse sugar": {
 "canonical": "coarse sugar",
 "family": "sugar"
-},
-"cocktail sauce": {
-"canonical": "cocktail sauce",
-"family": "sauce"
 },
 "cocoa": {
 "canonical": "cocoa",
@@ -1765,11 +2078,17 @@
 },
 "cod": {
 "canonical": "cod",
-"family": "cod"
+"family": "cod",
+"groups": {
+"fish": "banned"
+}
 },
 "cod fillet": {
 "canonical": "cod fillet",
-"family": "cod"
+"family": "cod",
+"groups": {
+"fish": "banned"
+}
 },
 "coffee": {
 "canonical": "coffee",
@@ -1781,7 +2100,10 @@
 },
 "coffee ice cream": {
 "canonical": "coffee ice cream",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "coffee liqueur": {
 "canonical": "coffee liqueur",
@@ -1809,11 +2131,10 @@
 },
 "colby cheese": {
 "canonical": "colby cheese",
-"family": "cheese"
-},
-"colby-monterey jack cheese": {
-"canonical": "colby-monterey jack cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "coleslaw mix": {
 "canonical": "coleslaw mix",
@@ -1825,30 +2146,39 @@
 },
 "condensed cream of celery soup": {
 "canonical": "condensed cream of celery soup",
-"family": "soup"
+"family": "soup",
+"groups": {
+"dairy": "banned",
+"gluten": "banned"
+}
 },
 "condensed cream of chicken soup": {
 "canonical": "condensed cream of chicken soup",
-"family": "soup"
+"family": "soup",
+"groups": {
+"dairy": "banned",
+"gluten": "banned",
+"vegetarian": "banned"
+}
 },
 "condensed cream of mushroom soup": {
 "canonical": "condensed cream of mushroom soup",
-"family": "soup"
-},
-"condensed milk": {
-"canonical": "condensed milk",
-"family": "milk"
+"family": "soup",
+"groups": {
+"dairy": "banned",
+"gluten": "banned"
+}
 },
 "condensed tomato soup": {
 "canonical": "condensed tomato soup",
 "family": "soup"
 },
-"confectioner's sugar": {
-"canonical": "powdered sugar",
+"confectioner sugar": {
+"canonical": "confectioner sugar",
 "family": "sugar"
 },
-"confectioners sugar": {
-"canonical": "powdered sugar",
+"confectioner' sugar": {
+"canonical": "confectioner' sugar",
 "family": "sugar"
 },
 "cooked": {
@@ -1857,7 +2187,10 @@
 },
 "cooked bacon": {
 "canonical": "cooked bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "cooked black bean": {
 "canonical": "cooked black bean",
@@ -1869,27 +2202,39 @@
 },
 "cooked chicken": {
 "canonical": "cooked chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "cooked chicken breast": {
 "canonical": "cooked chicken breast",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "cooked chicken meat": {
 "canonical": "cooked chicken meat",
-"family": "chicken"
-},
-"cooked crabmeat": {
-"canonical": "cooked crabmeat",
-"family": "crabmeat"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "cooked ham": {
 "canonical": "cooked ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "cooked lobster meat": {
 "canonical": "cooked lobster meat",
-"family": "lobster"
+"family": "lobster",
+"groups": {
+"shellfish": "banned",
+"vegetarian": "banned"
+}
 },
 "cooked quinoa": {
 "canonical": "cooked quinoa",
@@ -1901,11 +2246,17 @@
 },
 "cooked shrimp": {
 "canonical": "cooked shrimp",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "cooked turkey": {
 "canonical": "cooked turkey",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "cooked white rice": {
 "canonical": "cooked white rice",
@@ -1914,10 +2265,6 @@
 "cooking oil": {
 "canonical": "vegetable oil",
 "family": "oil"
-},
-"cooking sherry": {
-"canonical": "cooking sherry",
-"family": "sherry"
 },
 "cooking spray": {
 "canonical": "cooking spray",
@@ -1969,15 +2316,24 @@
 },
 "cornbread": {
 "canonical": "cornbread",
-"family": "cornbread"
+"family": "cornbread",
+"groups": {
+"gluten": "banned"
+}
 },
 "corned beef": {
 "canonical": "corned beef",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
-"cornflakes cereal": {
-"canonical": "cornflakes cereal",
-"family": "cereal"
+"cornflake cereal": {
+"canonical": "cornflake cereal",
+"family": "cereal",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "cornichon": {
 "canonical": "cornichon",
@@ -2001,47 +2357,53 @@
 },
 "cotija cheese": {
 "canonical": "cotija cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "cottage cheese": {
 "canonical": "cottage cheese",
-"family": "cheese"
-},
-"country bread": {
-"canonical": "country bread",
-"family": "bread"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "country ham": {
 "canonical": "country ham",
-"family": "ham"
-},
-"country-style bread": {
-"canonical": "country-style bread",
-"family": "bread"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "couscous": {
 "canonical": "couscous",
-"family": "couscous"
-},
-"cr me de cassi": {
-"canonical": "cr me de cassi",
-"family": "cassi"
-},
-"cr me fra che": {
-"canonical": "cr me fra che",
-"family": "che"
+"family": "couscous",
+"groups": {
+"gluten": "banned"
+}
 },
 "crab boil seasoning": {
 "canonical": "crab boil seasoning",
-"family": "crab"
+"family": "crab",
+"groups": {
+"shellfish": "banned"
+}
 },
 "crab meat": {
 "canonical": "crab meat",
-"family": "crab"
+"family": "crab",
+"groups": {
+"shellfish": "banned",
+"vegetarian": "banned"
+}
 },
 "crabmeat": {
 "canonical": "crabmeat",
-"family": "crabmeat"
+"family": "crabmeat",
+"groups": {
+"shellfish": "banned"
+}
 },
 "cracked black pepper": {
 "canonical": "cracked black pepper",
@@ -2057,7 +2419,10 @@
 },
 "cracker": {
 "canonical": "cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "cranberry": {
 "canonical": "cranberry",
@@ -2069,7 +2434,7 @@
 },
 "cranberry juice cocktail": {
 "canonical": "cranberry juice cocktail",
-"family": "cocktail"
+"family": "juice"
 },
 "cranberry sauce": {
 "canonical": "cranberry sauce",
@@ -2077,15 +2442,26 @@
 },
 "cream": {
 "canonical": "cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "cream cheese": {
 "canonical": "cream cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "cream of chicken soup": {
 "canonical": "cream of chicken soup",
-"family": "soup"
+"family": "soup",
+"groups": {
+"dairy": "banned",
+"gluten": "banned",
+"vegetarian": "banned"
+}
 },
 "cream of coconut": {
 "canonical": "cream of coconut",
@@ -2093,7 +2469,11 @@
 },
 "cream of mushroom soup": {
 "canonical": "cream of mushroom soup",
-"family": "soup"
+"family": "soup",
+"groups": {
+"dairy": "banned",
+"gluten": "banned"
+}
 },
 "cream of tartar": {
 "canonical": "cream of tartar",
@@ -2101,7 +2481,7 @@
 },
 "cream sherry": {
 "canonical": "cream sherry",
-"family": "sherry"
+"family": "cream"
 },
 "cream-style corn": {
 "canonical": "cream-style corn",
@@ -2109,23 +2489,42 @@
 },
 "creamed corn": {
 "canonical": "creamed corn",
-"family": "corn"
+"family": "corn",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "creamy peanut butter": {
 "canonical": "creamy peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "creamy salad dressing": {
 "canonical": "creamy salad dressing",
-"family": "dressing"
+"family": "dressing",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "crema": {
 "canonical": "crema",
-"family": "crema"
+"family": "crema",
+"groups": {
+"dairy": "banned"
+}
+},
+"creme de cassis": {
+"canonical": "creme de cassis",
+"family": "cassis"
 },
 "creme fraiche": {
 "canonical": "creme fraiche",
-"family": "fraiche"
+"family": "fraiche",
+"groups": {
+"dairy": "banned"
+}
 },
 "cremini": {
 "canonical": "cremini",
@@ -2157,23 +2556,38 @@
 },
 "crisp rice cereal": {
 "canonical": "crisp rice cereal",
-"family": "cereal"
+"family": "cereal",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "crispy rice cereal": {
 "canonical": "crispy rice cereal",
-"family": "cereal"
+"family": "cereal",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "croissant": {
 "canonical": "croissant",
-"family": "croissant"
+"family": "croissant",
+"groups": {
+"gluten": "banned"
+}
 },
 "crouton": {
 "canonical": "crouton",
-"family": "crouton"
+"family": "crouton",
+"groups": {
+"gluten": "banned"
+}
 },
 "crunchy peanut butter": {
 "canonical": "crunchy peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "crushed black peppercorn": {
 "canonical": "crushed black peppercorn",
@@ -2181,7 +2595,11 @@
 },
 "crushed buttery round cracker": {
 "canonical": "crushed buttery round cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"dairy": "may_contain",
+"gluten": "banned"
+}
 },
 "crushed garlic": {
 "canonical": "crushed garlic",
@@ -2211,25 +2629,23 @@
 "canonical": "crushed red pepper flake",
 "family": "chile"
 },
-"crushed saltine cracker": {
-"canonical": "crushed saltine cracker",
-"family": "cracker"
-},
 "crushed tomato": {
 "canonical": "crushed tomato",
 "family": "tomato"
 },
 "crushed tortilla chip": {
 "canonical": "crushed tortilla chip",
-"family": "chip"
+"family": "chip",
+"groups": {
+"gluten": "banned"
+}
 },
 "crusty bread": {
 "canonical": "crusty bread",
-"family": "bread"
-},
-"crusty roll": {
-"canonical": "crusty roll",
-"family": "roll"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "crystallized ginger": {
 "canonical": "crystallized ginger",
@@ -2247,17 +2663,13 @@
 "canonical": "cumin",
 "family": "cumin"
 },
-"cumin powder": {
-"canonical": "cumin powder",
-"family": "powder"
-},
 "cumin seed": {
 "canonical": "cumin seed",
 "family": "cumin"
 },
-"cura ao": {
-"canonical": "cura ao",
-"family": "ao"
+"curacao": {
+"canonical": "curacao",
+"family": "curacao"
 },
 "currant": {
 "canonical": "currant",
@@ -2279,13 +2691,12 @@
 "canonical": "daikon radish",
 "family": "radish"
 },
-"dark": {
-"canonical": "dark",
-"family": "dark"
-},
 "dark beer": {
 "canonical": "dark beer",
-"family": "beer"
+"family": "beer",
+"groups": {
+"gluten": "banned"
+}
 },
 "dark brown sugar": {
 "canonical": "dark brown sugar",
@@ -2293,11 +2704,17 @@
 },
 "dark chocolate": {
 "canonical": "dark chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "dark chocolate chip": {
 "canonical": "dark chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "dark corn syrup": {
 "canonical": "dark corn syrup",
@@ -2321,7 +2738,11 @@
 },
 "dark soy sauce": {
 "canonical": "dark soy sauce",
-"family": "soy"
+"family": "soy",
+"groups": {
+"gluten": "banned",
+"soy": "banned"
+}
 },
 "date": {
 "canonical": "date",
@@ -2329,7 +2750,10 @@
 },
 "deli ham": {
 "canonical": "deli ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "demerara sugar": {
 "canonical": "demerara sugar",
@@ -2337,7 +2761,17 @@
 },
 "demi-glace": {
 "canonical": "demi-glace",
-"family": "demi-glace"
+"family": "demi-glace",
+"groups": {
+"vegetarian": "may_contain"
+}
+},
+"deveined shrimp": {
+"canonical": "deveined shrimp",
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "dijon mustard": {
 "canonical": "dijon mustard",
@@ -2359,10 +2793,6 @@
 "canonical": "dill pickle",
 "family": "pickle"
 },
-"dill pickle relish": {
-"canonical": "dill pickle relish",
-"family": "relish"
-},
 "dill seed": {
 "canonical": "dill seed",
 "family": "dill"
@@ -2379,10 +2809,6 @@
 "canonical": "distilled white vinegar",
 "family": "vinegar"
 },
-"ditalini pasta": {
-"canonical": "ditalini pasta",
-"family": "pasta"
-},
 "double-acting baking powder": {
 "canonical": "double-acting baking powder",
 "family": "baking powder"
@@ -2394,10 +2820,6 @@
 "dried ancho chile": {
 "canonical": "dried ancho chile",
 "family": "chile"
-},
-"dried apple": {
-"canonical": "dried apple",
-"family": "apple"
 },
 "dried apricot": {
 "canonical": "dried apricot",
@@ -2425,7 +2847,10 @@
 },
 "dried bread crumb": {
 "canonical": "dried bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "dried cherry": {
 "canonical": "dried cherry",
@@ -2435,9 +2860,9 @@
 "canonical": "dried chickpea",
 "family": "chickpea"
 },
-"dried chiles de rbol": {
-"canonical": "dried chiles de rbol",
-"family": "rbol"
+"dried chile de arbol": {
+"canonical": "dried chile de arbol",
+"family": "arbol"
 },
 "dried cilantro": {
 "canonical": "dried cilantro",
@@ -2454,10 +2879,6 @@
 "dried currant": {
 "canonical": "dried currant",
 "family": "currant"
-},
-"dried date": {
-"canonical": "dried date",
-"family": "date"
 },
 "dried dill": {
 "canonical": "dried dill",
@@ -2486,10 +2907,6 @@
 "dried italian seasoning": {
 "canonical": "dried italian seasoning",
 "family": "seasoning"
-},
-"dried lentil": {
-"canonical": "dried lentil",
-"family": "lentil"
 },
 "dried marjoram": {
 "canonical": "dried marjoram",
@@ -2567,10 +2984,6 @@
 "canonical": "dried shiitake mushroom",
 "family": "mushroom"
 },
-"dried shrimp": {
-"canonical": "dried shrimp",
-"family": "shrimp"
-},
 "dried sour cherry": {
 "canonical": "dried sour cherry",
 "family": "cherry"
@@ -2597,7 +3010,10 @@
 },
 "dry bread crumb": {
 "canonical": "dry bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "dry lentil": {
 "canonical": "dry lentil",
@@ -2605,7 +3021,10 @@
 },
 "dry milk powder": {
 "canonical": "dry milk powder",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "dry mustard": {
 "canonical": "dry mustard",
@@ -2619,17 +3038,16 @@
 "canonical": "dry onion soup mix",
 "family": "soup"
 },
-"dry oregano": {
-"canonical": "dry oregano",
-"family": "oregano"
-},
 "dry red wine": {
 "canonical": "dry red wine",
 "family": "wine"
 },
 "dry roasted peanut": {
 "canonical": "dry roasted peanut",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "dry sherry": {
 "canonical": "dry sherry",
@@ -2649,23 +3067,38 @@
 },
 "dry-roasted peanut": {
 "canonical": "dry-roasted peanut",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "duck": {
 "canonical": "duck",
-"family": "duck"
+"family": "duck",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "duck breast": {
 "canonical": "duck breast",
-"family": "breast"
+"family": "breast",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "duck fat": {
 "canonical": "duck fat",
-"family": "fat"
+"family": "fat",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "dulce de leche": {
 "canonical": "dulce de leche",
-"family": "leche"
+"family": "leche",
+"groups": {
+"dairy": "banned"
+}
 },
 "dutch-process cocoa powder": {
 "canonical": "dutch-process cocoa powder",
@@ -2673,22 +3106,25 @@
 },
 "eagle brand sweetened condensed milk": {
 "canonical": "eagle brand sweetened condensed milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "ear corn": {
 "canonical": "ear corn",
 "family": "corn"
 },
-"ears corn": {
-"canonical": "ears corn",
+"ear corn on the cob": {
+"canonical": "ear corn on the cob",
+"family": "cob"
+},
+"ear of corn": {
+"canonical": "ear of corn",
 "family": "corn"
 },
-"ears of corn": {
-"canonical": "ears of corn",
-"family": "corn"
-},
-"ears sweet corn": {
-"canonical": "ears sweet corn",
+"ear sweet corn": {
+"canonical": "ear sweet corn",
 "family": "corn"
 },
 "edible flower": {
@@ -2697,51 +3133,87 @@
 },
 "egg": {
 "canonical": "egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
+},
+"egg egg yolk": {
+"canonical": "egg egg yolk",
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "egg noodle": {
 "canonical": "egg noodle",
-"family": "noodle"
+"family": "noodle",
+"groups": {
+"egg": "banned",
+"gluten": "banned"
+}
 },
 "egg roll wrapper": {
 "canonical": "egg roll wrapper",
-"family": "wrapper"
+"family": "wrapper",
+"groups": {
+"egg": "banned",
+"gluten": "banned"
+}
 },
 "egg substitute": {
 "canonical": "egg substitute",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "egg wash": {
 "canonical": "egg wash",
-"family": "wash"
+"family": "wash",
+"groups": {
+"egg": "banned"
+}
 },
 "egg white": {
 "canonical": "egg white",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "egg with water": {
 "canonical": "egg with water",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "egg yolk": {
 "canonical": "egg yolk",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "eggnog": {
 "canonical": "eggnog",
-"family": "eggnog"
+"family": "eggnog",
+"groups": {
+"dairy": "banned",
+"egg": "banned"
+}
 },
 "eggplant": {
 "canonical": "eggplant",
 "family": "eggplant"
 },
-"eggs egg yolk": {
-"canonical": "eggs egg yolk",
-"family": "egg"
-},
 "elbow macaroni": {
 "canonical": "elbow macaroni",
-"family": "macaroni"
+"family": "macaroni",
+"groups": {
+"gluten": "banned"
+}
 },
 "em": {
 "canonical": "em",
@@ -2765,11 +3237,10 @@
 },
 "english muffin": {
 "canonical": "english muffin",
-"family": "muffin"
-},
-"enoki mushroom": {
-"canonical": "enoki mushroom",
-"family": "mushroom"
+"family": "muffin",
+"groups": {
+"gluten": "banned"
+}
 },
 "escarole": {
 "canonical": "escarole",
@@ -2779,61 +3250,72 @@
 "canonical": "espresso",
 "family": "espresso"
 },
-"espresso powder": {
-"canonical": "espresso powder",
-"family": "powder"
-},
 "evaporated milk": {
 "canonical": "evaporated milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "evoo": {
 "canonical": "evoo",
 "family": "evoo"
 },
-"extra egg": {
-"canonical": "extra egg",
-"family": "egg"
-},
 "extra-firm tofu": {
 "canonical": "extra-firm tofu",
-"family": "tofu"
+"family": "tofu",
+"groups": {
+"soy": "banned"
+}
 },
 "extra-large egg": {
 "canonical": "extra-large egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "extra-large egg yolk": {
 "canonical": "extra-large egg yolk",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "extra-lean ground beef": {
 "canonical": "extra-lean ground beef",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "extra-sharp cheddar": {
 "canonical": "extra-sharp cheddar",
-"family": "cheddar"
+"family": "cheddar",
+"groups": {
+"dairy": "banned"
+}
 },
 "extra-sharp cheddar cheese": {
 "canonical": "extra-sharp cheddar cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "farfalle pasta": {
 "canonical": "farfalle pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "farro": {
 "canonical": "farro",
-"family": "farro"
-},
-"fat-free milk": {
-"canonical": "fat-free milk",
-"family": "milk"
-},
-"fat-free sour cream": {
-"canonical": "fat-free sour cream",
-"family": "cream"
+"family": "farro",
+"groups": {
+"gluten": "banned"
+}
 },
 "fava bean": {
 "canonical": "fava bean",
@@ -2865,15 +3347,24 @@
 },
 "feta": {
 "canonical": "feta",
-"family": "feta"
+"family": "feta",
+"groups": {
+"dairy": "banned"
+}
 },
 "feta cheese": {
 "canonical": "feta cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "fettuccine": {
 "canonical": "fettuccine",
-"family": "fettuccine"
+"family": "fettuccine",
+"groups": {
+"gluten": "banned"
+}
 },
 "fig": {
 "canonical": "fig",
@@ -2883,17 +3374,19 @@
 "canonical": "filet mignon",
 "family": "mignon"
 },
-"filtered water": {
-"canonical": "filtered water",
-"family": "water"
-},
 "fine bread crumb": {
 "canonical": "fine bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "fine dry bread crumb": {
 "canonical": "fine dry bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "fine salt": {
 "canonical": "fine salt",
@@ -2909,7 +3402,10 @@
 },
 "fine-quality bittersweet chocolate": {
 "canonical": "fine-quality bittersweet chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "fingerling potato": {
 "canonical": "fingerling potato",
@@ -2925,11 +3421,17 @@
 },
 "firm tofu": {
 "canonical": "firm tofu",
-"family": "tofu"
+"family": "tofu",
+"groups": {
+"soy": "banned"
+}
 },
 "firm white sandwich bread": {
 "canonical": "firm white sandwich bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "firmly brown sugar": {
 "canonical": "firmly brown sugar",
@@ -2945,11 +3447,20 @@
 },
 "fish sauce": {
 "canonical": "fish sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"fish": "banned",
+"shellfish": "may_contain",
+"vegetarian": "banned"
+}
 },
 "fish stock": {
 "canonical": "fish stock",
-"family": "stock"
+"family": "stock",
+"groups": {
+"fish": "banned",
+"vegetarian": "may_contain"
+}
 },
 "five-spice powder": {
 "canonical": "five-spice powder",
@@ -2965,11 +3476,10 @@
 },
 "flank steak": {
 "canonical": "flank steak",
-"family": "steak"
-},
-"flat anchovy fillet": {
-"canonical": "flat anchovy fillet",
-"family": "anchovy"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "flat leaf parsley": {
 "canonical": "flat leaf parsley",
@@ -3005,27 +3515,45 @@
 },
 "flour": {
 "canonical": "flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "flour for dredging": {
 "canonical": "flour for dredging",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "flour tortilla": {
 "canonical": "flour tortilla",
-"family": "tortilla"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "foie gra": {
 "canonical": "foie gra",
-"family": "gra"
+"family": "gra",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "fontina": {
 "canonical": "fontina",
-"family": "fontina"
+"family": "fontina",
+"groups": {
+"dairy": "banned"
+}
 },
 "fontina cheese": {
 "canonical": "fontina cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "food coloring": {
 "canonical": "food coloring",
@@ -3033,11 +3561,17 @@
 },
 "french baguette": {
 "canonical": "french baguette",
-"family": "baguette"
+"family": "baguette",
+"groups": {
+"gluten": "banned"
+}
 },
 "french bread": {
 "canonical": "french bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "french-fried onion": {
 "canonical": "french-fried onion",
@@ -3050,10 +3584,6 @@
 "fresno chile pepper": {
 "canonical": "fresno chile pepper",
 "family": "pepper"
-},
-"fris e": {
-"canonical": "fris e",
-"family": "e"
 },
 "frisee": {
 "canonical": "frisee",
@@ -3121,19 +3651,11 @@
 },
 "frozen orange juice concentrate": {
 "canonical": "frozen orange juice concentrate",
-"family": "concentrate"
+"family": "juice"
 },
 "frozen pea": {
 "canonical": "frozen pea",
 "family": "pea"
-},
-"frozen peach": {
-"canonical": "frozen peach",
-"family": "peach"
-},
-"frozen pearl onion": {
-"canonical": "frozen pearl onion",
-"family": "onion"
 },
 "frozen petite pea": {
 "canonical": "frozen petite pea",
@@ -3141,11 +3663,17 @@
 },
 "frozen puff pastry": {
 "canonical": "frozen puff pastry",
-"family": "pastry"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
 },
 "frozen puff pastry sheet": {
 "canonical": "frozen puff pastry sheet",
-"family": "sheet"
+"family": "sheet",
+"groups": {
+"gluten": "banned"
+}
 },
 "frozen raspberry": {
 "canonical": "frozen raspberry",
@@ -3153,7 +3681,10 @@
 },
 "frozen shelled edamame": {
 "canonical": "frozen shelled edamame",
-"family": "edamame"
+"family": "edamame",
+"groups": {
+"soy": "banned"
+}
 },
 "frozen spinach": {
 "canonical": "frozen spinach",
@@ -3165,31 +3696,25 @@
 },
 "frozen whipped topping": {
 "canonical": "frozen whipped topping",
-"family": "topping"
+"family": "topping",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "fruit": {
 "canonical": "fruit",
 "family": "fruit"
 },
-"fruit cocktail": {
-"canonical": "fruit cocktail",
-"family": "cocktail"
-},
-"fruity olive oil": {
-"canonical": "fruity olive oil",
-"family": "oil"
-},
 "fuji apple": {
 "canonical": "fuji apple",
 "family": "apple"
 },
-"fusilli pasta": {
-"canonical": "fusilli pasta",
-"family": "pasta"
-},
 "g butter": {
 "canonical": "g butter",
-"family": "butter"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "g sugar": {
 "canonical": "g sugar",
@@ -3229,15 +3754,26 @@
 },
 "gelatin": {
 "canonical": "gelatin",
-"family": "gelatin"
+"family": "gelatin",
+"groups": {
+"pork": "may_contain",
+"vegan": "banned",
+"vegetarian": "banned"
+}
 },
 "genoa salami": {
 "canonical": "genoa salami",
-"family": "salami"
+"family": "salami",
+"groups": {
+"pork": "banned"
+}
 },
 "ghee": {
 "canonical": "ghee",
-"family": "ghee"
+"family": "ghee",
+"groups": {
+"dairy": "banned"
+}
 },
 "gin": {
 "canonical": "gin",
@@ -3255,14 +3791,6 @@
 "canonical": "ginger beer",
 "family": "beer"
 },
-"ginger juice": {
-"canonical": "ginger juice",
-"family": "juice"
-},
-"ginger paste": {
-"canonical": "ginger paste",
-"family": "paste"
-},
 "ginger root": {
 "canonical": "ginger root",
 "family": "ginger"
@@ -3271,9 +3799,12 @@
 "canonical": "gingerroot",
 "family": "gingerroot"
 },
-"gingersnap cooky": {
-"canonical": "gingersnap cooky",
-"family": "cooky"
+"gingersnap cookie": {
+"canonical": "gingersnap cookie",
+"family": "cookie",
+"groups": {
+"gluten": "banned"
+}
 },
 "glucose": {
 "canonical": "glucose",
@@ -3281,11 +3812,17 @@
 },
 "goat cheese": {
 "canonical": "goat cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "gochujang": {
 "canonical": "gochujang",
-"family": "gochujang"
+"family": "gochujang",
+"groups": {
+"gluten": "banned"
+}
 },
 "golden brown sugar": {
 "canonical": "golden brown sugar",
@@ -3301,31 +3838,45 @@
 },
 "good-quality white chocolate": {
 "canonical": "good-quality white chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "banned"
+}
 },
 "gorgonzola": {
 "canonical": "gorgonzola",
-"family": "gorgonzola"
+"family": "gorgonzola",
+"groups": {
+"dairy": "banned"
+}
 },
 "gorgonzola cheese": {
 "canonical": "gorgonzola cheese",
-"family": "cheese"
-},
-"gouda cheese": {
-"canonical": "gouda cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "graham cracker": {
 "canonical": "graham cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "graham cracker crumb": {
 "canonical": "graham cracker crumb",
-"family": "crumb"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "graham cracker crust": {
 "canonical": "graham cracker crust",
-"family": "crust"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "grainy mustard": {
 "canonical": "grainy mustard",
@@ -3345,7 +3896,12 @@
 },
 "granola": {
 "canonical": "granola",
-"family": "granola"
+"family": "granola",
+"groups": {
+"gluten": "may_contain",
+"nuts": "may_contain",
+"peanut": "may_contain"
+}
 },
 "granulated garlic": {
 "canonical": "granulated garlic",
@@ -3399,13 +3955,19 @@
 "canonical": "great northern bean",
 "family": "bean"
 },
-"greek seasoning": {
-"canonical": "greek seasoning",
-"family": "seasoning"
-},
 "greek yogurt": {
 "canonical": "greek yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
+},
+"greek-style yogurt": {
+"canonical": "greek-style yogurt",
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "green": {
 "canonical": "green",
@@ -3439,9 +4001,9 @@
 "canonical": "green chile pepper",
 "family": "pepper"
 },
-"green chily": {
-"canonical": "green chily",
-"family": "chily"
+"green chili": {
+"canonical": "green chili",
+"family": "chili"
 },
 "green food coloring": {
 "canonical": "green food coloring",
@@ -3491,8 +4053,8 @@
 "canonical": "grill seasoning",
 "family": "seasoning"
 },
-"grinds black pepper": {
-"canonical": "grinds black pepper",
+"grind black pepper": {
+"canonical": "grind black pepper",
 "family": "black pepper"
 },
 "grits": {
@@ -3505,19 +4067,24 @@
 },
 "ground almond": {
 "canonical": "ground almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "ground beef": {
 "canonical": "ground beef",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground beef chuck": {
 "canonical": "ground beef chuck",
-"family": "beef"
-},
-"ground beef sirloin": {
-"canonical": "ground beef sirloin",
-"family": "beef"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground black pepper": {
 "canonical": "black pepper",
@@ -3533,7 +4100,10 @@
 },
 "ground chicken": {
 "canonical": "ground chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground chuck": {
 "canonical": "ground chuck",
@@ -3546,10 +4116,6 @@
 "ground clove": {
 "canonical": "ground clove",
 "family": "ground"
-},
-"ground coffee": {
-"canonical": "ground coffee",
-"family": "coffee"
 },
 "ground coriander": {
 "canonical": "ground coriander",
@@ -3567,10 +4133,6 @@
 "canonical": "ground dry mustard",
 "family": "mustard"
 },
-"ground fennel": {
-"canonical": "ground fennel",
-"family": "fennel"
-},
 "ground fennel seed": {
 "canonical": "ground fennel seed",
 "family": "fennel"
@@ -3585,7 +4147,10 @@
 },
 "ground lamb": {
 "canonical": "ground lamb",
-"family": "lamb"
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground mace": {
 "canonical": "ground mace",
@@ -3609,7 +4174,10 @@
 },
 "ground pecan": {
 "canonical": "ground pecan",
-"family": "pecan"
+"family": "pecan",
+"groups": {
+"nuts": "banned"
+}
 },
 "ground pepper": {
 "canonical": "ground pepper",
@@ -3617,11 +4185,17 @@
 },
 "ground pork": {
 "canonical": "ground pork",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "ground pork sausage": {
 "canonical": "ground pork sausage",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "ground red pepper": {
 "canonical": "ground red pepper",
@@ -3645,11 +4219,17 @@
 },
 "ground turkey": {
 "canonical": "ground turkey",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground turkey breast": {
 "canonical": "ground turkey breast",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground turmeric": {
 "canonical": "ground turmeric",
@@ -3657,31 +4237,35 @@
 },
 "ground veal": {
 "canonical": "ground veal",
-"family": "veal"
+"family": "veal",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "ground walnut": {
 "canonical": "ground walnut",
-"family": "walnut"
+"family": "walnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "ground white pepper": {
 "canonical": "ground white pepper",
 "family": "black pepper"
 },
-"gruy re": {
-"canonical": "gruy re",
-"family": "re"
-},
-"gruy re cheese": {
-"canonical": "gruy re cheese",
-"family": "cheese"
-},
 "gruyere": {
 "canonical": "gruyere",
-"family": "gruyere"
+"family": "gruyere",
+"groups": {
+"dairy": "banned"
+}
 },
 "gruyere cheese": {
 "canonical": "gruyere cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "guacamole": {
 "canonical": "guacamole",
@@ -3691,8 +4275,8 @@
 "canonical": "guajillo chile",
 "family": "chile"
 },
-"haas avocado": {
-"canonical": "haas avocado",
+"haa avocado": {
+"canonical": "haa avocado",
 "family": "avocado"
 },
 "habanero": {
@@ -3709,23 +4293,38 @@
 },
 "half and half": {
 "canonical": "half and half",
-"family": "half"
+"family": "half",
+"groups": {
+"dairy": "banned"
+}
 },
 "half-and-half": {
 "canonical": "half-and-half",
-"family": "half-and-half"
+"family": "half-and-half",
+"groups": {
+"dairy": "banned"
+}
 },
 "half-and-half cream": {
 "canonical": "half-and-half cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "halibut": {
 "canonical": "halibut",
-"family": "halibut"
+"family": "halibut",
+"groups": {
+"fish": "banned"
+}
 },
 "halibut fillet": {
 "canonical": "halibut fillet",
-"family": "halibut"
+"family": "halibut",
+"groups": {
+"fish": "banned"
+}
 },
 "halved cherry tomato": {
 "canonical": "halved cherry tomato",
@@ -3733,19 +4332,32 @@
 },
 "ham": {
 "canonical": "ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "ham hock": {
 "canonical": "ham hock",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "ham steak": {
 "canonical": "ham steak",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned",
+"vegetarian": "banned"
+}
 },
 "hamburger bun": {
 "canonical": "hamburger bun",
-"family": "bun"
+"family": "bun",
+"groups": {
+"gluten": "banned"
+}
 },
 "handful basil leaf": {
 "canonical": "handful basil leaf",
@@ -3765,18 +4377,27 @@
 },
 "hard boiled egg": {
 "canonical": "hard boiled egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "hard-boiled egg": {
 "canonical": "hard-boiled egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "hard-cooked egg": {
 "canonical": "hard-cooked egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
-"haricots vert": {
-"canonical": "haricots vert",
+"haricot vert": {
+"canonical": "haricot vert",
 "family": "vert"
 },
 "harissa": {
@@ -3789,35 +4410,57 @@
 },
 "havarti cheese": {
 "canonical": "havarti cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "hazelnut": {
 "canonical": "hazelnut",
-"family": "hazelnut"
+"family": "hazelnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "hazelnut liqueur": {
 "canonical": "hazelnut liqueur",
-"family": "liqueur"
+"family": "liqueur",
+"groups": {
+"nuts": "banned"
+}
 },
 "hazelnut oil": {
 "canonical": "hazelnut oil",
-"family": "oil"
+"family": "oil",
+"groups": {
+"nuts": "banned"
+}
 },
-"hearts of palm": {
-"canonical": "hearts of palm",
+"heart of palm": {
+"canonical": "heart of palm",
 "family": "palm"
 },
-"hearts romaine lettuce": {
-"canonical": "hearts romaine lettuce",
+"heart of romaine": {
+"canonical": "heart of romaine",
+"family": "romaine"
+},
+"heart romaine lettuce": {
+"canonical": "heart romaine lettuce",
 "family": "lettuce"
 },
 "heavy cream": {
 "canonical": "heavy cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "heavy whipping cream": {
 "canonical": "heavy whipping cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "heirloom tomato": {
 "canonical": "heirloom tomato",
@@ -3827,17 +4470,24 @@
 "canonical": "herb",
 "family": "herb"
 },
-"herbes de provence": {
-"canonical": "herbes de provence",
+"herbe de provence": {
+"canonical": "herbe de provence",
 "family": "provence"
 },
 "hoagie roll": {
 "canonical": "hoagie roll",
-"family": "roll"
+"family": "roll",
+"groups": {
+"gluten": "banned"
+}
 },
 "hoisin sauce": {
 "canonical": "hoisin sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"gluten": "banned",
+"soy": "banned"
+}
 },
 "hominy": {
 "canonical": "hominy",
@@ -3845,11 +4495,17 @@
 },
 "honey": {
 "canonical": "honey",
-"family": "honey"
+"family": "honey",
+"groups": {
+"vegan": "banned"
+}
 },
 "honey mustard": {
 "canonical": "honey mustard",
-"family": "mustard"
+"family": "mustard",
+"groups": {
+"vegan": "banned"
+}
 },
 "honeydew melon": {
 "canonical": "honeydew melon",
@@ -3865,19 +4521,34 @@
 },
 "hot dog": {
 "canonical": "hot dog",
-"family": "dog"
+"family": "dog",
+"groups": {
+"pork": "may_contain",
+"vegetarian": "banned"
+}
 },
 "hot dog bun": {
 "canonical": "hot dog bun",
-"family": "bun"
+"family": "bun",
+"groups": {
+"gluten": "banned",
+"pork": "may_contain",
+"vegetarian": "banned"
+}
 },
 "hot italian sausage": {
 "canonical": "hot italian sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "hot milk": {
 "canonical": "hot milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "hot paprika": {
 "canonical": "hot paprika",
@@ -3894,10 +4565,6 @@
 "hot red pepper sauce": {
 "canonical": "hot red pepper sauce",
 "family": "bell pepper"
-},
-"hot red-pepper flake": {
-"canonical": "hot red-pepper flake",
-"family": "red-pepper"
 },
 "hot sauce": {
 "canonical": "hot sauce",
@@ -3929,7 +4596,10 @@
 },
 "ice cream": {
 "canonical": "ice cream",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "ice cube": {
 "canonical": "ice cube",
@@ -3953,7 +4623,10 @@
 },
 "imitation crabmeat": {
 "canonical": "imitation crabmeat",
-"family": "crabmeat"
+"family": "crabmeat",
+"groups": {
+"shellfish": "banned"
+}
 },
 "inch piece ginger": {
 "canonical": "inch piece ginger",
@@ -3961,11 +4634,17 @@
 },
 "individually wrapped caramel": {
 "canonical": "individually wrapped caramel",
-"family": "caramel"
+"family": "caramel",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "instant chocolate pudding mix": {
 "canonical": "instant chocolate pudding mix",
-"family": "mix"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "instant coffee": {
 "canonical": "instant coffee",
@@ -3985,7 +4664,10 @@
 },
 "instant flour": {
 "canonical": "instant flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "instant rice": {
 "canonical": "instant rice",
@@ -3993,7 +4675,10 @@
 },
 "instant vanilla pudding mix": {
 "canonical": "instant vanilla pudding mix",
-"family": "mix"
+"family": "mix",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "instant yeast": {
 "canonical": "instant yeast",
@@ -4001,31 +4686,35 @@
 },
 "irish cream liqueur": {
 "canonical": "irish cream liqueur",
-"family": "liqueur"
+"family": "liqueur",
+"groups": {
+"dairy": "banned"
+}
 },
 "irish whiskey": {
 "canonical": "irish whiskey",
 "family": "whiskey"
 },
-"israeli couscous": {
-"canonical": "israeli couscous",
-"family": "couscous"
-},
 "italian bread": {
 "canonical": "italian bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "italian bread crumb": {
 "canonical": "italian bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "italian cheese blend": {
 "canonical": "italian cheese blend",
-"family": "blend"
-},
-"italian flat leaf parsley": {
-"canonical": "italian flat leaf parsley",
-"family": "parsley"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "italian flat-leaf parsley": {
 "canonical": "italian flat-leaf parsley",
@@ -4045,11 +4734,17 @@
 },
 "italian sausage": {
 "canonical": "italian sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "italian seasoned bread crumb": {
 "canonical": "italian seasoned bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "italian seasoning": {
 "canonical": "italian seasoning",
@@ -4065,31 +4760,10 @@
 },
 "jack cheese": {
 "canonical": "jack cheese",
-"family": "cheese"
-},
-"jalape o": {
-"canonical": "jalape o",
-"family": "o"
-},
-"jalape o chile": {
-"canonical": "jalape o chile",
-"family": "chile"
-},
-"jalape o chili": {
-"canonical": "jalape o chili",
-"family": "chili"
-},
-"jalape o chily": {
-"canonical": "jalape o chily",
-"family": "chily"
-},
-"jalape o pepper": {
-"canonical": "jalape o pepper",
-"family": "pepper"
-},
-"jalape os": {
-"canonical": "jalape os",
-"family": "os"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "jalapeno": {
 "canonical": "jalapeno",
@@ -4102,6 +4776,10 @@
 "jalapeno chile pepper": {
 "canonical": "jalapeno chile pepper",
 "family": "pepper"
+},
+"jalapeno chili": {
+"canonical": "jalapeno chili",
+"family": "chili"
 },
 "jalapeno pepper": {
 "canonical": "jalapeno pepper",
@@ -4119,17 +4797,16 @@
 "canonical": "jasmine rice",
 "family": "rice"
 },
-"jerusalem artichoke": {
-"canonical": "jerusalem artichoke",
-"family": "artichoke"
-},
 "jicama": {
 "canonical": "jicama",
 "family": "jicama"
 },
 "jif creamy peanut butter": {
 "canonical": "jif creamy peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "juice and zest of lemon": {
 "canonical": "juice and zest of lemon",
@@ -4137,15 +4814,15 @@
 },
 "juice of lemon": {
 "canonical": "juice of lemon",
-"family": "lemon"
+"family": "juice"
 },
 "juice of lime": {
 "canonical": "juice of lime",
-"family": "lime"
+"family": "juice"
 },
 "juice of orange": {
 "canonical": "juice of orange",
-"family": "orange"
+"family": "juice"
 },
 "julienned carrot": {
 "canonical": "julienned carrot",
@@ -4153,11 +4830,17 @@
 },
 "jumbo lump crabmeat": {
 "canonical": "jumbo lump crabmeat",
-"family": "crabmeat"
+"family": "crabmeat",
+"groups": {
+"shellfish": "banned"
+}
 },
 "jumbo shrimp": {
 "canonical": "jumbo shrimp",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "juniper berry": {
 "canonical": "juniper berry",
@@ -4167,9 +4850,16 @@
 "canonical": "kaffir lime leaf",
 "family": "lime"
 },
+"kahlua": {
+"canonical": "kahlua",
+"family": "kahlua"
+},
 "kaiser roll": {
 "canonical": "kaiser roll",
-"family": "roll"
+"family": "roll",
+"groups": {
+"gluten": "banned"
+}
 },
 "kalamata": {
 "canonical": "kalamata",
@@ -4201,11 +4891,17 @@
 },
 "kielbasa": {
 "canonical": "kielbasa",
-"family": "kielbasa"
+"family": "kielbasa",
+"groups": {
+"pork": "banned"
+}
 },
 "kielbasa sausage": {
 "canonical": "kielbasa sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "kimchi": {
 "canonical": "kimchi",
@@ -4261,59 +4957,83 @@
 },
 "ladyfinger": {
 "canonical": "ladyfinger",
-"family": "ladyfinger"
+"family": "ladyfinger",
+"groups": {
+"egg": "banned",
+"gluten": "banned"
+}
 },
 "lager beer": {
 "canonical": "lager beer",
-"family": "beer"
+"family": "beer",
+"groups": {
+"gluten": "banned"
+}
 },
 "lamb chop": {
 "canonical": "lamb chop",
-"family": "lamb"
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "lamb shank": {
 "canonical": "lamb shank",
-"family": "lamb"
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "lamb shoulder": {
 "canonical": "lamb shoulder",
-"family": "lamb"
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "lard": {
 "canonical": "lard",
-"family": "lard"
+"family": "lard",
+"groups": {
+"pork": "banned",
+"vegetarian": "banned"
+}
 },
 "lasagna noodle": {
 "canonical": "lasagna noodle",
-"family": "noodle"
+"family": "noodle",
+"groups": {
+"gluten": "banned"
+}
+},
+"leaf basil": {
+"canonical": "leaf basil",
+"family": "basil"
+},
+"leaf lettuce": {
+"canonical": "leaf lettuce",
+"family": "lettuce"
 },
 "lean bacon": {
 "canonical": "lean bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "lean ground beef": {
 "canonical": "lean ground beef",
-"family": "beef"
-},
-"lean ground pork": {
-"canonical": "lean ground pork",
-"family": "pork"
+"family": "beef",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "lean ground turkey": {
 "canonical": "lean ground turkey",
-"family": "turkey"
-},
-"leaves basil": {
-"canonical": "leaves basil",
-"family": "basil"
-},
-"leaves lettuce": {
-"canonical": "leaves lettuce",
-"family": "lettuce"
-},
-"leaves romaine lettuce": {
-"canonical": "leaves romaine lettuce",
-"family": "lettuce"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "leek": {
 "canonical": "leek",
@@ -4321,7 +5041,10 @@
 },
 "leg of lamb": {
 "canonical": "leg of lamb",
-"family": "lamb"
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "lemon": {
 "canonical": "lemon",
@@ -4329,7 +5052,11 @@
 },
 "lemon curd": {
 "canonical": "lemon curd",
-"family": "curd"
+"family": "curd",
+"groups": {
+"dairy": "banned",
+"egg": "banned"
+}
 },
 "lemon extract": {
 "canonical": "lemon extract",
@@ -4407,10 +5134,6 @@
 "canonical": "light",
 "family": "light"
 },
-"light beer": {
-"canonical": "light beer",
-"family": "beer"
-},
 "light brown sugar": {
 "canonical": "light brown sugar",
 "family": "sugar"
@@ -4425,11 +5148,17 @@
 },
 "light cream": {
 "canonical": "light cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "light mayonnaise": {
 "canonical": "light mayonnaise",
-"family": "mayonnaise"
+"family": "mayonnaise",
+"groups": {
+"egg": "banned"
+}
 },
 "light olive oil": {
 "canonical": "light olive oil",
@@ -4441,11 +5170,18 @@
 },
 "light sour cream": {
 "canonical": "light sour cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "light soy sauce": {
 "canonical": "light soy sauce",
-"family": "soy"
+"family": "soy",
+"groups": {
+"gluten": "banned",
+"soy": "banned"
+}
 },
 "light-brown sugar": {
 "canonical": "light-brown sugar",
@@ -4481,15 +5217,24 @@
 },
 "linguine": {
 "canonical": "linguine",
-"family": "linguine"
+"family": "linguine",
+"groups": {
+"gluten": "banned"
+}
 },
 "linguine pasta": {
 "canonical": "linguine pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "linguini": {
 "canonical": "linguini",
-"family": "linguini"
+"family": "linguini",
+"groups": {
+"gluten": "banned"
+}
 },
 "liquid smoke": {
 "canonical": "liquid smoke",
@@ -4501,39 +5246,59 @@
 },
 "littleneck clam": {
 "canonical": "littleneck clam",
-"family": "clam"
+"family": "clam",
+"groups": {
+"shellfish": "banned"
+}
 },
 "live lobster": {
 "canonical": "live lobster",
-"family": "lobster"
+"family": "lobster",
+"groups": {
+"shellfish": "banned"
+}
 },
 "loaf french bread": {
 "canonical": "loaf french bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "loaf italian bread": {
 "canonical": "loaf italian bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
+},
+"loaf white bread": {
+"canonical": "loaf white bread",
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "lobster": {
 "canonical": "lobster",
-"family": "lobster"
-},
-"lobster meat": {
-"canonical": "lobster meat",
-"family": "lobster"
-},
-"lobster stock": {
-"canonical": "lobster stock",
-"family": "lobster"
+"family": "lobster",
+"groups": {
+"shellfish": "banned"
+}
 },
 "lobster tail": {
 "canonical": "lobster tail",
-"family": "lobster"
+"family": "lobster",
+"groups": {
+"shellfish": "banned"
+}
 },
 "log goat cheese": {
 "canonical": "log goat cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "long grain rice": {
 "canonical": "long grain rice",
@@ -4563,93 +5328,63 @@
 "canonical": "loosely mint leaf",
 "family": "mint"
 },
-"low sodium soy sauce": {
-"canonical": "low sodium soy sauce",
-"family": "soy"
-},
-"low-fat buttermilk": {
-"canonical": "low-fat buttermilk",
-"family": "buttermilk"
-},
-"low-fat mayonnaise": {
-"canonical": "low-fat mayonnaise",
-"family": "mayonnaise"
-},
-"low-fat milk": {
-"canonical": "low-fat milk",
-"family": "milk"
-},
-"low-fat plain yogurt": {
-"canonical": "low-fat plain yogurt",
-"family": "yogurt"
-},
-"low-fat sour cream": {
-"canonical": "low-fat sour cream",
-"family": "cream"
-},
-"low-salt chicken broth": {
-"canonical": "low-salt chicken broth",
-"family": "chicken"
-},
-"low-sodium beef broth": {
-"canonical": "low-sodium beef broth",
-"family": "beef"
-},
-"low-sodium chicken": {
-"canonical": "low-sodium chicken",
-"family": "chicken"
-},
-"low-sodium chicken broth": {
-"canonical": "low-sodium chicken broth",
-"family": "chicken"
-},
-"low-sodium chicken stock": {
-"canonical": "low-sodium chicken stock",
-"family": "chicken"
-},
-"low-sodium soy sauce": {
-"canonical": "low-sodium soy sauce",
-"family": "soy"
-},
-"lowfat buttermilk": {
-"canonical": "lowfat buttermilk",
-"family": "buttermilk"
-},
 "lump crabmeat": {
 "canonical": "lump crabmeat",
-"family": "crabmeat"
+"family": "crabmeat",
+"groups": {
+"shellfish": "banned"
+}
 },
 "macadamia nut": {
 "canonical": "macadamia nut",
-"family": "nut"
+"family": "nut",
+"groups": {
+"nuts": "banned"
+}
 },
 "macaroni": {
 "canonical": "macaroni",
-"family": "macaroni"
+"family": "macaroni",
+"groups": {
+"gluten": "banned"
+}
 },
 "madeira": {
 "canonical": "madeira",
 "family": "madeira"
 },
-"madras curry powder": {
-"canonical": "madras curry powder",
+"madra curry powder": {
+"canonical": "madra curry powder",
 "family": "powder"
 },
 "mahi mahi fillet": {
 "canonical": "mahi mahi fillet",
-"family": "mahi"
+"family": "mahi",
+"groups": {
+"fish": "banned"
+}
 },
 "malt vinegar": {
 "canonical": "malt vinegar",
-"family": "vinegar"
+"family": "vinegar",
+"groups": {
+"gluten": "banned"
+}
 },
 "malted milk powder": {
 "canonical": "malted milk powder",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned",
+"gluten": "banned"
+}
 },
 "manchego cheese": {
 "canonical": "manchego cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "mandarin orange": {
 "canonical": "mandarin orange",
@@ -4669,7 +5404,10 @@
 },
 "manila clam": {
 "canonical": "manila clam",
-"family": "clam"
+"family": "clam",
+"groups": {
+"shellfish": "banned"
+}
 },
 "maple extract": {
 "canonical": "maple extract",
@@ -4689,7 +5427,11 @@
 },
 "margarine": {
 "canonical": "margarine",
-"family": "margarine"
+"family": "margarine",
+"groups": {
+"dairy": "may_contain",
+"soy": "may_contain"
+}
 },
 "marinara sauce": {
 "canonical": "marinara sauce",
@@ -4717,15 +5459,31 @@
 },
 "marshmallow": {
 "canonical": "marshmallow",
-"family": "marshmallow"
+"family": "marshmallow",
+"groups": {
+"egg": "may_contain",
+"vegan": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "marshmallow cream": {
 "canonical": "marshmallow cream",
-"family": "marshmallow"
+"family": "marshmallow",
+"groups": {
+"dairy": "banned",
+"egg": "may_contain",
+"vegan": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "marshmallow creme": {
 "canonical": "marshmallow creme",
-"family": "creme"
+"family": "creme",
+"groups": {
+"egg": "may_contain",
+"vegan": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "masa harina": {
 "canonical": "masa harina",
@@ -4733,19 +5491,31 @@
 },
 "mascarpone": {
 "canonical": "mascarpone",
-"family": "mascarpone"
+"family": "mascarpone",
+"groups": {
+"dairy": "banned"
+}
 },
 "mascarpone cheese": {
 "canonical": "mascarpone cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "matzo meal": {
 "canonical": "matzo meal",
-"family": "meal"
+"family": "meal",
+"groups": {
+"gluten": "banned"
+}
 },
 "mayonnaise": {
 "canonical": "mayonnaise",
-"family": "mayonnaise"
+"family": "mayonnaise",
+"groups": {
+"egg": "banned"
+}
 },
 "mcintosh apple": {
 "canonical": "mcintosh apple",
@@ -4761,15 +5531,14 @@
 },
 "meringue powder": {
 "canonical": "meringue powder",
-"family": "powder"
+"family": "powder",
+"groups": {
+"egg": "banned"
+}
 },
 "mesclun": {
 "canonical": "mesclun",
 "family": "mesclun"
-},
-"mesclun greens": {
-"canonical": "mesclun greens",
-"family": "greens"
 },
 "metal skewer": {
 "canonical": "metal skewer",
@@ -4777,19 +5546,24 @@
 },
 "mexican cheese blend": {
 "canonical": "mexican cheese blend",
-"family": "blend"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "mexican chorizo": {
 "canonical": "mexican chorizo",
-"family": "chorizo"
+"family": "chorizo",
+"groups": {
+"pork": "banned"
+}
 },
 "mexican crema": {
 "canonical": "mexican crema",
-"family": "crema"
-},
-"mexican oregano": {
-"canonical": "mexican oregano",
-"family": "oregano"
+"family": "crema",
+"groups": {
+"dairy": "banned"
+}
 },
 "meyer lemon": {
 "canonical": "meyer lemon",
@@ -4801,19 +5575,24 @@
 },
 "mild cheddar cheese": {
 "canonical": "mild cheddar cheese",
-"family": "cheese"
-},
-"mild curry powder": {
-"canonical": "mild curry powder",
-"family": "powder"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "mild goat cheese": {
 "canonical": "mild goat cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "mild honey": {
 "canonical": "mild honey",
-"family": "honey"
+"family": "honey",
+"groups": {
+"vegan": "banned"
+}
 },
 "mild-flavored molasses": {
 "canonical": "mild-flavored molasses",
@@ -4821,39 +5600,56 @@
 },
 "milk": {
 "canonical": "milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "milk chocolate": {
 "canonical": "milk chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "banned"
+}
 },
 "milk chocolate chip": {
 "canonical": "milk chocolate chip",
-"family": "chocolate"
-},
-"millet": {
-"canonical": "millet",
-"family": "millet"
+"family": "chocolate",
+"groups": {
+"dairy": "banned"
+}
 },
 "mini chocolate chip": {
 "canonical": "mini chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "mini marshmallow": {
 "canonical": "mini marshmallow",
-"family": "marshmallow"
-},
-"mini semisweet chocolate chip": {
-"canonical": "mini semisweet chocolate chip",
-"family": "chip"
+"family": "marshmallow",
+"groups": {
+"egg": "may_contain",
+"vegan": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "miniature marshmallow": {
 "canonical": "miniature marshmallow",
-"family": "marshmallow"
+"family": "marshmallow",
+"groups": {
+"egg": "may_contain",
+"vegan": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "miniature semisweet chocolate chip": {
 "canonical": "miniature semisweet chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "mint": {
 "canonical": "mint",
@@ -4873,7 +5669,10 @@
 },
 "miso paste": {
 "canonical": "miso paste",
-"family": "paste"
+"family": "paste",
+"groups": {
+"soy": "banned"
+}
 },
 "mixed baby greens": {
 "canonical": "mixed baby greens",
@@ -4897,7 +5696,11 @@
 },
 "mixed nut": {
 "canonical": "mixed nut",
-"family": "nut"
+"family": "nut",
+"groups": {
+"nuts": "banned",
+"peanut": "may_contain"
+}
 },
 "mixed salad greens": {
 "canonical": "mixed salad greens",
@@ -4921,11 +5724,17 @@
 },
 "monterey jack": {
 "canonical": "monterey jack",
-"family": "jack"
+"family": "jack",
+"groups": {
+"dairy": "banned"
+}
 },
 "monterey jack cheese": {
 "canonical": "monterey jack cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "morel mushroom": {
 "canonical": "morel mushroom",
@@ -4933,19 +5742,31 @@
 },
 "mortadella": {
 "canonical": "mortadella",
-"family": "mortadella"
+"family": "mortadella",
+"groups": {
+"pork": "banned"
+}
 },
 "mozzarella": {
 "canonical": "mozzarella",
-"family": "mozzarella"
+"family": "mozzarella",
+"groups": {
+"dairy": "banned"
+}
 },
 "mozzarella cheese": {
 "canonical": "mozzarella cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "muenster cheese": {
 "canonical": "muenster cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "mung bean sprout": {
 "canonical": "mung bean sprout",
@@ -4957,7 +5778,10 @@
 },
 "mussel": {
 "canonical": "mussel",
-"family": "mussel"
+"family": "mussel",
+"groups": {
+"shellfish": "banned"
+}
 },
 "mustard": {
 "canonical": "mustard",
@@ -4981,19 +5805,14 @@
 },
 "natural peanut butter": {
 "canonical": "natural peanut butter",
-"family": "peanut"
-},
-"natural unsweetened cocoa powder": {
-"canonical": "natural unsweetened cocoa powder",
-"family": "powder"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "navel orange": {
 "canonical": "navel orange",
 "family": "orange"
-},
-"navy bean": {
-"canonical": "navy bean",
-"family": "bean"
 },
 "nectarine": {
 "canonical": "nectarine",
@@ -5001,7 +5820,10 @@
 },
 "neufchatel cheese": {
 "canonical": "neufchatel cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "new potato": {
 "canonical": "new potato",
@@ -5009,23 +5831,14 @@
 },
 "new york strip steak": {
 "canonical": "new york strip steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "nicoise olive": {
 "canonical": "nicoise olive",
 "family": "olive"
-},
-"nonfat dry milk powder": {
-"canonical": "nonfat dry milk powder",
-"family": "milk"
-},
-"nonfat milk": {
-"canonical": "nonfat milk",
-"family": "milk"
-},
-"nonfat plain yogurt": {
-"canonical": "nonfat plain yogurt",
-"family": "yogurt"
 },
 "nonstick cooking spray": {
 "canonical": "nonstick cooking spray",
@@ -5037,11 +5850,14 @@
 },
 "nonstick vegetable oil spray": {
 "canonical": "nonstick vegetable oil spray",
-"family": "spray"
+"family": "oil"
 },
 "nut": {
 "canonical": "nut",
-"family": "nut"
+"family": "nut",
+"groups": {
+"nuts": "banned"
+}
 },
 "nutmeg": {
 "canonical": "nutmeg",
@@ -5053,19 +5869,31 @@
 },
 "oat": {
 "canonical": "oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "oat bran": {
 "canonical": "oat bran",
-"family": "bran"
+"family": "bran",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "oat flour": {
 "canonical": "oat flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "oatmeal": {
 "canonical": "oatmeal",
-"family": "oatmeal"
+"family": "oatmeal",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "oil": {
 "canonical": "vegetable oil",
@@ -5089,11 +5917,17 @@
 },
 "old-fashioned oat": {
 "canonical": "old-fashioned oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "old-fashioned rolled oat": {
 "canonical": "old-fashioned rolled oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "olive": {
 "canonical": "olive",
@@ -5119,14 +5953,6 @@
 "canonical": "onion salt",
 "family": "salt"
 },
-"or bottle beer": {
-"canonical": "or bottle beer",
-"family": "beer"
-},
-"or ice cube": {
-"canonical": "or ice cube",
-"family": "cube"
-},
 "orange": {
 "canonical": "orange",
 "family": "orange"
@@ -5141,7 +5967,10 @@
 },
 "orange blossom honey": {
 "canonical": "orange blossom honey",
-"family": "honey"
+"family": "honey",
+"groups": {
+"vegan": "banned"
+}
 },
 "orange extract": {
 "canonical": "orange extract",
@@ -5163,10 +5992,6 @@
 "canonical": "orange peel",
 "family": "peel"
 },
-"orange rind": {
-"canonical": "orange rind",
-"family": "rind"
-},
 "orange slice": {
 "canonical": "orange slice",
 "family": "slice"
@@ -5178,14 +6003,6 @@
 "orange-flavored liqueur": {
 "canonical": "orange-flavored liqueur",
 "family": "liqueur"
-},
-"orange-flower water": {
-"canonical": "orange-flower water",
-"family": "water"
-},
-"orecchiette": {
-"canonical": "orecchiette",
-"family": "orecchiette"
 },
 "oregano": {
 "canonical": "oregano",
@@ -5201,19 +6018,31 @@
 },
 "orzo": {
 "canonical": "orzo",
-"family": "orzo"
+"family": "orzo",
+"groups": {
+"gluten": "banned"
+}
 },
 "orzo pasta": {
 "canonical": "orzo pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "ounce butter": {
 "canonical": "ounce butter",
-"family": "butter"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "oyster": {
 "canonical": "oyster",
-"family": "oyster"
+"family": "oyster",
+"groups": {
+"shellfish": "banned"
+}
 },
 "oyster mushroom": {
 "canonical": "oyster mushroom",
@@ -5221,31 +6050,43 @@
 },
 "oyster sauce": {
 "canonical": "oyster sauce",
-"family": "oyster"
+"family": "oyster",
+"groups": {
+"shellfish": "banned",
+"vegetarian": "banned"
+}
 },
 "palm sugar": {
 "canonical": "palm sugar",
 "family": "sugar"
 },
-"pam original no-stick cooking spray": {
-"canonical": "pam original no-stick cooking spray",
-"family": "cooking spray"
-},
 "pancetta": {
 "canonical": "pancetta",
-"family": "pancetta"
+"family": "pancetta",
+"groups": {
+"pork": "banned"
+}
 },
 "panko": {
 "canonical": "panko",
-"family": "panko"
+"family": "panko",
+"groups": {
+"gluten": "banned"
+}
 },
 "panko bread crumb": {
 "canonical": "panko bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "panko breadcrumb": {
 "canonical": "panko breadcrumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "papaya": {
 "canonical": "papaya",
@@ -5261,23 +6102,38 @@
 },
 "parmesan": {
 "canonical": "parmesan",
-"family": "parmesan"
+"family": "parmesan",
+"groups": {
+"dairy": "banned"
+}
 },
 "parmesan cheese": {
 "canonical": "parmesan cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "parmigiano": {
 "canonical": "parmigiano",
-"family": "parmigiano"
+"family": "parmigiano",
+"groups": {
+"dairy": "banned"
+}
 },
 "parmigiano-reggiano": {
 "canonical": "parmigiano-reggiano",
-"family": "parmigiano-reggiano"
+"family": "parmigiano-reggiano",
+"groups": {
+"dairy": "banned"
+}
 },
 "parmigiano-reggiano cheese": {
 "canonical": "parmigiano-reggiano cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "parsley": {
 "canonical": "parsley",
@@ -5301,23 +6157,31 @@
 },
 "part-skim mozzarella": {
 "canonical": "part-skim mozzarella",
-"family": "mozzarella"
+"family": "mozzarella",
+"groups": {
+"dairy": "banned"
+}
 },
 "part-skim mozzarella cheese": {
 "canonical": "part-skim mozzarella cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "part-skim ricotta cheese": {
 "canonical": "part-skim ricotta cheese",
-"family": "cheese"
-},
-"passion fruit juice": {
-"canonical": "passion fruit juice",
-"family": "juice"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "pasta": {
 "canonical": "pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "pasta sauce": {
 "canonical": "pasta sauce",
@@ -5325,19 +6189,21 @@
 },
 "pasta shell": {
 "canonical": "pasta shell",
-"family": "shell"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "pastry flour": {
 "canonical": "pastry flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "pea": {
 "canonical": "pea",
 "family": "pea"
-},
-"pea shoot": {
-"canonical": "pea shoot",
-"family": "shoot"
 },
 "peach": {
 "canonical": "peach",
@@ -5357,19 +6223,31 @@
 },
 "peanut": {
 "canonical": "peanut",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "peanut butter": {
 "canonical": "peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "peanut butter chip": {
 "canonical": "peanut butter chip",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "peanut oil": {
 "canonical": "peanut oil",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "pear": {
 "canonical": "pear",
@@ -5377,7 +6255,10 @@
 },
 "pearl barley": {
 "canonical": "pearl barley",
-"family": "barley"
+"family": "barley",
+"groups": {
+"gluten": "banned"
+}
 },
 "pearl onion": {
 "canonical": "pearl onion",
@@ -5385,31 +6266,52 @@
 },
 "pecan": {
 "canonical": "pecan",
-"family": "pecan"
+"family": "pecan",
+"groups": {
+"nuts": "banned"
+}
 },
 "pecorino": {
 "canonical": "pecorino",
-"family": "pecorino"
+"family": "pecorino",
+"groups": {
+"dairy": "banned"
+}
 },
 "pecorino cheese": {
 "canonical": "pecorino cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "pecorino romano": {
 "canonical": "pecorino romano",
-"family": "romano"
+"family": "romano",
+"groups": {
+"dairy": "banned"
+}
 },
 "pecorino romano cheese": {
 "canonical": "pecorino romano cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "penne": {
 "canonical": "penne",
-"family": "penne"
+"family": "penne",
+"groups": {
+"gluten": "banned"
+}
 },
 "penne pasta": {
 "canonical": "penne pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "pepita": {
 "canonical": "pepita",
@@ -5421,7 +6323,10 @@
 },
 "pepper jack cheese": {
 "canonical": "pepper jack cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "peppercorn": {
 "canonical": "peppercorn",
@@ -5429,7 +6334,10 @@
 },
 "pepperjack cheese": {
 "canonical": "pepperjack cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "peppermint extract": {
 "canonical": "peppermint extract",
@@ -5441,19 +6349,31 @@
 },
 "pepperoni": {
 "canonical": "pepperoni",
-"family": "pepperoni"
+"family": "pepperoni",
+"groups": {
+"pork": "banned"
+}
 },
 "pepperoni sausage": {
 "canonical": "pepperoni sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "percent greek yogurt": {
 "canonical": "percent greek yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "percent milk": {
 "canonical": "percent milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "pernod": {
 "canonical": "pernod",
@@ -5465,19 +6385,24 @@
 },
 "pesto": {
 "canonical": "pesto",
-"family": "pesto"
-},
-"petite tomato": {
-"canonical": "petite tomato",
-"family": "tomato"
+"family": "pesto",
+"groups": {
+"nuts": "may_contain"
+}
 },
 "philadelphia cream cheese": {
 "canonical": "philadelphia cream cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "phyllo dough": {
 "canonical": "phyllo dough",
-"family": "dough"
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
 "pickle": {
 "canonical": "pickle",
@@ -5495,10 +6420,6 @@
 "canonical": "pickled jalapeno pepper",
 "family": "pepper"
 },
-"pickling cucumber": {
-"canonical": "pickling cucumber",
-"family": "cucumber"
-},
 "pickling salt": {
 "canonical": "pickling salt",
 "family": "salt"
@@ -5513,11 +6434,17 @@
 },
 "pie crust": {
 "canonical": "pie crust",
-"family": "crust"
+"family": "crust",
+"groups": {
+"gluten": "banned"
+}
 },
 "pie shell": {
 "canonical": "pie shell",
-"family": "shell"
+"family": "shell",
+"groups": {
+"gluten": "banned"
+}
 },
 "piece ginger": {
 "canonical": "piece ginger",
@@ -5525,11 +6452,17 @@
 },
 "pillsbury best all purpose flour": {
 "canonical": "pillsbury best all purpose flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "pillsbury refrigerated crescent dinner roll": {
 "canonical": "pillsbury refrigerated crescent dinner roll",
-"family": "roll"
+"family": "roll",
+"groups": {
+"gluten": "banned"
+}
 },
 "pimento": {
 "canonical": "pimento",
@@ -5547,13 +6480,12 @@
 "canonical": "pimiento",
 "family": "pimiento"
 },
-"pimiento-stuffed green olive": {
-"canonical": "pimiento-stuffed green olive",
-"family": "olive"
-},
 "pine nut": {
 "canonical": "pine nut",
-"family": "nut"
+"family": "nut",
+"groups": {
+"nuts": "banned"
+}
 },
 "pineapple": {
 "canonical": "pineapple",
@@ -5597,27 +6529,38 @@
 },
 "pistachio": {
 "canonical": "pistachio",
-"family": "pistachio"
+"family": "pistachio",
+"groups": {
+"nuts": "banned"
+}
 },
 "pistachio nut": {
 "canonical": "pistachio nut",
-"family": "nut"
-},
-"pita": {
-"canonical": "pita",
-"family": "pita"
+"family": "nut",
+"groups": {
+"nuts": "banned"
+}
 },
 "pita bread": {
 "canonical": "pita bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "pita bread round": {
 "canonical": "pita bread round",
-"family": "round"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "pizza dough": {
 "canonical": "pizza dough",
-"family": "dough"
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
 "pizza sauce": {
 "canonical": "pizza sauce",
@@ -5629,31 +6572,38 @@
 },
 "plain bread crumb": {
 "canonical": "plain bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "plain breadcrumb": {
 "canonical": "plain breadcrumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "plain greek yogurt": {
 "canonical": "plain greek yogurt",
-"family": "yogurt"
-},
-"plain low-fat yogurt": {
-"canonical": "plain low-fat yogurt",
-"family": "yogurt"
-},
-"plain nonfat yogurt": {
-"canonical": "plain nonfat yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "plain whole-milk yogurt": {
 "canonical": "plain whole-milk yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "plain yogurt": {
 "canonical": "plain yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "plantain": {
 "canonical": "plantain",
@@ -5666,10 +6616,6 @@
 "plum tomato": {
 "canonical": "tomato",
 "family": "tomato"
-},
-"poblano": {
-"canonical": "poblano",
-"family": "poblano"
 },
 "poblano chile": {
 "canonical": "poblano chile",
@@ -5721,51 +6667,88 @@
 },
 "pork": {
 "canonical": "pork",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork belly": {
 "canonical": "pork belly",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork butt": {
 "canonical": "pork butt",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork chop": {
 "canonical": "pork chop",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork loin": {
 "canonical": "pork loin",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork loin chop": {
 "canonical": "pork loin chop",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork loin roast": {
 "canonical": "pork loin roast",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork sausage": {
 "canonical": "pork sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "pork shoulder": {
 "canonical": "pork shoulder",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork shoulder roast": {
 "canonical": "pork shoulder roast",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork sparerib": {
 "canonical": "pork sparerib",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "pork tenderloin": {
 "canonical": "pork tenderloin",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned",
+"vegetarian": "banned"
+}
 },
 "port": {
 "canonical": "port",
@@ -5801,11 +6784,19 @@
 },
 "powdered gelatin": {
 "canonical": "powdered gelatin",
-"family": "gelatin"
+"family": "gelatin",
+"groups": {
+"pork": "may_contain",
+"vegan": "banned",
+"vegetarian": "banned"
+}
 },
 "powdered milk": {
 "canonical": "powdered milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "powdered sugar": {
 "canonical": "powdered sugar",
@@ -5813,7 +6804,10 @@
 },
 "prawn": {
 "canonical": "prawn",
-"family": "prawn"
+"family": "prawn",
+"groups": {
+"shellfish": "banned"
+}
 },
 "preserved lemon": {
 "canonical": "preserved lemon",
@@ -5821,31 +6815,45 @@
 },
 "pretzel": {
 "canonical": "pretzel",
-"family": "pretzel"
+"family": "pretzel",
+"groups": {
+"gluten": "banned"
+}
 },
 "pretzel stick": {
 "canonical": "pretzel stick",
-"family": "stick"
+"family": "stick",
+"groups": {
+"gluten": "banned"
+}
 },
 "processed american cheese": {
 "canonical": "processed american cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "processed cheese": {
 "canonical": "processed cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "processed cheese food": {
 "canonical": "processed cheese food",
-"family": "food"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "prosciutto": {
 "canonical": "prosciutto",
-"family": "prosciutto"
-},
-"prosciutto di parma": {
-"canonical": "prosciutto di parma",
-"family": "parma"
+"family": "prosciutto",
+"groups": {
+"pork": "banned"
+}
 },
 "prosecco": {
 "canonical": "prosecco",
@@ -5853,11 +6861,17 @@
 },
 "provolone": {
 "canonical": "provolone",
-"family": "provolone"
+"family": "provolone",
+"groups": {
+"dairy": "banned"
+}
 },
 "provolone cheese": {
 "canonical": "provolone cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "prune": {
 "canonical": "prune",
@@ -5865,11 +6879,10 @@
 },
 "puff pastry": {
 "canonical": "puff pastry",
-"family": "pastry"
-},
-"pumpernickel bread": {
-"canonical": "pumpernickel bread",
-"family": "bread"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
 },
 "pumpkin": {
 "canonical": "pumpkin",
@@ -5889,7 +6902,10 @@
 },
 "pure almond extract": {
 "canonical": "pure almond extract",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "pure maple syrup": {
 "canonical": "pure maple syrup",
@@ -5915,17 +6931,19 @@
 "canonical": "purple cabbage",
 "family": "cabbage"
 },
-"quail": {
-"canonical": "quail",
-"family": "quail"
-},
 "queso fresco": {
 "canonical": "queso fresco",
-"family": "fresco"
+"family": "fresco",
+"groups": {
+"dairy": "banned"
+}
 },
 "quick cooking oat": {
 "canonical": "quick cooking oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "quick-cooking grits": {
 "canonical": "quick-cooking grits",
@@ -5933,7 +6951,10 @@
 },
 "quick-cooking oat": {
 "canonical": "quick-cooking oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "quick-cooking tapioca": {
 "canonical": "quick-cooking tapioca",
@@ -5949,11 +6970,17 @@
 },
 "rabbit": {
 "canonical": "rabbit",
-"family": "rabbit"
+"family": "rabbit",
+"groups": {
+"vegetarian": "banned"
+}
 },
-"racks of lamb": {
-"canonical": "racks of lamb",
-"family": "lamb"
+"rack of lamb": {
+"canonical": "rack of lamb",
+"family": "lamb",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "radicchio": {
 "canonical": "radicchio",
@@ -5973,15 +7000,24 @@
 },
 "ramen noodle": {
 "canonical": "ramen noodle",
-"family": "noodle"
+"family": "noodle",
+"groups": {
+"gluten": "banned"
+}
 },
 "ranch dressing": {
 "canonical": "ranch dressing",
-"family": "dressing"
+"family": "dressing",
+"groups": {
+"dairy": "banned"
+}
 },
 "ranch dressing mix": {
 "canonical": "ranch dressing mix",
-"family": "mix"
+"family": "dressing",
+"groups": {
+"dairy": "banned"
+}
 },
 "raspberry": {
 "canonical": "raspberry",
@@ -6009,11 +7045,17 @@
 },
 "raw almond": {
 "canonical": "raw almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "raw cashew": {
 "canonical": "raw cashew",
-"family": "cashew"
+"family": "cashew",
+"groups": {
+"nuts": "banned"
+}
 },
 "raw pumpkin seed": {
 "canonical": "raw pumpkin seed",
@@ -6021,15 +7063,14 @@
 },
 "raw shrimp": {
 "canonical": "raw shrimp",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "raw sugar": {
 "canonical": "raw sugar",
 "family": "sugar"
-},
-"raw sunflower seed": {
-"canonical": "raw sunflower seed",
-"family": "sunflower"
 },
 "real maple syrup": {
 "canonical": "real maple syrup",
@@ -6037,11 +7078,17 @@
 },
 "recipe pastry for a double crust pie": {
 "canonical": "recipe pastry for a double crust pie",
-"family": "pastry"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
 },
 "recipe pastry for a single crust pie": {
 "canonical": "recipe pastry for a single crust pie",
-"family": "pastry"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
 },
 "red": {
 "canonical": "red",
@@ -6083,17 +7130,9 @@
 "canonical": "red chile pepper",
 "family": "pepper"
 },
-"red chile powder": {
-"canonical": "red chile powder",
-"family": "powder"
-},
 "red chili flake": {
 "canonical": "red chili flake",
 "family": "chili"
-},
-"red chili powder": {
-"canonical": "red chili powder",
-"family": "powder"
 },
 "red currant jelly": {
 "canonical": "red currant jelly",
@@ -6159,13 +7198,12 @@
 "canonical": "red seedless grape",
 "family": "grape"
 },
-"red snapper": {
-"canonical": "red snapper",
-"family": "snapper"
-},
 "red snapper fillet": {
 "canonical": "red snapper fillet",
-"family": "snapper"
+"family": "snapper",
+"groups": {
+"fish": "banned"
+}
 },
 "red tomato": {
 "canonical": "red tomato",
@@ -6191,56 +7229,47 @@
 "canonical": "red-wine vinegar",
 "family": "vinegar"
 },
-"reduced-fat cheddar cheese": {
-"canonical": "reduced-fat cheddar cheese",
-"family": "cheese"
-},
-"reduced-fat cream cheese": {
-"canonical": "reduced-fat cream cheese",
-"family": "cheese"
-},
-"reduced-fat sour cream": {
-"canonical": "reduced-fat sour cream",
-"family": "cream"
-},
-"reduced-sodium chicken broth": {
-"canonical": "reduced-sodium chicken broth",
-"family": "chicken"
-},
-"reduced-sodium soy sauce": {
-"canonical": "reduced-sodium soy sauce",
-"family": "soy"
-},
 "refried bean": {
 "canonical": "refried bean",
 "family": "bean"
 },
 "refrigerated biscuit dough": {
 "canonical": "refrigerated biscuit dough",
-"family": "dough"
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
 "refrigerated crescent roll": {
 "canonical": "refrigerated crescent roll",
-"family": "roll"
+"family": "roll",
+"groups": {
+"gluten": "banned"
+}
 },
 "refrigerated crescent roll dough": {
 "canonical": "refrigerated crescent roll dough",
-"family": "dough"
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
 "refrigerated pie crust": {
 "canonical": "refrigerated pie crust",
-"family": "crust"
+"family": "crust",
+"groups": {
+"gluten": "banned"
+}
 },
 "refrigerated pizza dough": {
 "canonical": "refrigerated pizza dough",
-"family": "dough"
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
-"regular": {
-"canonical": "regular",
-"family": "regular"
-},
-"reynolds wrap aluminum foil": {
-"canonical": "reynolds wrap aluminum foil",
+"reynold wrap aluminum foil": {
+"canonical": "reynold wrap aluminum foil",
 "family": "foil"
 },
 "rhubarb": {
@@ -6249,7 +7278,10 @@
 },
 "rib-eye steak": {
 "canonical": "rib-eye steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "rice": {
 "canonical": "rice",
@@ -6277,23 +7309,38 @@
 },
 "ricotta": {
 "canonical": "ricotta",
-"family": "ricotta"
+"family": "ricotta",
+"groups": {
+"dairy": "banned"
+}
 },
 "ricotta cheese": {
 "canonical": "ricotta cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "ricotta salata": {
 "canonical": "ricotta salata",
-"family": "salata"
+"family": "salata",
+"groups": {
+"dairy": "banned"
+}
 },
 "rigatoni": {
 "canonical": "rigatoni",
-"family": "rigatoni"
+"family": "rigatoni",
+"groups": {
+"gluten": "banned"
+}
 },
 "rigatoni pasta": {
 "canonical": "rigatoni pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "roasted": {
 "canonical": "roasted",
@@ -6301,15 +7348,17 @@
 },
 "roasted almond": {
 "canonical": "roasted almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "roasted cashew": {
 "canonical": "roasted cashew",
-"family": "cashew"
-},
-"roasted chicken": {
-"canonical": "roasted chicken",
-"family": "chicken"
+"family": "cashew",
+"groups": {
+"nuts": "banned"
+}
 },
 "roasted garlic": {
 "canonical": "roasted garlic",
@@ -6317,7 +7366,10 @@
 },
 "roasted peanut": {
 "canonical": "roasted peanut",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "roasted red bell pepper": {
 "canonical": "roasted red bell pepper",
@@ -6329,19 +7381,24 @@
 },
 "roasting chicken": {
 "canonical": "roasting chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "rock shrimp": {
 "canonical": "rock shrimp",
-"family": "shrimp"
-},
-"roll": {
-"canonical": "roll",
-"family": "roll"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "rolled oat": {
 "canonical": "rolled oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "roma tomato": {
 "canonical": "tomato",
@@ -6365,11 +7422,17 @@
 },
 "romano": {
 "canonical": "romano",
-"family": "romano"
+"family": "romano",
+"groups": {
+"dairy": "banned"
+}
 },
 "romano cheese": {
 "canonical": "romano cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "root beer": {
 "canonical": "root beer",
@@ -6377,7 +7440,10 @@
 },
 "roquefort cheese": {
 "canonical": "roquefort cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "rose water": {
 "canonical": "rose water",
@@ -6397,15 +7463,24 @@
 },
 "rotini pasta": {
 "canonical": "rotini pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "rotisserie chicken": {
 "canonical": "rotisserie chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "round steak": {
 "canonical": "round steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "royal icing": {
 "canonical": "royal icing",
@@ -6423,14 +7498,6 @@
 "canonical": "rum",
 "family": "rum"
 },
-"rum flavored extract": {
-"canonical": "rum flavored extract",
-"family": "extract"
-},
-"russet": {
-"canonical": "russet",
-"family": "russet"
-},
 "russet potato": {
 "canonical": "russet potato",
 "family": "potato"
@@ -6441,15 +7508,24 @@
 },
 "rye bread": {
 "canonical": "rye bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "rye flour": {
 "canonical": "rye flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "rye whiskey": {
 "canonical": "rye whiskey",
-"family": "whiskey"
+"family": "whiskey",
+"groups": {
+"gluten": "banned"
+}
 },
 "safflower oil": {
 "canonical": "safflower oil",
@@ -6475,29 +7551,38 @@
 "canonical": "sake",
 "family": "sake"
 },
-"salad greens": {
-"canonical": "salad greens",
-"family": "greens"
-},
 "salad oil": {
 "canonical": "salad oil",
 "family": "oil"
 },
 "salami": {
 "canonical": "salami",
-"family": "salami"
+"family": "salami",
+"groups": {
+"pork": "banned"
+}
 },
 "salmon": {
 "canonical": "salmon",
-"family": "salmon"
+"family": "salmon",
+"groups": {
+"fish": "banned"
+}
 },
 "salmon fillet": {
 "canonical": "salmon fillet",
-"family": "salmon"
+"family": "salmon",
+"groups": {
+"fish": "banned"
+}
 },
 "salmon steak": {
 "canonical": "salmon steak",
-"family": "salmon"
+"family": "salmon",
+"groups": {
+"fish": "banned",
+"vegetarian": "banned"
+}
 },
 "salsa": {
 "canonical": "salsa",
@@ -6541,11 +7626,17 @@
 },
 "salt pork": {
 "canonical": "salt pork",
-"family": "pork"
+"family": "pork",
+"groups": {
+"pork": "banned"
+}
 },
 "saltine cracker": {
 "canonical": "saltine cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "sambal": {
 "canonical": "sambal",
@@ -6565,7 +7656,10 @@
 },
 "sausage": {
 "canonical": "sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "savoy cabbage": {
 "canonical": "savoy cabbage",
@@ -6581,7 +7675,10 @@
 },
 "scallop": {
 "canonical": "scallop",
-"family": "scallop"
+"family": "scallop",
+"groups": {
+"shellfish": "banned"
+}
 },
 "scotch": {
 "canonical": "scotch",
@@ -6595,13 +7692,12 @@
 "canonical": "scotch bonnet pepper",
 "family": "pepper"
 },
-"sea bass": {
-"canonical": "sea bass",
-"family": "bass"
-},
 "sea bass fillet": {
 "canonical": "sea bass fillet",
-"family": "bass"
+"family": "bass",
+"groups": {
+"fish": "banned"
+}
 },
 "sea salt": {
 "canonical": "salt",
@@ -6621,23 +7717,39 @@
 },
 "sea scallop": {
 "canonical": "sea scallop",
-"family": "scallop"
+"family": "scallop",
+"groups": {
+"shellfish": "banned"
+}
 },
 "seafood seasoning": {
 "canonical": "seafood seasoning",
-"family": "seasoning"
+"family": "seasoning",
+"groups": {
+"fish": "may_contain",
+"shellfish": "may_contain"
+}
 },
 "seashell pasta": {
 "canonical": "seashell pasta",
-"family": "pasta"
+"family": "pasta",
+"groups": {
+"gluten": "banned"
+}
 },
 "seasoned bread crumb": {
 "canonical": "seasoned bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "seasoned dry bread crumb": {
 "canonical": "seasoned dry bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "seasoned rice vinegar": {
 "canonical": "seasoned rice vinegar",
@@ -6677,7 +7789,10 @@
 },
 "self-rising flour": {
 "canonical": "self-rising flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "seltzer": {
 "canonical": "seltzer",
@@ -6689,11 +7804,17 @@
 },
 "semi-sweet chocolate": {
 "canonical": "semi-sweet chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "semi-sweet chocolate chip": {
 "canonical": "semi-sweet chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "semisweet": {
 "canonical": "semisweet",
@@ -6701,19 +7822,31 @@
 },
 "semisweet chocolate": {
 "canonical": "semisweet chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "semisweet chocolate chip": {
 "canonical": "semisweet chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "semolina": {
 "canonical": "semolina",
-"family": "semolina"
+"family": "semolina",
+"groups": {
+"gluten": "banned"
+}
 },
 "semolina flour": {
 "canonical": "semolina flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "serrano": {
 "canonical": "serrano",
@@ -6729,7 +7862,10 @@
 },
 "serrano ham": {
 "canonical": "serrano ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "serrano pepper": {
 "canonical": "serrano pepper",
@@ -6751,45 +7887,81 @@
 "canonical": "shaohsing rice wine",
 "family": "wine"
 },
-"shaoxing wine": {
-"canonical": "shaoxing wine",
-"family": "wine"
-},
 "sharp cheddar": {
 "canonical": "sharp cheddar",
-"family": "cheddar"
+"family": "cheddar",
+"groups": {
+"dairy": "banned"
+}
 },
 "sharp cheddar cheese": {
 "canonical": "sharp cheddar cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "sharp white cheddar": {
 "canonical": "sharp white cheddar",
-"family": "cheddar"
+"family": "cheddar",
+"groups": {
+"dairy": "banned"
+}
 },
 "sharp white cheddar cheese": {
 "canonical": "sharp white cheddar cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "shaved parmesan": {
 "canonical": "shaved parmesan",
-"family": "parmesan"
+"family": "parmesan",
+"groups": {
+"dairy": "banned"
+}
 },
 "shaved parmesan cheese": {
 "canonical": "shaved parmesan cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "sheet frozen puff pastry": {
 "canonical": "sheet frozen puff pastry",
-"family": "pastry"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
+},
+"sheet gelatin": {
+"canonical": "sheet gelatin",
+"family": "gelatin",
+"groups": {
+"pork": "may_contain",
+"vegan": "banned",
+"vegetarian": "banned"
+}
+},
+"sheet nori": {
+"canonical": "sheet nori",
+"family": "nori"
+},
+"sheet phyllo dough": {
+"canonical": "sheet phyllo dough",
+"family": "dough",
+"groups": {
+"gluten": "banned"
+}
 },
 "sheet puff pastry": {
 "canonical": "sheet puff pastry",
-"family": "pastry"
-},
-"sheets phyllo dough": {
-"canonical": "sheets phyllo dough",
-"family": "dough"
+"family": "pastry",
+"groups": {
+"gluten": "banned"
+}
 },
 "shelled": {
 "canonical": "shelled",
@@ -6801,7 +7973,10 @@
 },
 "shelled pistachio": {
 "canonical": "shelled pistachio",
-"family": "pistachio"
+"family": "pistachio",
+"groups": {
+"nuts": "banned"
+}
 },
 "sherry": {
 "canonical": "sherry",
@@ -6823,41 +7998,44 @@
 "canonical": "shiitake mushroom",
 "family": "mushroom"
 },
-"short rib": {
-"canonical": "short rib",
-"family": "short"
-},
 "shortening": {
 "canonical": "shortening",
 "family": "shortening"
 },
 "shrimp": {
 "canonical": "shrimp",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "shrimp and deveined": {
 "canonical": "shrimp and deveined",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "shrimp in shell": {
 "canonical": "shrimp in shell",
-"family": "shrimp"
+"family": "shrimp",
+"groups": {
+"shellfish": "banned"
+}
 },
 "shucked oyster": {
 "canonical": "shucked oyster",
-"family": "oyster"
-},
-"sichuan peppercorn": {
-"canonical": "sichuan peppercorn",
-"family": "peppercorn"
+"family": "oyster",
+"groups": {
+"shellfish": "banned"
+}
 },
 "silken tofu": {
 "canonical": "silken tofu",
-"family": "tofu"
-},
-"silver tequila": {
-"canonical": "silver tequila",
-"family": "tequila"
+"family": "tofu",
+"groups": {
+"soy": "banned"
+}
 },
 "simple syrup": {
 "canonical": "simple syrup",
@@ -6865,7 +8043,10 @@
 },
 "sirloin steak": {
 "canonical": "sirloin steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "skewer": {
 "canonical": "skewer",
@@ -6873,7 +8054,10 @@
 },
 "skim milk": {
 "canonical": "skim milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "skin-on": {
 "canonical": "skin-on",
@@ -6881,55 +8065,77 @@
 },
 "skirt steak": {
 "canonical": "skirt steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "slab bacon": {
 "canonical": "slab bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
-"slices bacon": {
-"canonical": "slices bacon",
-"family": "bacon"
+"slice bacon": {
+"canonical": "slice bacon",
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
-"slices ginger": {
-"canonical": "slices ginger",
+"slice ginger": {
+"canonical": "slice ginger",
 "family": "ginger"
 },
-"slices prosciutto": {
-"canonical": "slices prosciutto",
-"family": "prosciutto"
+"slice prosciutto": {
+"canonical": "slice prosciutto",
+"family": "prosciutto",
+"groups": {
+"pork": "banned"
+}
 },
 "slivered almond": {
 "canonical": "slivered almond",
-"family": "almond"
-},
-"smoked almond": {
-"canonical": "smoked almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "smoked bacon": {
 "canonical": "smoked bacon",
-"family": "bacon"
-},
-"smoked gouda": {
-"canonical": "smoked gouda",
-"family": "gouda"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "smoked gouda cheese": {
 "canonical": "smoked gouda cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "smoked ham": {
 "canonical": "smoked ham",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "smoked ham hock": {
 "canonical": "smoked ham hock",
-"family": "ham"
+"family": "ham",
+"groups": {
+"pork": "banned"
+}
 },
 "smoked mozzarella": {
 "canonical": "smoked mozzarella",
-"family": "mozzarella"
+"family": "mozzarella",
+"groups": {
+"dairy": "banned"
+}
 },
 "smoked paprika": {
 "canonical": "smoked paprika",
@@ -6937,11 +8143,17 @@
 },
 "smoked salmon": {
 "canonical": "smoked salmon",
-"family": "salmon"
+"family": "salmon",
+"groups": {
+"fish": "banned"
+}
 },
 "smoked sausage": {
 "canonical": "smoked sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "smoked sweet paprika": {
 "canonical": "smoked sweet paprika",
@@ -6949,7 +8161,10 @@
 },
 "smooth peanut butter": {
 "canonical": "smooth peanut butter",
-"family": "peanut"
+"family": "peanut",
+"groups": {
+"peanut": "banned"
+}
 },
 "snipped chive": {
 "canonical": "snipped chive",
@@ -6958,10 +8173,6 @@
 "snow pea": {
 "canonical": "snow pea",
 "family": "pea"
-},
-"soba noodle": {
-"canonical": "soba noodle",
-"family": "noodle"
 },
 "soda water": {
 "canonical": "soda water",
@@ -6977,23 +8188,39 @@
 },
 "sour cream": {
 "canonical": "sour cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "sourdough bread": {
 "canonical": "sourdough bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "soy milk": {
 "canonical": "soy milk",
-"family": "soy"
+"family": "soy",
+"groups": {
+"soy": "banned"
+}
 },
 "soy sauce": {
 "canonical": "soy sauce",
-"family": "soy"
+"family": "soy",
+"groups": {
+"gluten": "banned",
+"soy": "banned"
+}
 },
 "spaghetti": {
 "canonical": "spaghetti",
-"family": "spaghetti"
+"family": "spaghetti",
+"groups": {
+"gluten": "banned"
+}
 },
 "spaghetti sauce": {
 "canonical": "spaghetti sauce",
@@ -7005,7 +8232,10 @@
 },
 "spanish chorizo": {
 "canonical": "spanish chorizo",
-"family": "chorizo"
+"family": "chorizo",
+"groups": {
+"pork": "banned"
+}
 },
 "spanish olive oil": {
 "canonical": "spanish olive oil",
@@ -7023,12 +8253,8 @@
 "canonical": "sparkling water",
 "family": "water"
 },
-"sparkling wine": {
-"canonical": "sparkling wine",
-"family": "wine"
-},
-"spears asparagus": {
-"canonical": "spears asparagus",
+"spear asparagus": {
+"canonical": "spear asparagus",
 "family": "asparagus"
 },
 "spiced rum": {
@@ -7041,7 +8267,10 @@
 },
 "spicy italian sausage": {
 "canonical": "spicy italian sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "spicy mustard": {
 "canonical": "spicy mustard",
@@ -7055,37 +8284,35 @@
 "canonical": "spinach leaf",
 "family": "spinach"
 },
-"sprigs rosemary": {
-"canonical": "sprigs rosemary",
+"sprig rosemary": {
+"canonical": "sprig rosemary",
 "family": "rosemary"
+},
+"sprig thyme": {
+"canonical": "sprig thyme",
+"family": "thyme"
 },
 "spring onion": {
 "canonical": "scallion",
 "family": "scallion"
 },
-"spring roll wrapper": {
-"canonical": "spring roll wrapper",
-"family": "wrapper"
-},
-"sprinkle": {
-"canonical": "sprinkle",
-"family": "sprinkle"
+"square semisweet chocolate": {
+"canonical": "square semisweet chocolate",
+"family": "chocolate",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "square unsweetened chocolate": {
 "canonical": "square unsweetened chocolate",
 "family": "chocolate"
 },
-"squares semisweet chocolate": {
-"canonical": "squares semisweet chocolate",
-"family": "chocolate"
-},
-"squares unsweetened chocolate": {
-"canonical": "squares unsweetened chocolate",
-"family": "chocolate"
-},
 "squid": {
 "canonical": "squid",
-"family": "squid"
+"family": "squid",
+"groups": {
+"shellfish": "banned"
+}
 },
 "sriracha": {
 "canonical": "sriracha",
@@ -7103,10 +8330,6 @@
 "canonical": "stalk celery",
 "family": "celery"
 },
-"stalks celery": {
-"canonical": "stalks celery",
-"family": "celery"
-},
 "star anise": {
 "canonical": "star anise",
 "family": "anise"
@@ -7115,17 +8338,19 @@
 "canonical": "star anise pod",
 "family": "pod"
 },
-"steak": {
-"canonical": "steak",
-"family": "steak"
-},
 "steak sauce": {
 "canonical": "steak sauce",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "steak seasoning": {
 "canonical": "steak seasoning",
-"family": "steak"
+"family": "steak",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "steamed rice": {
 "canonical": "steamed rice",
@@ -7133,7 +8358,10 @@
 },
 "steel-cut oat": {
 "canonical": "steel-cut oat",
-"family": "oat"
+"family": "oat",
+"groups": {
+"gluten": "may_contain"
+}
 },
 "stewed tomato": {
 "canonical": "stewed tomato",
@@ -7149,19 +8377,21 @@
 },
 "stout beer": {
 "canonical": "stout beer",
-"family": "beer"
+"family": "beer",
+"groups": {
+"gluten": "banned"
+}
 },
 "strawberry": {
 "canonical": "strawberry",
 "family": "strawberry"
 },
-"strawberry flavored jell-o": {
-"canonical": "strawberry flavored jell-o",
-"family": "jell-o"
-},
 "strawberry ice cream": {
 "canonical": "strawberry ice cream",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "strawberry jam": {
 "canonical": "strawberry jam",
@@ -7175,16 +8405,19 @@
 "canonical": "string bean",
 "family": "bean"
 },
-"strips bacon": {
-"canonical": "strips bacon",
-"family": "bacon"
+"strip bacon": {
+"canonical": "strip bacon",
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
-"strips lemon zest": {
-"canonical": "strips lemon zest",
+"strip lemon zest": {
+"canonical": "strip lemon zest",
 "family": "zest"
 },
-"strips orange zest": {
-"canonical": "strips orange zest",
+"strip orange zest": {
+"canonical": "strip orange zest",
 "family": "zest"
 },
 "strong brewed coffee": {
@@ -7227,9 +8460,9 @@
 "canonical": "sun-dried tomato",
 "family": "tomato"
 },
-"sun-dried tomatoes in oil": {
-"canonical": "sun-dried tomatoes in oil",
-"family": "tomatoes"
+"sun-dried tomato in oil": {
+"canonical": "sun-dried tomato in oil",
+"family": "tomato"
 },
 "sunflower oil": {
 "canonical": "sunflower oil",
@@ -7253,7 +8486,10 @@
 },
 "swanson chicken broth": {
 "canonical": "swanson chicken broth",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "sweet": {
 "canonical": "sweet",
@@ -7265,7 +8501,10 @@
 },
 "sweet butter": {
 "canonical": "sweet butter",
-"family": "butter"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "sweet chili sauce": {
 "canonical": "sweet chili sauce",
@@ -7277,7 +8516,10 @@
 },
 "sweet italian sausage": {
 "canonical": "sweet italian sausage",
-"family": "sausage"
+"family": "sausage",
+"groups": {
+"pork": "banned"
+}
 },
 "sweet onion": {
 "canonical": "sweet onion",
@@ -7321,7 +8563,10 @@
 },
 "sweetened condensed milk": {
 "canonical": "sweetened condensed milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "sweetened dried cranberry": {
 "canonical": "sweetened dried cranberry",
@@ -7333,11 +8578,17 @@
 },
 "sweetened whipped cream": {
 "canonical": "sweetened whipped cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "swiss": {
 "canonical": "swiss",
-"family": "swiss"
+"family": "swiss",
+"groups": {
+"dairy": "banned"
+}
 },
 "swiss chard": {
 "canonical": "swiss chard",
@@ -7345,11 +8596,18 @@
 },
 "swiss cheese": {
 "canonical": "swiss cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "swordfish steak": {
 "canonical": "swordfish steak",
-"family": "steak"
+"family": "steak",
+"groups": {
+"fish": "banned",
+"vegetarian": "banned"
+}
 },
 "tabasco": {
 "canonical": "tabasco",
@@ -7377,11 +8635,10 @@
 },
 "tamari": {
 "canonical": "tamari",
-"family": "tamari"
-},
-"tamarind concentrate": {
-"canonical": "tamarind concentrate",
-"family": "concentrate"
+"family": "tamari",
+"groups": {
+"soy": "banned"
+}
 },
 "tamarind paste": {
 "canonical": "tamarind paste",
@@ -7407,10 +8664,6 @@
 "canonical": "tarragon leaf",
 "family": "tarragon"
 },
-"tarragon sprig": {
-"canonical": "tarragon sprig",
-"family": "tarragon"
-},
 "tarragon vinegar": {
 "canonical": "tarragon vinegar",
 "family": "vinegar"
@@ -7421,7 +8674,10 @@
 },
 "tartar sauce": {
 "canonical": "tartar sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"egg": "banned"
+}
 },
 "tawny port": {
 "canonical": "tawny port",
@@ -7433,7 +8689,11 @@
 },
 "teriyaki sauce": {
 "canonical": "teriyaki sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"gluten": "banned",
+"soy": "banned"
+}
 },
 "thai basil": {
 "canonical": "thai basil",
@@ -7453,7 +8713,12 @@
 },
 "thai fish sauce": {
 "canonical": "thai fish sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"fish": "banned",
+"shellfish": "may_contain",
+"vegetarian": "banned"
+}
 },
 "thai red curry paste": {
 "canonical": "thai red curry paste",
@@ -7461,7 +8726,10 @@
 },
 "thick-cut bacon": {
 "canonical": "thick-cut bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"pork": "banned"
+}
 },
 "thyme": {
 "canonical": "thyme",
@@ -7477,15 +8745,24 @@
 },
 "tilapia fillet": {
 "canonical": "tilapia fillet",
-"family": "tilapia"
+"family": "tilapia",
+"groups": {
+"fish": "banned"
+}
 },
 "to chicken": {
 "canonical": "to chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "to turkey": {
 "canonical": "to turkey",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "toasted": {
 "canonical": "toasted",
@@ -7493,7 +8770,10 @@
 },
 "toasted almond": {
 "canonical": "toasted almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "toasted coconut": {
 "canonical": "toasted coconut",
@@ -7501,15 +8781,24 @@
 },
 "toasted hazelnut": {
 "canonical": "toasted hazelnut",
-"family": "hazelnut"
+"family": "hazelnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "toasted pecan": {
 "canonical": "toasted pecan",
-"family": "pecan"
+"family": "pecan",
+"groups": {
+"nuts": "banned"
+}
 },
 "toasted pine nut": {
 "canonical": "toasted pine nut",
-"family": "nut"
+"family": "nut",
+"groups": {
+"nuts": "banned"
+}
 },
 "toasted sesame oil": {
 "canonical": "toasted sesame oil",
@@ -7521,15 +8810,24 @@
 },
 "toasted slivered almond": {
 "canonical": "toasted slivered almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "toasted walnut": {
 "canonical": "toasted walnut",
-"family": "walnut"
+"family": "walnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "tofu": {
 "canonical": "tofu",
-"family": "tofu"
+"family": "tofu",
+"groups": {
+"soy": "banned"
+}
 },
 "tomatillo": {
 "canonical": "tomatillo",
@@ -7537,6 +8835,10 @@
 },
 "tomato": {
 "canonical": "tomato",
+"family": "tomato"
+},
+"tomato in juice": {
+"canonical": "tomato in juice",
 "family": "tomato"
 },
 "tomato juice": {
@@ -7559,25 +8861,13 @@
 "canonical": "tomato slice",
 "family": "slice"
 },
-"tomato soup": {
-"canonical": "tomato soup",
-"family": "soup"
+"tomato with green chile pepper": {
+"canonical": "tomato with green chile pepper",
+"family": "tomato"
 },
-"tomatoes and green chile": {
-"canonical": "tomatoes and green chile",
-"family": "tomatoes"
-},
-"tomatoes in juice": {
-"canonical": "tomatoes in juice",
-"family": "tomatoes"
-},
-"tomatoes with green chile pepper": {
-"canonical": "tomatoes with green chile pepper",
-"family": "tomatoes"
-},
-"tomatoes with juice": {
-"canonical": "tomatoes with juice",
-"family": "tomatoes"
+"tomato with juice": {
+"canonical": "tomato with juice",
+"family": "tomato"
 },
 "toothpick": {
 "canonical": "toothpick",
@@ -7585,11 +8875,17 @@
 },
 "tortilla": {
 "canonical": "tortilla",
-"family": "tortilla"
+"family": "tortilla",
+"groups": {
+"gluten": "banned"
+}
 },
 "tortilla chip": {
 "canonical": "tortilla chip",
-"family": "chip"
+"family": "chip",
+"groups": {
+"gluten": "banned"
+}
 },
 "triple sec": {
 "canonical": "triple sec",
@@ -7601,11 +8897,18 @@
 },
 "tuna": {
 "canonical": "tuna",
-"family": "tuna"
+"family": "tuna",
+"groups": {
+"fish": "banned"
+}
 },
 "tuna steak": {
 "canonical": "tuna steak",
-"family": "tuna"
+"family": "tuna",
+"groups": {
+"fish": "banned",
+"vegetarian": "banned"
+}
 },
 "turbinado sugar": {
 "canonical": "turbinado sugar",
@@ -7613,19 +8916,31 @@
 },
 "turkey": {
 "canonical": "turkey",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "turkey bacon": {
 "canonical": "turkey bacon",
-"family": "bacon"
+"family": "bacon",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "turkey breast": {
 "canonical": "turkey breast",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "turkey stock": {
 "canonical": "turkey stock",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "turkish": {
 "canonical": "turkish",
@@ -7653,15 +8968,26 @@
 },
 "unbaked pie crust": {
 "canonical": "unbaked pie crust",
-"family": "crust"
+"family": "crust",
+"groups": {
+"gluten": "banned"
+}
 },
 "unbaked pie shell": {
 "canonical": "unbaked pie shell",
-"family": "shell"
+"family": "shell",
+"groups": {
+"gluten": "banned"
+}
 },
 "unflavored gelatin": {
 "canonical": "unflavored gelatin",
-"family": "gelatin"
+"family": "gelatin",
+"groups": {
+"pork": "may_contain",
+"vegan": "banned",
+"vegetarian": "banned"
+}
 },
 "unseasoned rice vinegar": {
 "canonical": "unseasoned rice vinegar",
@@ -7673,7 +8999,10 @@
 },
 "unsweetened almond milk": {
 "canonical": "unsweetened almond milk",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "unsweetened applesauce": {
 "canonical": "unsweetened applesauce",
@@ -7719,10 +9048,6 @@
 "canonical": "vanilla bean",
 "family": "vanilla"
 },
-"vanilla bean ice cream": {
-"canonical": "vanilla bean ice cream",
-"family": "ice cream"
-},
 "vanilla bean paste": {
 "canonical": "vanilla bean paste",
 "family": "vanilla"
@@ -7735,33 +9060,51 @@
 "canonical": "vanilla frosting",
 "family": "frosting"
 },
+"vanilla frozen yogurt": {
+"canonical": "vanilla frozen yogurt",
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
+},
 "vanilla ice cream": {
 "canonical": "vanilla ice cream",
-"family": "ice cream"
+"family": "ice cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "vanilla sugar": {
 "canonical": "vanilla sugar",
 "family": "sugar"
 },
-"vanilla vodka": {
-"canonical": "vanilla vodka",
-"family": "vodka"
-},
 "vanilla wafer": {
 "canonical": "vanilla wafer",
-"family": "wafer"
+"family": "wafer",
+"groups": {
+"gluten": "banned"
+}
 },
 "vanilla yogurt": {
 "canonical": "vanilla yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "veal": {
 "canonical": "veal",
-"family": "veal"
+"family": "veal",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "veal stock": {
 "canonical": "veal stock",
-"family": "stock"
+"family": "stock",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "vegetable": {
 "canonical": "vegetable",
@@ -7803,14 +9146,6 @@
 "canonical": "vermouth",
 "family": "vermouth"
 },
-"very banana": {
-"canonical": "very banana",
-"family": "banana"
-},
-"very water": {
-"canonical": "very water",
-"family": "water"
-},
 "vidalia": {
 "canonical": "vidalia",
 "family": "vidalia"
@@ -7849,11 +9184,17 @@
 },
 "walnut": {
 "canonical": "walnut",
-"family": "walnut"
+"family": "walnut",
+"groups": {
+"nuts": "banned"
+}
 },
 "walnut oil": {
 "canonical": "walnut oil",
-"family": "oil"
+"family": "oil",
+"groups": {
+"nuts": "banned"
+}
 },
 "wasabi": {
 "canonical": "wasabi",
@@ -7879,10 +9220,6 @@
 "canonical": "watercress",
 "family": "watercress"
 },
-"watercress leaf": {
-"canonical": "watercress leaf",
-"family": "watercress"
-},
 "watercress sprig": {
 "canonical": "watercress sprig",
 "family": "watercress"
@@ -7893,31 +9230,52 @@
 },
 "well-shaken buttermilk": {
 "canonical": "well-shaken buttermilk",
-"family": "buttermilk"
+"family": "buttermilk",
+"groups": {
+"dairy": "banned"
+}
 },
 "wheat bran": {
 "canonical": "wheat bran",
-"family": "bran"
+"family": "bran",
+"groups": {
+"gluten": "banned"
+}
 },
 "wheat germ": {
 "canonical": "wheat germ",
-"family": "germ"
+"family": "germ",
+"groups": {
+"gluten": "banned"
+}
 },
 "whipped cream": {
 "canonical": "whipped cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "whipped cream cheese": {
 "canonical": "whipped cream cheese",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "whipped topping": {
 "canonical": "whipped topping",
-"family": "topping"
+"family": "topping",
+"groups": {
+"dairy": "may_contain"
+}
 },
 "whipping cream": {
 "canonical": "whipping cream",
-"family": "cream"
+"family": "cream",
+"groups": {
+"dairy": "banned"
+}
 },
 "whiskey": {
 "canonical": "whiskey",
@@ -7937,11 +9295,17 @@
 },
 "white bread": {
 "canonical": "white bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "white bread crumb": {
 "canonical": "white bread crumb",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "white button mushroom": {
 "canonical": "white button mushroom",
@@ -7953,23 +9317,39 @@
 },
 "white cake mix": {
 "canonical": "white cake mix",
-"family": "mix"
+"family": "cake",
+"groups": {
+"egg": "may_contain",
+"gluten": "banned"
+}
 },
 "white cheddar": {
 "canonical": "white cheddar",
-"family": "cheddar"
+"family": "cheddar",
+"groups": {
+"dairy": "banned"
+}
 },
 "white cheddar cheese": {
 "canonical": "white cheddar cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "white chocolate": {
 "canonical": "white chocolate",
-"family": "chocolate"
+"family": "chocolate",
+"groups": {
+"dairy": "banned"
+}
 },
 "white chocolate chip": {
 "canonical": "white chocolate chip",
-"family": "chip"
+"family": "chocolate",
+"groups": {
+"dairy": "banned"
+}
 },
 "white cornmeal": {
 "canonical": "white cornmeal",
@@ -7981,7 +9361,10 @@
 },
 "white flour": {
 "canonical": "white flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "white grape juice": {
 "canonical": "white grape juice",
@@ -7997,7 +9380,10 @@
 },
 "white miso": {
 "canonical": "white miso",
-"family": "miso"
+"family": "miso",
+"groups": {
+"soy": "banned"
+}
 },
 "white mushroom": {
 "canonical": "white mushroom",
@@ -8033,7 +9419,10 @@
 },
 "white sandwich bread": {
 "canonical": "white sandwich bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "white sesame seed": {
 "canonical": "white sesame seed",
@@ -8042,10 +9431,6 @@
 "white sugar": {
 "canonical": "white sugar",
 "family": "sugar"
-},
-"white tequila": {
-"canonical": "white tequila",
-"family": "tequila"
 },
 "white truffle oil": {
 "canonical": "white truffle oil",
@@ -8057,7 +9442,10 @@
 },
 "white whole wheat flour": {
 "canonical": "white whole wheat flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "white wine": {
 "canonical": "white wine",
@@ -8085,7 +9473,10 @@
 },
 "whole almond": {
 "canonical": "whole almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "whole berry cranberry sauce": {
 "canonical": "whole berry cranberry sauce",
@@ -8097,26 +9488,38 @@
 },
 "whole blanched almond": {
 "canonical": "whole blanched almond",
-"family": "almond"
+"family": "almond",
+"groups": {
+"nuts": "banned"
+}
 },
 "whole butter": {
 "canonical": "whole butter",
-"family": "butter"
+"family": "butter",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole chicken": {
 "canonical": "whole chicken",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "whole chicken breast": {
 "canonical": "whole chicken breast",
-"family": "chicken"
+"family": "chicken",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "whole clove": {
 "canonical": "whole clove",
 "family": "whole"
 },
-"whole cloves garlic": {
-"canonical": "whole cloves garlic",
+"whole clove garlic": {
+"canonical": "whole clove garlic",
 "family": "garlic"
 },
 "whole coriander seed": {
@@ -8129,7 +9532,10 @@
 },
 "whole egg": {
 "canonical": "whole egg",
-"family": "egg"
+"family": "egg",
+"groups": {
+"egg": "banned"
+}
 },
 "whole garlic": {
 "canonical": "whole garlic",
@@ -8141,7 +9547,10 @@
 },
 "whole graham cracker": {
 "canonical": "whole graham cracker",
-"family": "cracker"
+"family": "cracker",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole grain dijon mustard": {
 "canonical": "whole grain dijon mustard",
@@ -8157,15 +9566,24 @@
 },
 "whole milk": {
 "canonical": "whole milk",
-"family": "milk"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole milk ricotta": {
 "canonical": "whole milk ricotta",
-"family": "ricotta"
+"family": "milk",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole milk ricotta cheese": {
 "canonical": "whole milk ricotta cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole peppercorn": {
 "canonical": "whole peppercorn",
@@ -8173,14 +9591,6 @@
 },
 "whole plum tomato": {
 "canonical": "whole plum tomato",
-"family": "tomato"
-},
-"whole red snapper": {
-"canonical": "whole red snapper",
-"family": "snapper"
-},
-"whole san marzano tomato": {
-"canonical": "whole san marzano tomato",
 "family": "tomato"
 },
 "whole star anise": {
@@ -8195,41 +9605,44 @@
 "canonical": "whole tomato",
 "family": "tomato"
 },
-"whole tomatoes in juice": {
-"canonical": "whole tomatoes in juice",
-"family": "tomatoes"
+"whole tomato in juice": {
+"canonical": "whole tomato in juice",
+"family": "tomato"
 },
 "whole turkey": {
 "canonical": "whole turkey",
-"family": "turkey"
+"family": "turkey",
+"groups": {
+"vegetarian": "banned"
+}
 },
 "whole wheat bread": {
 "canonical": "whole wheat bread",
-"family": "bread"
+"family": "bread",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole wheat flour": {
 "canonical": "whole wheat flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole wheat pastry flour": {
 "canonical": "whole wheat pastry flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole wheat tortilla": {
 "canonical": "whole wheat tortilla",
-"family": "tortilla"
-},
-"whole white peppercorn": {
-"canonical": "whole white peppercorn",
-"family": "peppercorn"
-},
-"whole-grain bread": {
-"canonical": "whole-grain bread",
-"family": "bread"
-},
-"whole-grain dijon mustard": {
-"canonical": "whole-grain dijon mustard",
-"family": "mustard"
+"family": "tortilla",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole-grain mustard": {
 "canonical": "whole-grain mustard",
@@ -8237,23 +9650,39 @@
 },
 "whole-milk ricotta": {
 "canonical": "whole-milk ricotta",
-"family": "ricotta"
+"family": "ricotta",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole-milk ricotta cheese": {
 "canonical": "whole-milk ricotta cheese",
-"family": "cheese"
+"family": "cheese",
+"groups": {
+"dairy": "banned"
+}
 },
 "whole-wheat flour": {
 "canonical": "whole-wheat flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "whole-wheat pastry flour": {
 "canonical": "whole-wheat pastry flour",
-"family": "flour"
+"family": "flour",
+"groups": {
+"gluten": "banned"
+}
 },
 "wide egg noodle": {
 "canonical": "wide egg noodle",
-"family": "noodle"
+"family": "noodle",
+"groups": {
+"egg": "banned",
+"gluten": "banned"
+}
 },
 "wild mushroom": {
 "canonical": "wild mushroom",
@@ -8269,7 +9698,10 @@
 },
 "wonton wrapper": {
 "canonical": "wonton wrapper",
-"family": "wrapper"
+"family": "wrapper",
+"groups": {
+"gluten": "banned"
+}
 },
 "wooden skewer": {
 "canonical": "wooden skewer",
@@ -8277,11 +9709,21 @@
 },
 "worcestershire": {
 "canonical": "worcestershire",
-"family": "worcestershire"
+"family": "worcestershire",
+"groups": {
+"fish": "may_contain",
+"gluten": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "worcestershire sauce": {
 "canonical": "worcestershire sauce",
-"family": "sauce"
+"family": "sauce",
+"groups": {
+"fish": "may_contain",
+"gluten": "may_contain",
+"vegetarian": "may_contain"
+}
 },
 "xanthan gum": {
 "canonical": "xanthan gum",
@@ -8305,7 +9747,11 @@
 },
 "yellow cake mix": {
 "canonical": "yellow cake mix",
-"family": "mix"
+"family": "cake",
+"groups": {
+"egg": "may_contain",
+"gluten": "banned"
+}
 },
 "yellow cornmeal": {
 "canonical": "yellow cornmeal",
@@ -8335,10 +9781,6 @@
 "canonical": "yellow squash",
 "family": "squash"
 },
-"yellow summer squash": {
-"canonical": "yellow summer squash",
-"family": "squash"
-},
 "yellow tomato": {
 "canonical": "yellow tomato",
 "family": "tomato"
@@ -8349,11 +9791,17 @@
 },
 "yogurt": {
 "canonical": "yogurt",
-"family": "yogurt"
+"family": "yogurt",
+"groups": {
+"dairy": "banned"
+}
 },
 "yolk": {
 "canonical": "yolk",
-"family": "yolk"
+"family": "yolk",
+"groups": {
+"egg": "banned"
+}
 },
 "yukon gold": {
 "canonical": "yukon gold",
