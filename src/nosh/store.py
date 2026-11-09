@@ -40,7 +40,7 @@ def resolve_term(text: str) -> Term:
     return Term(text, canonical, family, canonical == family)
 
 
-def _free_modifiers(term: Term) -> list[str]:
+def free_modifiers(term: Term) -> list[str]:
     own = set(term.family.split()) | set(term.canonical.split())
     return [m for m in modifier_words() if m not in own]
 
@@ -48,14 +48,14 @@ def _free_modifiers(term: Term) -> list[str]:
 def modified_forms_of(term: Term) -> list[tuple[str, int]]:
     sql = ("SELECT canonical, COUNT(DISTINCT recipe_id) c FROM recipe_ingredients "
            "WHERE family = ? AND list_has_any(string_split(canonical, ' '), ?) GROUP BY 1 ORDER BY c DESC, 1 LIMIT ?")
-    return connect().execute(sql, [term.family, _free_modifiers(term), STATS_NOTE_TOP]).fetchall()
+    return connect().execute(sql, [term.family, free_modifiers(term), STATS_NOTE_TOP]).fetchall()
 
 
 def term_sql(term: Term) -> tuple[str, list]:
     if not term.bare:
         return "i.canonical = ?", [term.canonical]
     cond = "(i.canonical = ? OR (i.family = ? AND NOT list_has_any(string_split(i.canonical, ' '), ?)))"
-    return cond, [term.canonical, term.family, _free_modifiers(term)]
+    return cond, [term.canonical, term.family, free_modifiers(term)]
 
 
 def _exists(cond: str) -> str:

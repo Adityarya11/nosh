@@ -30,8 +30,16 @@ SEARCH_TOP_K = 5
 COVERAGE_EXACT_MIN = 0.99
 COVERAGE_NEAR_MIN = 0.70
 
-SIMILAR_N = 50
+# SIMILAR_N is large enough that the WITHOUT group is not starved for common dishes (D24)
+SIMILAR_N = 200
+MIN_SIMILAR = 30
 MIN_SUPPORT = 3
+MIN_LIFT = 2.0
+CONTRAST_TOP = 8
+EXPLICIT_OR_STOP = ["to taste", "more", "less", "as needed", "as desired", "if desired", "as required", "to garnish", "to serve",
+                    "extra", "additional", "as necessary", "optional"]
+SUBSTITUTION_CUES = r"substitut(?:e|ed|es|ing|ion)\s+(?:for|with|in)\b|substituting|substitution|instead of|in place of|replac(?:e|ing)\b"
+TEXT_MENTIONS_SHOWN = 5
 MAX_RETRIES = 2
 
 SLOTS_TEMPERATURE = 0.0
