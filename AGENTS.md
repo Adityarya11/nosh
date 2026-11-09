@@ -153,7 +153,7 @@ Build must be deterministic and must NOT call an LLM, so graders can rebuild off
   (enough to cover the bulk of lines) by rules + a one-off LLM-assisted script whose output is
   reviewed and committed. Unmapped names fall back to the parsed name as canonical and its last
   noun as family. Report coverage (% of lines mapped) in the README.
-- Whole-word matching only. Never substring-match raw text (the substring `hing` hits "washing").
+- Whole-word matching only. Never substring-match raw text (the substring `rum` matches "crumbs" and "drumsticks").
 
 **Restriction map** (`resources/restrictions.json`): plain data, conservative. Each group lists
 families and product canonicals, e.g. `dairy` -> milk, cream, butter, cheese, yogurt, ghee, whey,
