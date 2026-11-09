@@ -388,3 +388,13 @@ hard-constraint checks or citation validation.
 - Never commit: `recipes_raw/`, `data/`, `tests/`, `.env`, the assignment PDF.
 - When a decision changes or a new one is made, update `docs/decisions.md` in the same commit.
 - Log AI-tool use per module in the README's disclosure section as you go.
+
+## 13. Resource safety
+
+The dev machine has little free RAM (15 GB total, often under 4 GB free); a heavy run crashed it once (D26).
+
+- Ask before running a heavy command (build, full-dataset scan, a live multi-call LLM run). Check free RAM and disk first with a light command.
+- Never overlap heavy jobs: one at a time, wait for the previous one to exit.
+- DuckDB is capped in `config.py` (`DUCKDB_MEMORY_LIMIT`, `DUCKDB_THREADS`); change the cap there, not in code.
+- Run anything heavy under `python tests/guard.py <command>`: it kills the process tree on low free RAM, low disk or high VRAM, caps the job's memory, and prints the peak memory of the run.
+- Queries must not pull `recipe_ingredients` or `instructions_raw` wholesale into Python: prefilter in SQL (ILIKE on the words involved), regex only the result, and LIMIT open-ended results.

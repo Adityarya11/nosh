@@ -384,3 +384,31 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
   remain. Mentions dropped from 172 to 11 (with the old cue) to 26 (new cue, egg; several still unrelated: "instead of
   flipping"), so the mentions stay out of the grading.
 - **Status:** FIXED, with the remaining text noise recorded here.
+
+## F26. Gemini free tier ran out during step 7; dev runs moved to Anthropic
+- **Symptom:** `429 RESOURCE_EXHAUSTED ... generate_content_free_tier_requests, limit: 20` on `gemini-3.6-flash` (about 17 hours until reset). One substitution turn uses 4-6 calls.
+- **Fix:** dev runs use `NOSH_LLM_PROVIDER=anthropic`, `claude-haiku-5-5`; Gemini stays the default in the README with the 20 requests/day note. The Anthropic path (`messages.parse`, no sampling parameters) worked live for slots, roles, proposals and adaptation, with the disk cache on.
+- **Status:** FIXED for dev; the limit is documented.
+
+## F27. Dairy-free replacements rejected as dairy (step 7 checkpoint b)
+- **Symptom:** the LLM proposed "cashew cream" and "vegan sour cream" for cream; the restriction check rejected both ("breaks the dairy (banned) restriction") because "cream" is a dairy keyword and neither is on the dairy safe list.
+- **Effect:** the two most natural dairy-free replacements never reach the evidence table. Over-rejection is the safe direction, but it costs recall.
+- **Fix needed:** add the plant-based phrases to `restrictions.json` dairy `safe`, rebuild (line_flags and map tags depend on it). Not done: a rebuild is a heavy job (D26).
+- **Status:** OPEN.
+
+## F28. Weak evidence in checkpoints (a) and (b), and three grading bugs found by reading the output
+- **Result (a), banana bread minus eggs:** 139 banana breads, 131 with egg, 8 without. Proposals applesauce, plain yogurt, mashed banana all grade NONE (applesauce 0/8 without vs 5/131 with, independent regex agrees); flax meal and chia were rejected as "not an ingredient in the dataset". The adapted recipe is labelled predicted with no citations. Haiku did not propose silken tofu, which the step 6 contrast found in 1 egg-free banana bread, so LLM-first proposals lose that recall.
+- **Result (b), cream in pasta, no dairy:** base "Best Ever Pasta Salad" (its cream line is "1 (8 ounce) container sour cream"; "cream" matches the family). Candidates coconut yogurt, silken tofu, mashed avocado all NONE; adapted with mashed avocado, labelled predicted.
+- **Bugs fixed while reading:** (1) a candidate's citable lines came from every group, so "Tilapia Salad" and "Avocado Salads" were cited for avocado although the widened class did not support it; lines now come only from the group that met the criterion. (2) one WITHOUT recipe was enough for "indirect" (avocado from "Bacon Avocado Pasta", whose line only shows avocado in a creamless pasta); contrast now needs MIN_SUPPORT recipes and MIN_LIFT. (3) substitution-mention matching accepted "eggs and oil, ... instead of 1/2 cup oil, ... add 1/4 cup applesauce"; the target, the cue and the candidate must now be within 15 characters.
+- **Status:** FIXED (bugs); recall limit OPEN.
+
+## F29. Weak-evidence case (c): panna cotta without gelatin, and what the validators cannot see
+- **Result:** 36 panna cottas, all use gelatin. Cornstarch grades INDIRECT from the widened classes (54/404 without gelatin vs 1/17 with; the WITH group is tiny). Cited: Rose Petal and Pistachio Raspberry Custard (1 quart milk, 1/2 cup cornstarch, no gelatin) and Banana Pudding (4 cups milk, 1/2 cup plus 2 tablespoons cornstarch, 8 yolks): both support cornstarch as a setting agent. Lucy's Carrot Pudding uses 1 1/2 tablespoons cornstarch in a lemon sauce: that is sauce thickening, only loosely related.
+- **Gap:** the adapted recipe keeps "1 1/2 teaspoons cornstarch" (the gelatin amount) for 2 cups of dairy; the cited recipes use about 1/2 cup per quart. Validators check restrictions, citations, grades and claims but not quantities. The LLM flagged the amount as unverified in its uncertainty text.
+- **Status:** OPEN (quantity check is not in the spec's validator list).
+
+## F30. Validators work: planted bad outputs and live rejections (step 7)
+- **Planted, no LLM (6 cases):** valid output accepted; citing a recipe not retrieved this turn, citing a retrieved recipe with no line for the substitute, a banned ingredient ("1/2 cup butter" with dairy excluded), the phrase "allergy-safe", and evidence stronger than the verified grade were all rejected.
+- **Live rejections seen:** a citation of a recipe that was only a "mention" (not retrieved); an ingredient line "1 avocado, mashed (replaces 1 (8 ounce) container sour cream)" rejected as dairy; a substitution whose `original` was the recipe line instead of the target name. Each was fixed in the next attempt (adapt.txt now says to use the target name and no notes).
+- **Memory:** every run under `tests/guard.py` peaked at 340-445 MB (job memory), minimum system free RAM 2.7 GB.
+- **Status:** FIXED.
