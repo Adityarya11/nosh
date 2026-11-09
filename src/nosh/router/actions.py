@@ -21,6 +21,7 @@ class Substitute(BaseModel):
     dish: str | None = None
     remove: list[str] = []
     goal: str | None = None
+    dataset_only: bool = False
 
 
 class SearchNoMatch(BaseModel):

@@ -1,6 +1,6 @@
 """One chat turn: extract slots, update the session, probe coverage, decide, execute, render."""
 
-from nosh import render, render_match
+from nosh import render, render_match, render_sub
 from nosh.llm import LLMUnavailable
 from nosh.router.actions import (
     Action,
@@ -9,6 +9,7 @@ from nosh.router.actions import (
     Search,
     SearchNoMatch,
     Stats,
+    Substitute,
     Unsupported,
 )
 from nosh.router.decide import decide
@@ -17,6 +18,7 @@ from nosh.session import SessionState
 from nosh.tasks.match import run_match
 from nosh.tasks.search import Coverage, probe, run_search
 from nosh.tasks.stats import compute
+from nosh.tasks.substitute import run_substitute
 
 NOT_BUILT = "This task is not available yet in this build."
 
@@ -54,6 +56,13 @@ def _execute(action: Action, session: SessionState, coverage: Coverage | None) -
         session.last_results = [r.id for r in result.rows]
         session.last_titles = [r.title for r in result.rows]
         return render_match.match(result)
+    if isinstance(action, Substitute):
+        session.active_action = action
+        result = run_substitute(action, session.filters)
+        if result.base:
+            session.active_recipe_id = result.base.id
+            session.last_results, session.last_titles = [result.base.id], [result.base.title]
+        return render_sub.substitute(result)
     if isinstance(action, Stats):
         session.active_action = action
         request = action.request.model_copy(

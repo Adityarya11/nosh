@@ -51,7 +51,8 @@ def _route(slots: Slots, coverage: Coverage | None, session: SessionState) -> Ac
         return Stats(request=stats_request(slots, session))
     ref = slots.recipe_ref or session.active_recipe_id
     if slots.remove_ingredients and (slots.dish or ref):
-        return Substitute(recipe_id=session.resolve_ref(slots.recipe_ref), dish=slots.dish, remove=slots.remove_ingredients)
+        return Substitute(recipe_id=session.resolve_ref(slots.recipe_ref), dish=slots.dish, remove=slots.remove_ingredients,
+                          dataset_only=slots.dataset_only)
     if len(slots.have_ingredients) >= 2:
         return Match(have=slots.have_ingredients)
     if slots.is_followup and _constraint_only(slots) and session.active_action is not None:

@@ -12,6 +12,9 @@ DATA_DIR = ROOT / "data"
 RESOURCES_DIR = ROOT / "resources"
 PROMPTS_DIR = Path(__file__).parent / "prompts"
 DB_PATH = DATA_DIR / "nosh.duckdb"
+# chat-time queries are capped so a heavy scan cannot take the whole machine
+DUCKDB_MEMORY_LIMIT = "2GB"
+DUCKDB_THREADS = 2
 LLM_CACHE_DIR = DATA_DIR / "llm_cache"
 
 RAW_FILES = {
@@ -35,11 +38,24 @@ SIMILAR_N = 200
 MIN_SIMILAR = 30
 MIN_SUPPORT = 3
 MIN_LIFT = 2.0
-CONTRAST_TOP = 8
 EXPLICIT_OR_STOP = ["to taste", "more", "less", "as needed", "as desired", "if desired", "as required", "to garnish", "to serve",
                     "extra", "additional", "as necessary", "optional"]
+CUE_REGEX = r"substitut\w*|instead of|in place of|replac(?:e|es|ed|ing)"
+MENTION_WINDOW = 15
 SUBSTITUTION_CUES = r"substitut(?:e|ed|es|ing|ion)\s+(?:for|with|in)\b|substituting|substitution|instead of|in place of|replac(?:e|ing)\b"
-TEXT_MENTIONS_SHOWN = 5
+CUE_WORDS = ["substitut", "instead of", "in place of", "replac"]
+EXPLICIT_LINES_MAX = 2000
+TEXT_MENTIONS_MAX = 500
+ROLES = ["binding", "moisture", "leavening", "fat", "thickening", "flavor", "texture", "main_protein"]
+MAX_TARGETS = 5
+WIDEN_MAX_CLASSES = 3
+SUPPORT_SHOWN = 3
+MENTION_CHARS = 220
+RECIPE_TEXT_CHARS = 2500
+PROPOSE_TEMPERATURE = 0.3
+OMIT = "omit"
+SAFETY_PHRASES = ["allergy safe", "allergy-safe", "allergen-free", "allergen free", "medically safe", "guaranteed safe", "hypoallergenic",
+                  "safe for people with", "safe for anyone with", "safe to eat", "is safe for", "will not trigger", "no risk of"]
 MAX_RETRIES = 2
 
 SLOTS_TEMPERATURE = 0.0

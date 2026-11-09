@@ -13,7 +13,7 @@ Fields:
 - preferences: soft preferences ("fewest extra ingredients", "fewest steps").
 - aggregate: one of count, percent, rank, mean, median, top_ingredients when the user asks a question about the whole dataset ("how many recipes", "what percentage", "which five recipes have the fewest steps", "average number of ingredients", "most common ingredients"); otherwise null.
 - aggregate_detail: the user's words for the aggregate ("fewest instruction steps, top 5", "garlic or onion").
-- ask_attribute: set only when the user asks for information about a recipe such as "cooking time", "calories", "servings", "cuisine", "rating", "ingredients", "instructions", "title". Otherwise null.
+- ask_attribute: set only when the user asks for a stored fact about a recipe such as "cooking time", "calories", "servings", "cuisine", "rating", "ingredients", "instructions", "title". Otherwise null. A question about how an adaptation or substitution would change texture or taste is NOT an attribute: leave it null.
 - recipe_ref: a reference to a recipe: "this", "the second one", or an explicit recipe ID.
 - dataset_only: true if the user says to use only ingredients that appear in the dataset.
 - is_followup: true if the message only changes or adds to the previous request (adds a restriction, changes a limit) instead of starting a new one.
@@ -27,4 +27,6 @@ Examples:
 "Which 5 recipes with tomato have the fewest steps?" -> aggregate "rank", have_ingredients ["tomato"], aggregate_detail "fewest instruction steps, top 5".
 "I have eggs, onions, tomatoes and rice" -> have_ingredients ["eggs", "onions", "tomatoes", "rice"].
 "banana bread without eggs" -> dish "banana bread", remove_ingredients ["eggs"].
+"Take this banana bread recipe and remove eggs. Use only ingredients that appear in the dataset. What replacements have evidence, and how might the texture change?" -> dish "banana bread", remove_ingredients ["eggs"], dataset_only true.
+"Replace cream in this pasta recipe without dairy." -> dish "pasta", remove_ingredients ["cream"], add_constraints ["dairy"].
 "how many calories in the second one?" -> ask_attribute "calories", recipe_ref "the second one".

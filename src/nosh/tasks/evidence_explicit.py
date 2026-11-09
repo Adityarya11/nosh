@@ -5,7 +5,7 @@ from typing import Callable
 
 from pydantic import BaseModel
 
-from nosh.config import EXPLICIT_OR_STOP, SUBSTITUTION_CUES, TEXT_MENTIONS_SHOWN
+from nosh.config import CUE_WORDS, EXPLICIT_LINES_MAX, EXPLICIT_OR_STOP, SUBSTITUTION_CUES, TEXT_MENTIONS_MAX
 from nosh.data.ingredients import clean_name, normalize, parse_line
 from nosh.store import Term, connect, free_modifiers, raw_pattern, resolve_term, term_has_lines
 
@@ -38,7 +38,7 @@ def _or_pattern(target: Term) -> str:
 
 
 # the text before "or" must itself be the target ("8 eggs"), not "Easter egg" or "ice cream"
-def _is_target(head: str, target: Term) -> bool:
+def is_target(head: str, target: Term) -> bool:
     canonical, family, mapped = normalize(parse_line(head).name)
     return canonical == target.canonical or (mapped and target.bare and family == target.family
                                              and not set(canonical.split()) & set(free_modifiers(target)))
@@ -48,17 +48,23 @@ def _stopped(tail: str) -> bool:
     return any(tail.startswith(s) for s in EXPLICIT_OR_STOP)
 
 
+# cheap ILIKE prefilter so the regex only runs on lines that can match
+def _like_word(target: Term) -> str:
+    return "%" + clean_name(target.text).split()[-1] + "%"
+
+
 def explicit_or(target: Term, similar_ids: list[str], groups: list[str], violates: Violates,
                 dataset_only: bool) -> tuple[dict[str, Explicit], list[tuple[str, str]]]:
     pattern = _or_pattern(target)
     rows = connect().execute(
         "SELECT i.recipe_id, r.title, i.raw_line, regexp_extract(strip_accents(lower(i.raw_line)), ?, 1), "
         "regexp_extract(strip_accents(lower(i.raw_line)), ?, 2) "
-        "FROM recipe_ingredients i JOIN recipes r ON r.id = i.recipe_id WHERE regexp_matches(strip_accents(lower(i.raw_line)), ?) "
-        "ORDER BY i.recipe_id, i.pos", [pattern, pattern, pattern]).fetchall()
+        "FROM recipe_ingredients i JOIN recipes r ON r.id = i.recipe_id WHERE i.raw_line ILIKE ? AND i.raw_line ILIKE '% or %' "
+        "AND regexp_matches(strip_accents(lower(i.raw_line)), ?) ORDER BY i.recipe_id, i.pos LIMIT ?",
+        [pattern, pattern, _like_word(target), pattern, EXPLICIT_LINES_MAX]).fetchall()
     sim, out, filtered = set(similar_ids), {}, []
     for rid, title, raw, head, tail in rows:
-        if not _is_target(head, target):
+        if not is_target(head, target):
             continue
         tail = re.split(r"[,;(]", tail)[0].strip()
         if not tail or _stopped(tail):
@@ -80,13 +86,14 @@ def explicit_or(target: Term, similar_ids: list[str], groups: list[str], violate
     return out, filtered
 
 
-def text_mentions(target: Term, similar_ids: list[str]) -> tuple[list[TextMention], int]:
+def text_mentions(target: Term, similar_ids: list[str]) -> list[TextMention]:
     word = raw_pattern(clean_name(target.text))
     pattern = rf"(?i)(?:[^.]*\b(?:{SUBSTITUTION_CUES})[^.]*{word}[^.]*|[^.]*{word}[^.]*\b(?:{SUBSTITUTION_CUES})[^.]*)"
     con = connect()
-    rows = con.execute("SELECT id, title, regexp_extract(instructions_raw, ?, 0) FROM recipes WHERE regexp_matches(instructions_raw, ?) "
-                       "ORDER BY id", [pattern, pattern]).fetchall()
+    cues = " OR ".join(f"instructions_raw ILIKE '%{c}%'" for c in CUE_WORDS)
+    rows = con.execute("SELECT id, title, regexp_extract(instructions_raw, ?, 0) FROM recipes "
+                       f"WHERE instructions_raw ILIKE ? AND ({cues}) AND regexp_matches(instructions_raw, ?) ORDER BY id LIMIT ?",
+                       [pattern, _like_word(target), pattern, TEXT_MENTIONS_MAX]).fetchall()
     sim = set(similar_ids)
     mentions = [TextMention(recipe_id=r, title=t, sentence=" ".join(s.split()), in_similar=r in sim) for r, t, s in rows if s.strip()]
-    mentions.sort(key=lambda m: not m.in_similar)
-    return mentions[:TEXT_MENTIONS_SHOWN], len(mentions)
+    return sorted(mentions, key=lambda m: not m.in_similar)

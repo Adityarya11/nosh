@@ -6,7 +6,7 @@ from typing import NamedTuple
 
 import duckdb
 
-from nosh.config import DB_PATH, STATS_NOTE_TOP
+from nosh.config import DB_PATH, DUCKDB_MEMORY_LIMIT, DUCKDB_THREADS, STATS_NOTE_TOP
 from nosh.data.ingredients import clean_name, fold, modifier_words, normalize
 from nosh.restrictions import constituents
 
@@ -22,7 +22,7 @@ class Term(NamedTuple):
 def connect() -> duckdb.DuckDBPyConnection:
     if not DB_PATH.exists():
         raise FileNotFoundError("data/nosh.duckdb not found; run `uv run nosh build` first")
-    return duckdb.connect(str(DB_PATH), read_only=True)
+    return duckdb.connect(str(DB_PATH), read_only=True, config={"memory_limit": DUCKDB_MEMORY_LIMIT, "threads": DUCKDB_THREADS})
 
 
 def meta() -> dict[str, str]:
