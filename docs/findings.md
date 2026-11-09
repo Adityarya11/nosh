@@ -346,3 +346,41 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
   now includes aliased names even when rare). Recipes whose only "onion" match was a green-onion line: 73 before, 6 after (the
   rest are lines such as "onion powder with green onion ..."). Recipes whose only egg match is an egg-noodle line: 0; whose only
   rice match is a rice-cereal line: 0. Map rebuilt; the leak probe scan is still 0 unflagged in all 11 groups.
+
+## F23. Contrast evidence finds dish differences, not substitutes (step 6 checkpoint)
+
+- **Symptom:** cream in "pasta", dairy excluded: the top contrast candidates are olive (21/159 without cream vs 0/35 with),
+  spaghetti (20/159 vs 1/35), egg (14/159 vs 0/35), water, caper, flour, zucchini. None of the olive/spaghetti/egg lines
+  replaces cream; they are what a tomato or egg-pasta dish contains instead of a cream sauce. Same for the "alfredo" type set
+  (broccoli florets, sausage, zucchini).
+- **Cause:** a WITH/WITHOUT contrast measures how the two groups of dishes differ overall; without the role of the target
+  (step 3's LLM tag, used in step 7) code cannot tell a replacement from a correlated add-in.
+- **Mitigation now:** contrast candidates are graded indirect with the reason "role not verified"; only an author-written
+  "X or Y" line in a similar dish is graded direct. The role check is step 7's job.
+- **Status:** OPEN (mitigated). **Interview point:** the contrast table is evidence of co-occurrence, and the grade says so.
+
+## F24. Banana bread without egg: the dataset has almost no egg-free examples (step 6 checkpoint)
+
+- **Result:** 139 banana breads (titles ending in "bread"), 131 with egg, 8 without (Vegan x2, Microwave Tofu, Whole Grain,
+  Carrot, Rich and Delicious, Fruit Bread, Ice Cream Bread). No family reaches support 3 in the WITHOUT group with 2x lift:
+  best are walnut 2/8 (vs 52/131 with), oil 3/8 (vs 49/131), chocolate 2/8. Applesauce is in 1/8 egg-free vs 10/131 egg breads,
+  so it is not over-represented. No "egg or X" line occurs in a banana bread; the only explicit lines are glaze lines in other
+  dishes ("beaten egg or milk", "beaten egg or heavy cream", graded indirect).
+- **Text mentions:** 26 recipes mention substituting egg in their instructions, none is a banana bread (they are egg
+  substitute products or other dishes), so they are shown but not used for grading.
+- **Meaning:** this is the weak-evidence case step 7 must handle (predicted substitution, labelled, with the uncertainty
+  stated). It is not a bug. Without the head-noun title filter the WITHOUT group was 13 and gave oat and pecan, which came
+  from "Banana Oat Bread Pudding" and "Overnight Oats" and are not egg replacements.
+- **Status:** FIXED (filter), result recorded as data.
+
+## F25. Explicit-evidence and similar-set false positives, found by reading the checkpoint lines (step 6)
+
+- **Symptom:** "X or Y" matches included "Easter Egg or bunny-shaped cookie cutters", "ice cream or powdered sugar",
+  "whipped cream or confectioners' sugar" (target cream), "egg or pumpernickel bread slices" and one unparseable tail
+  ("to make your pie richer"). The text-mention cue "substitut" matched the product "egg substitute" and "sugar substitute".
+- **Fix:** the text before "or" must parse to the target itself ("8 eggs" yes; "Easter egg", "ice cream" no); the tail must be a
+  mapped ingredient; cues are now "substitute for/with/in", substituting, substitution, instead of, in place of, replace.
+  Similar dishes must have a title ending in the dish's head noun, falling back to all matches when fewer than MIN_SIMILAR
+  remain. Mentions dropped from 172 to 11 (with the old cue) to 26 (new cue, egg; several still unrelated: "instead of
+  flipping"), so the mentions stay out of the grading.
+- **Status:** FIXED, with the remaining text noise recorded here.

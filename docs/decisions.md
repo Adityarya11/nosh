@@ -348,3 +348,12 @@ Timeline: due within 2 days. Build days: Sun 2026-11-08 and Mon 2026-11-09.
 D23 addendum (step 5 review): "matched" is always the first ranking key and preferences only reorder the keys below it. Pantry staples
 are matched by canonical only. Only group names and synonyms in `restrictions.json` `aliases` resolve to a group; names in
 `ingredient_aliases` (milk, cheese, butter, shrimp) exclude that ingredient and the reply states the reading.
+
+D24. T3 evidence mining (step 6, code only). Similar dishes: BM25 on the dish words (conjunctive), titles must end with the dish's
+head noun (fallback to all matches below MIN_SIMILAR=30), then the broader type (head noun alone) is used and reported;
+SIMILAR_N is 200 (was 50) so the WITHOUT group is not starved. Recipes with a "recipe follows"-type line are in neither the
+WITH nor the WITHOUT group (they can hide the target). Contrast keeps a family only with support >= MIN_SUPPORT (3) and a
+WITHOUT rate at least MIN_LIFT (2.0) times the WITH rate, after each supporting line passes check_line for every excluded group;
+dropped families are reported with the violated group. Explicit "X or Y" lines scan the whole dataset and are split into in-similar
+and elsewhere; dataset_only drops tails that are not ingredients in the dataset. Grades: direct only for an explicit "X or Y"
+line in a similar dish; contrast is indirect until step 7 verifies the role (F23).
