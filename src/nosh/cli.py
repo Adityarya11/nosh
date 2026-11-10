@@ -37,6 +37,8 @@ def main() -> None:
     chat.add_argument(
         "--mode", choices=["auto", "search", "match", "substitute"], default="auto"
     )
+    sub.add_parser("eval", help="run evals/cases.yaml and write evals/results.md")
+    sub.add_parser("ui", help="launch the Streamlit app")
     args = parser.parse_args()
     if args.command == "build":
         from nosh.data.build import build
@@ -44,6 +46,19 @@ def main() -> None:
         build()
     elif args.command == "chat":
         raise SystemExit(_chat(args.mode))
+    elif args.command == "eval":
+        import runpy
+
+        from nosh.config import ROOT
+
+        runpy.run_path(str(ROOT / "evals" / "run.py"), run_name="__main__")
+    elif args.command == "ui":
+        import subprocess
+        import sys
+
+        from nosh.config import ROOT
+
+        raise SystemExit(subprocess.call([sys.executable, "-m", "streamlit", "run", str(ROOT / "src" / "nosh" / "ui" / "app.py")]))
 
 
 if __name__ == "__main__":

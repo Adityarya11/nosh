@@ -1,0 +1,122 @@
+# Graded eval set. Conversations run through the real chat turn (LLM calls replay from data/llm_cache); routing cases run decide() directly.
+conversations:
+  - id: t1_penne_no_dairy
+    title: "Spec T1: penne, then 'I cannot have dairy'"
+    note: "Hard constraint follow-up; the surviving recipes must carry no dairy line, checked against the independent probe list."
+    turns:
+      - say: "penne"
+        checks: [{kind: route, expect: search}]
+      - say: "I cannot have dairy"
+        checks:
+          - {kind: route, expect: search}
+          - {kind: contains, text: "exclude dairy"}
+          - {kind: no_banned, group: dairy}
+          - {kind: contains, text: "excluded only because an ingredient line points to another recipe"}
+
+  - id: t1_garlic_onion_count
+    title: "Spec T1 stats: garlic and onion count and percent"
+    note: "The count and percent must equal an independent recomputation (plain Python over the ingredient table)."
+    turns:
+      - say: "How many recipes use both garlic and onion, and what percent of the dataset is that?"
+        checks:
+          - {kind: route, expect: stats}
+          - {kind: stats_count, a: garlic, b: onion}
+          - {kind: contains, text: "Denominator"}
+
+  - id: t1_tomato_fewest_steps
+    title: "Spec T1 stats: five tomato recipes with the fewest steps"
+    note: "The ranked IDs must equal an independent ordering by n_steps then ID, excluding recipes with no instructions."
+    turns:
+      - say: "Which 5 recipes with tomato have the fewest instruction steps?"
+        checks:
+          - {kind: route, expect: stats}
+          - {kind: ranked_ids, family: tomato, n: 5}
+          - {kind: contains, text: "Step rule v2"}
+
+  - id: t1_no_match_custard_pie
+    title: "No-match: banana custard pie"
+    note: "No title covers the query: say so first, show nearest titles, offer (never execute) an adaptation."
+    turns:
+      - say: "banana custard pie"
+        checks:
+          - {kind: route, expect: search}
+          - {kind: contains, text: "No recipe in the dataset has a title that covers"}
+          - {kind: contains, text: "Reply yes"}
+
+  - id: t1_unsupported_calories
+    title: "Unsupported attribute: calories"
+    note: "The dataset has no nutrition data; the answer must say so instead of inventing a number."
+    turns:
+      - say: "How many calories are in banana bread?"
+        checks:
+          - {kind: route, expect: unsupported}
+          - {kind: contains, text: "does not contain"}
+
+  - id: t2_match_exclude_eggs
+    title: "Spec T2: eggs, onions, tomatoes, rice, then 'Exclude eggs too'"
+    note: "The spec request word for word. Candidate counts and the top 5 must equal an independent ranking; after the follow-up no result may contain egg."
+    turns:
+      - say: "I have eggs, onions, tomatoes, and rice. Suggest five recipes using as many of these as possible, with no peanuts and at most six instruction steps. Prefer recipes that need the fewest additional ingredients."
+        checks:
+          - {kind: route, expect: match}
+          - {kind: match_independent, terms: [egg, onion, tomato, rice], groups: [peanut], max_steps: 6}
+          - {kind: contains, text: "Matched (4/4)"}
+      - say: "Exclude eggs too"
+        checks:
+          - {kind: route, expect: match}
+          - {kind: match_independent, terms: [egg, onion, tomato, rice], groups: [peanut, egg], max_steps: 6}
+          - {kind: no_banned, group: egg}
+          - {kind: contains, text: "Matched (3/4)"}
+
+  - id: t3_banana_bread_no_eggs
+    title: "Spec T3: banana bread without eggs, dataset only"
+    note: "The spec request word for word. The dataset has only 8 egg-free banana breads, so weak evidence is expected: the answer must label it predicted, and anything it cites must exist and contain the replacement."
+    turns:
+      - say: "Take this banana bread recipe and remove eggs. Use only ingredients that appear in the dataset. What replacements have evidence from related baked recipes, and how might the texture change?"
+        checks:
+          - {kind: route, expect: substitute}
+          - {kind: t3_validated}
+          - {kind: cited_ids}
+          - {kind: contains, text: "predicted"}
+
+  - id: t3_cream_pasta_no_dairy
+    title: "Spec T3: cream in a pasta recipe without dairy"
+    note: "The spec request word for word. The adapted ingredient list must contain no dairy line, and every cited recipe must contain the replacement."
+    turns:
+      - say: "Replace cream in this pasta recipe without dairy. Prefer examples from recipes already in the database."
+        checks:
+          - {kind: route, expect: substitute}
+          - {kind: t3_validated}
+          - {kind: adapted_no_banned, group: dairy}
+          - {kind: cited_ids}
+
+  - id: t3_weak_evidence_gelatin
+    title: "Weak evidence: panna cotta without gelatin"
+    note: "All 36 panna cottas use gelatin, so every candidate rests on widened dishes. The answer must grade honestly (indirect or predicted) and cite only real recipes."
+    turns:
+      - say: "Take this panna cotta recipe and remove the gelatin."
+        checks:
+          - {kind: route, expect: substitute}
+          - {kind: t3_validated}
+          - {kind: cited_ids}
+          - {kind: contains, text: "predicted"}
+
+routing:
+  - {id: r1_affirmation_executes_offer, branch: 1, slots: {is_affirmation: true}, session: {pending_offer: true}, expect: substitute}
+  - {id: r2_unsupported_attribute, branch: 2, slots: {ask_attribute: "cooking time", dish: "lasagna"}, expect: unsupported}
+  - {id: r3_aggregate_is_stats, branch: 3, slots: {aggregate: count, have_ingredients: [garlic]}, expect: stats}
+  - {id: r4_remove_with_dish_is_substitute, branch: 4, slots: {dish: "banana bread", remove_ingredients: [eggs]}, expect: substitute}
+  - {id: r5_two_ingredients_is_match, branch: 5, slots: {have_ingredients: [eggs, rice]}, expect: match}
+  - {id: r6_followup_reruns_active_action, branch: 6, slots: {add_constraints: [dairy], is_followup: true}, session: {active_search: true}, expect: search}
+  - {id: r7a_dish_is_search, branch: 7, slots: {dish: penne}, coverage: exact, expect: search}
+  - {id: r7b_unknown_dish_is_no_match, branch: 7, slots: {dish: "banana custard pie"}, coverage: none, expect: search_no_match}
+  - {id: r8_nothing_is_clarify, branch: 8, slots: {}, expect: clarify}
+  - {id: r9_pinned_mode_blocks_other_tasks, branch: pinned, slots: {aggregate: count, have_ingredients: [garlic]}, session: {mode: match}, expect: clarify}
+
+limits:
+  - "Allergen and diet detection is vocabulary based (restriction lists, canonical tags, a raw-line scan, sub-recipe lines treated as may-contain). The independent probe list found 0 unflagged lines in the build, but a vocabulary can never prove zero: always check labels."
+  - "The coverage thresholds (exact 0.99, near 0.70) were calibrated on eight probe queries; they are not tuned on a larger set."
+  - "T3 evidence is thin for most substitutions: the dataset has few recipes without the target in a given dish (8 egg-free banana breads, 0 gelatin-free panna cottas). The system labels such answers predicted instead of inventing support, and the validators cannot check quantities (F29)."
+  - "The role of the target (binding, fat, ...) is tagged by the LLM and only used in the prompts; code does not verify that a cited recipe uses the substitute in the same role."
+  - "The evals were run with Anthropic claude-haiku-5-5; the Gemini path is the README default but was not replayed here because of the free-tier quota."
+  - "Conversations replay from the LLM cache, so they test the code around the LLM, not the LLM's variability."

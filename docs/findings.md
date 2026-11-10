@@ -419,3 +419,9 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 - **Result (a) before the glaze filter:** the explicit partner "1 tablespoon beaten egg or heavy cream" (Peach Galette, an egg wash) made heavy cream an INDIRECT candidate for binding in banana bread, and the LLM used it (6 tablespoons, "(estimate)", with the caveat in its uncertainty). Fix: lines with brush/glaze/garnish/serving/topping/dusting/sprinkle/egg wash are not explicit evidence, and the adapt prompt says not to treat a use that does not match the target's roles as support.
 - **Bug:** a substitution mention matched "cream" inside "cream soda"; the target pattern now excludes "cream soda/cheese/of tartar/sauce".
 - **Status:** FIXED except the plant-based safe-list residual (OPEN) and the lack of a code-level role check (the roles are only used by the LLM).
+
+## F32. First eval run failed on my own checker (step 8)
+- **Symptom:** `t2_match_exclude_eggs` failed "candidates answer -1 vs independent 47,522" although the top-5 IDs matched.
+- **Cause:** the check parsed "Candidates: N recipes" but the Markdown renderer now prints "**Candidates:** N recipes". The product was right, the checker was stale after the Markdown change.
+- **Fix:** the regex accepts the bold form. After the fix all nine conversations and ten routing cases pass (see `evals/results.md`).
+- **Status:** FIXED.
