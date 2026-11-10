@@ -20,9 +20,9 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 
 ## F2. Substring matching is wrong for ingredients (data, before build)
 
-- **Symptom:** the substring `hing` (Indian name for asafoetida) matches 1,691 recipes ("wasHING", "anyTHING");
-  `asafoetida` matches 35.
-- **Found by:** raw-JSON probe.
+- **Symptom:** the substring `rum` appears in ingredient lines of 12,441 recipes ("cRUMbs", "dRUMsticks",
+  "spectRUM"), while the whole word `rum(s)` appears in 2,206. Same for `ham`: 4,745 by substring vs 2,052 as a word.
+- **Found by:** comparing LIKE substring counts with whole-word regex counts over all ingredient lines.
 - **Why it matters:** any count, filter or restriction built on raw substrings is wrong.
 - **Fix:** parse every ingredient line into name -> canonical -> family; match whole names only (D2, AGENTS.md section 5).
 - **Status:** FIXED by design in step 2.
@@ -412,3 +412,10 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 - **Live rejections seen:** a citation of a recipe that was only a "mention" (not retrieved); an ingredient line "1 avocado, mashed (replaces 1 (8 ounce) container sour cream)" rejected as dairy; a substitution whose `original` was the recipe line instead of the target name. Each was fixed in the next attempt (adapt.txt now says to use the target name and no notes).
 - **Memory:** every run under `tests/guard.py` peaked at 340-445 MB (job memory), minimum system free RAM 2.7 GB.
 - **Status:** FIXED.
+
+## F31. Data candidates and explicit partners need a role check (step 7 follow-up)
+- **F27 after the rebuild:** cashew cream, vegan sour cream and coconut cream are no longer flagged as dairy (check_line returns None). "plant-based milk" and "dairy-free cheese" still are, because a safe phrase must cover the keyword itself; residual, not fixed.
+- **Result (b) now:** base "Crawfish and Pasta" (its line is "1/3 cup cream"); the adapted recipe replaces cream with unsweetened coconut milk 1:1, citing South Florida Stuffing: "1/2 cup cream or 1/2 cup unsweetened coconut milk" (read: the line supports the swap and the amount; the dish is a stuffing, so INDIRECT). Data candidates black olive, spaghetti and egg graded indirect by co-occurrence only; the LLM did not use them.
+- **Result (a) before the glaze filter:** the explicit partner "1 tablespoon beaten egg or heavy cream" (Peach Galette, an egg wash) made heavy cream an INDIRECT candidate for binding in banana bread, and the LLM used it (6 tablespoons, "(estimate)", with the caveat in its uncertainty). Fix: lines with brush/glaze/garnish/serving/topping/dusting/sprinkle/egg wash are not explicit evidence, and the adapt prompt says not to treat a use that does not match the target's roles as support.
+- **Bug:** a substitution mention matched "cream" inside "cream soda"; the target pattern now excludes "cream soda/cheese/of tartar/sauce".
+- **Status:** FIXED except the plant-based safe-list residual (OPEN) and the lack of a code-level role check (the roles are only used by the LLM).

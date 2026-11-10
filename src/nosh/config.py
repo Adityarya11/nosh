@@ -54,6 +54,14 @@ MENTION_CHARS = 220
 RECIPE_TEXT_CHARS = 2500
 PROPOSE_TEMPERATURE = 0.3
 OMIT = "omit"
+# "X or Y" lines about brushing, glazing or garnishing say nothing about binding or structure
+GLAZE_CUES = ["brush", "glaze", "garnish", "serving", "topping", "dusting", "sprinkl", "egg wash"]
+COMPOUND_AFTER = r"soda|cheese|of tartar|sauce"
+NOTE_LABEL_MAX = 40
+MAX_LLM_PROPOSALS = 8
+DATA_CANDIDATES = 4
+QUANTITY_ESTIMATE_MARK = "estimate"
+BASE_POOL = 15
 SAFETY_PHRASES = ["allergy safe", "allergy-safe", "allergen-free", "allergen free", "medically safe", "guaranteed safe", "hypoallergenic",
                   "safe for people with", "safe for anyone with", "safe to eat", "is safe for", "will not trigger", "no risk of"]
 MAX_RETRIES = 2

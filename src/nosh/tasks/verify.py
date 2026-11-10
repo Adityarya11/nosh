@@ -1,15 +1,17 @@
-"""T3 verification (code only): grades each LLM-proposed substitute against the dataset and filters it by restrictions."""
+"""T3 verification (code only): grades LLM-proposed and data-derived substitutes against the dataset and filters them by restrictions."""
 
 import re
 from typing import Literal
 
 from pydantic import BaseModel
 
-from nosh.config import CUE_REGEX, MENTION_CHARS, MENTION_WINDOW, MIN_LIFT, MIN_SUPPORT, OMIT, SUPPORT_SHOWN, WIDEN_MAX_CLASSES
+from nosh.config import (COMPOUND_AFTER, CUE_REGEX, DATA_CANDIDATES, MAX_LLM_PROPOSALS, MENTION_CHARS, MENTION_WINDOW, MIN_LIFT, MIN_SUPPORT, OMIT,
+                         SUPPORT_SHOWN, WIDEN_MAX_CLASSES)
 from nosh.data.ingredients import clean_name
 from nosh.store import Term, connect, raw_pattern, resolve_term, term_has_lines, term_hits
 from nosh.tasks.evidence import SimilarSet, Support, similar_dishes, split_by_target, violates
 from nosh.tasks.evidence_explicit import Explicit, TextMention, explicit_or, text_mentions
+from nosh.tasks.targets import own_canonicals
 
 Grade = Literal["direct", "indirect", "none"]
 RANK = {"direct": 0, "indirect": 1, "none": 2}
@@ -26,6 +28,7 @@ class Candidate(BaseModel):
     reason: str
     basis: list[str]
     support: list[Support]
+    origin: str = "llm"
 
 
 class TargetEvidence(BaseModel):
@@ -108,7 +111,8 @@ def _grade(name: str, term: Term, ex: Explicit | None, sim_group: _Group, class_
 
 # the target, a substitution cue and the candidate must sit close together in one sentence
 def _near_regex(target: str, name: str) -> re.Pattern:
-    t, c, gap = raw_pattern(clean_name(target)), raw_pattern(clean_name(name)), rf".{{0,{MENTION_WINDOW}}}"
+    t = raw_pattern(clean_name(target)) + rf"(?!\s+(?:{COMPOUND_AFTER}))"
+    c, gap = raw_pattern(clean_name(name)), rf".{{0,{MENTION_WINDOW}}}"
     return re.compile(rf"{t}{gap}(?:{CUE_REGEX}){gap}{c}|{c}{gap}(?:{CUE_REGEX}){gap}{t}", re.I)
 
 
@@ -121,9 +125,9 @@ def _omission(target: str, group: _Group) -> Candidate:
     return Candidate(name=OMIT, grade="indirect", reason=reason, basis=[reason], support=support)
 
 
-def _blocked(name: str, target: Term, groups: list[str], excluded: list[str], dataset_only: bool) -> str | None:
+def _blocked(name: str, target_text: str, groups: list[str], excluded: list[str], dataset_only: bool) -> str | None:
     term = resolve_term(name)
-    if term.canonical == target.canonical:
+    if term.canonical in own_canonicals(target_text):
         return "same ingredient as the target"
     if term.family in {resolve_term(x).family for x in excluded}:
         return "excluded by the user"
@@ -134,11 +138,36 @@ def _blocked(name: str, target: Term, groups: list[str], excluded: list[str], da
     return None
 
 
+def _family_counts(ids: list[str]) -> dict[str, int]:
+    sql = "SELECT family, COUNT(DISTINCT recipe_id) FROM recipe_ingredients WHERE recipe_id IN (SELECT unnest(?)) AND canonical <> '' GROUP BY family"
+    return dict(connect().execute(sql, [ids]).fetchall())
+
+
+def _top_canonical(ids: list[str], family: str) -> str:
+    sql = ("SELECT canonical FROM recipe_ingredients WHERE recipe_id IN (SELECT unnest(?)) AND family = ? AND canonical <> '' "
+           "GROUP BY canonical ORDER BY COUNT(DISTINCT recipe_id) DESC, canonical LIMIT 1")
+    return connect().execute(sql, [ids, family]).fetchone()[0]
+
+
+# candidates the data suggests: explicit "target or X" partners, and families over-represented in the WITHOUT group
+def _data_names(group: _Group, target: Term, explicit: dict[str, Explicit]) -> list[tuple[str, str]]:
+    partners = sorted(explicit.values(), key=lambda e: (-e.n_in_similar, -e.n_total, e.name))[:DATA_CANDIDATES]
+    out = [(e.name, "data: explicit 'or' partner") for e in partners]
+    if not group.without_ids:
+        return out
+    wo, w = _family_counts(group.without_ids), _family_counts(group.with_ids) if group.with_ids else {}
+    n_wo, n_w = len(group.without_ids), max(len(group.with_ids), 1)
+    over = [(f, n / n_wo - w.get(f, 0) / n_w) for f, n in wo.items()
+            if f != target.family and n >= MIN_SUPPORT and n / n_wo >= MIN_LIFT * w.get(f, 0) / n_w]
+    over.sort(key=lambda x: (-x[1], x[0]))
+    return out + [(_top_canonical(group.without_ids, f), "data: over-represented without the target") for f, _ in over[:DATA_CANDIDATES]]
+
+
 def verify_target(dish: str, target_text: str, class_names: list[str], proposed: list[str], groups: list[str], excluded: list[str],
                   dataset_only: bool) -> TargetEvidence:
     target = resolve_term(target_text)
     ids, total, level, query = similar_dishes(dish)
-    with_ids, without_ids, unknown = split_by_target(ids, target)
+    with_ids, without_ids, unknown = split_by_target(ids, target_text)
     sim = SimilarSet(level=level, query=query, ids=ids, total_matching=total, with_ids=with_ids, without_ids=without_ids, unknown_ids=unknown)
     explicit, _ = explicit_or(target, ids, groups, violates, dataset_only)
     sim_group = _Group(label=f"{len(ids)} '{query}' recipes", with_ids=with_ids, without_ids=without_ids)
@@ -146,22 +175,24 @@ def verify_target(dish: str, target_text: str, class_names: list[str], proposed:
     union = sorted({i for _, cids in classes for i in cids})
     class_group = None
     if union:
-        cw, cwo, _ = split_by_target(union, target)
+        cw, cwo, _ = split_by_target(union, target_text)
         class_group = _Group(label=f"{len(union)} recipes of the widened classes ({', '.join(c for c, _ in classes)})", with_ids=cw, without_ids=cwo)
     mentions = text_mentions(target, ids)
     cands, filtered, seen = [], [], set()
-    for name in proposed:
-        if name.lower() in seen:
+    for name, origin in [(n, "llm") for n in proposed[:MAX_LLM_PROPOSALS]] + _data_names(sim_group, target, explicit):
+        key = resolve_term(name).canonical if name.lower() != OMIT else OMIT
+        if key in seen:
             continue
-        seen.add(name.lower())
+        seen.add(key)
         if name.lower() == OMIT:
             cands.append(_omission(target_text, sim_group))
-        elif why := _blocked(name, target, groups, excluded, dataset_only):
+        elif why := _blocked(name, target_text, groups, excluded, dataset_only):
             filtered.append((name, why))
         else:
             term = resolve_term(name)
             near = _near_regex(target_text, name)
-            cands.append(_grade(name, term, explicit.get(term.family), sim_group, class_group, [m for m in mentions if near.search(m.sentence)]))
+            cand = _grade(name, term, explicit.get(term.family), sim_group, class_group, [m for m in mentions if near.search(m.sentence)])
+            cands.append(cand.model_copy(update={"origin": origin}))
     cands.sort(key=lambda c: RANK[c.grade])
     retrieved = set(ids) | set(union) | {x.recipe_id for ex in explicit.values() for x in ex.lines}
     return TargetEvidence(target=target_text, similar=sim, classes=[ClassSet(name=c, size=len(i)) for c, i in classes], candidates=cands,

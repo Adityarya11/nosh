@@ -2,12 +2,12 @@
 
 import re
 
-from nosh.config import SAFETY_PHRASES
+from nosh.config import QUANTITY_ESTIMATE_MARK, SAFETY_PHRASES
 from nosh.data.ingredients import parse_line
 from nosh.store import connect, resolve_term, term_has_lines, term_hits
 from nosh.tasks.adapted import AdaptedRecipe, Substitution
 from nosh.tasks.evidence import violates
-from nosh.tasks.evidence_explicit import is_target
+from nosh.tasks.targets import line_is_target
 from nosh.tasks.verify import RANK, TargetEvidence, target_key
 
 
@@ -63,10 +63,23 @@ def _check_lines(a: AdaptedRecipe, targets: dict[str, TargetEvidence], groups: l
             errors.append(f"ingredient line '{line}' breaks the {why} restriction")
         if term.family in {resolve_term(x).family for x in excluded}:
             errors.append(f"ingredient line '{line}' contains an ingredient the user excluded")
-        if any(is_target(name, resolve_term(ev.target)) for ev in targets.values()):
+        if any(line_is_target(line, resolve_term(ev.target)) for ev in targets.values()):
             errors.append(f"ingredient line '{line}' still contains a target ingredient")
         if dataset_only and name and not term_has_lines(term):
             errors.append(f"ingredient '{name}' (line '{line}') is not an ingredient in the dataset")
+    return errors
+
+
+# an amount with no cited recipe behind it must say it is an estimate
+def _check_estimates(a: AdaptedRecipe) -> list[str]:
+    errors = []
+    for s in a.substitutions:
+        if s.replacement is None or any(e.source == "local" for e in s.evidence):
+            continue
+        family = resolve_term(s.replacement).family
+        for line in a.ingredients:
+            if resolve_term(parse_line(line).name).family == family and QUANTITY_ESTIMATE_MARK not in line.lower():
+                errors.append(f"ingredient line '{line}' has no cited source for its amount: mark it '({QUANTITY_ESTIMATE_MARK})'")
     return errors
 
 
@@ -75,7 +88,7 @@ def validate(a: AdaptedRecipe, base_id: str, targets: dict[str, TargetEvidence],
     errors = [] if a.recipe_id == base_id else [f"recipe_id must be {base_id}"]
     if a.can_adapt:
         errors += [] if a.ingredients and a.instructions else ["can_adapt is true but ingredients or instructions are empty"]
-        errors += _check_lines(a, targets, groups, excluded, dataset_only)
+        errors += _check_lines(a, targets, groups, excluded, dataset_only) + _check_estimates(a)
         covered = {target_key(s.original) for s in a.substitutions}
         errors += [f"target '{ev.target}' has no substitution" for k, ev in targets.items() if k not in covered]
     elif not a.uncertainty:

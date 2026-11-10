@@ -7,7 +7,8 @@ from pydantic import BaseModel
 from nosh.config import MIN_SIMILAR, QUERY_STOPWORDS, SIMILAR_N
 from nosh.data.ingredients import singularize
 from nosh.restrictions import check_line
-from nosh.store import Term, connect, term_hits
+from nosh.store import connect
+from nosh.tasks.targets import target_sql
 
 Grade = Literal["direct", "indirect", "none"]
 
@@ -53,9 +54,9 @@ def similar_dishes(dish: str) -> tuple[list[str], int, Literal["dish", "type"], 
     return ids, total, "type", words[-1]
 
 
-def split_by_target(ids: list[str], target: Term) -> tuple[list[str], list[str], list[str]]:
+def split_by_target(ids: list[str], target_text: str) -> tuple[list[str], list[str], list[str]]:
     con = connect()
-    hits, params = term_hits([target])
+    hits, params = target_sql(target_text)
     has = {r[0] for r in con.execute(f"SELECT DISTINCT i.recipe_id FROM recipe_ingredients i WHERE i.recipe_id IN (SELECT unnest(?)) AND {hits}",
                                      [ids, *params]).fetchall()}
     sub = {r[0] for r in con.execute("SELECT DISTINCT recipe_id FROM sub_recipe_lines WHERE recipe_id IN (SELECT unnest(?))", [ids]).fetchall()}

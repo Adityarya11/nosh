@@ -5,14 +5,14 @@ import json
 from pydantic import BaseModel
 
 from nosh import llm
-from nosh.config import ADAPT_TEMPERATURE, MAX_RETRIES, MAX_TARGETS, PROMPTS_DIR, SUPPORT_SHOWN
+from nosh.config import ADAPT_TEMPERATURE, BASE_POOL, MAX_RETRIES, MAX_TARGETS, PROMPTS_DIR, SUPPORT_SHOWN
 from nosh.router.actions import Substitute
 from nosh.session import Filters
-from nosh.store import connect, resolve_term, term_hits
+from nosh.store import connect
 from nosh.tasks.adapted import AdaptedRecipe
-from nosh.tasks.evidence import violates
+from nosh.tasks.evidence import similar_dishes, violates
 from nosh.tasks.propose import RoleTags, propose, recipe_text, tag_roles
-from nosh.tasks.search import run_search
+from nosh.tasks.targets import target_sql
 from nosh.tasks.validate import validate
 from nosh.tasks.verify import TargetEvidence, target_key, verify_target
 
@@ -50,7 +50,7 @@ def _load(recipe_id: str) -> Base | None:
 
 # the targets: every line of the removed ingredient, plus every other line that breaks a restriction (one target per name)
 def _targets(recipe_id: str, remove: str, groups: list[str]) -> dict[str, list[str]]:
-    hits, params = term_hits([resolve_term(remove)])
+    hits, params = target_sql(remove)
     con = connect()
     main = [r[0] for r in con.execute(f"SELECT i.raw_line FROM recipe_ingredients i WHERE i.recipe_id = ? AND {hits} ORDER BY i.pos", [recipe_id, *params]).fetchall()]
     out: dict[str, list[str]] = {remove: main} if main else {}
@@ -58,6 +58,13 @@ def _targets(recipe_id: str, remove: str, groups: list[str]) -> dict[str, list[s
         if raw not in main and canonical and violates(raw, name, canonical, family, groups):
             out.setdefault(canonical, []).append(raw)
     return out
+
+
+# recipe ids (in the given order) that have a line of the target itself
+def _with_target(ids: list[str], remove: str) -> list[str]:
+    hits, params = target_sql(remove)
+    found = {r[0] for r in connect().execute(f"SELECT DISTINCT i.recipe_id FROM recipe_ingredients i WHERE i.recipe_id IN (SELECT unnest(?)) AND {hits}", [ids, *params]).fetchall()}
+    return [i for i in ids if i in found]
 
 
 def _resolve_base(action: Substitute, remove: str, groups: list[str]) -> tuple[Base | None, dict[str, list[str]], str | None, str | None]:
@@ -69,14 +76,29 @@ def _resolve_base(action: Substitute, remove: str, groups: list[str]) -> tuple[B
         return (base, targets, None, None) if remove in targets else (None, {}, None, f"Recipe {base.id} ({base.title}) has no '{remove}' line to replace.")
     if not action.dish:
         return None, {}, None, "Which recipe should I adapt? Name a dish or pick one from the last results."
-    pool = run_search(action.dish, None, [remove], [], [], None).results
-    options = [(c, t) for c in pool if remove in (t := _targets(c.id, remove, groups))]
+    options = []
+    for rid in _with_target(similar_dishes(action.dish)[0], remove)[:BASE_POOL]:
+        if remove in (t := _targets(rid, remove, groups)):
+            options.append((rid, t))
     if not options:
         return None, {}, None, f"No '{action.dish}' recipe with a '{remove}' line was found to adapt."
     chosen, targets = min(options, key=lambda o: len(o[1]))
+    base = _load(chosen)
     note = (f"Several '{action.dish}' recipes use {remove}; I used the one needing the fewest replacements: "
-            f"[{chosen.id}] {chosen.title}.")
-    return _load(chosen.id), targets, note, None
+            f"[{base.id}] {base.title}.")
+    return base, targets, note, None
+
+
+# the full ingredient lines of every citable recipe, so amounts can be scaled from them
+def _quantity_context(evidence: list[TargetEvidence]) -> list[str]:
+    ids = sorted({s.recipe_id for ev in evidence for c in ev.candidates for s in c.support[:SUPPORT_SHOWN]})
+    if not ids:
+        return []
+    rows = connect().execute("SELECT recipe_id, raw_line FROM recipe_ingredients WHERE recipe_id IN (SELECT unnest(?)) ORDER BY recipe_id, pos", [ids]).fetchall()
+    out = ["QUANTITY CONTEXT (ingredient lines of the citable recipes):"]
+    for rid in ids:
+        out.append(f"  [{rid}]: " + " | ".join(line for r, line in rows if r == rid))
+    return out
 
 
 def _adapt_input(base: Base, evidence: list[TargetEvidence], groups: list[str], dataset_only: bool, errors: list[str]) -> str:
@@ -88,7 +110,9 @@ def _adapt_input(base: Base, evidence: list[TargetEvidence], groups: list[str], 
         for c in ev.candidates:
             parts.append(f"  - {c.name}: grade {c.grade} ({c.reason}); " + "; ".join(c.basis))
             parts += [f"      cite [{s.recipe_id}] {s.title}: {s.raw_line}" for s in c.support[:SUPPORT_SHOWN]]
+            parts += [f"      origin: {c.origin}"]
         parts += [f"  - (not allowed) {n}: {why}" for n, why in ev.filtered]
+    parts += _quantity_context(evidence)
     if errors:
         parts += ["Validation errors from your previous attempt, fix all of them:"] + [f"- {e}" for e in errors]
     return "\n".join(parts)

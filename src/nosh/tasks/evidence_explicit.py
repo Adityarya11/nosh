@@ -5,9 +5,10 @@ from typing import Callable
 
 from pydantic import BaseModel
 
-from nosh.config import CUE_WORDS, EXPLICIT_LINES_MAX, EXPLICIT_OR_STOP, SUBSTITUTION_CUES, TEXT_MENTIONS_MAX
+from nosh.config import CUE_WORDS, GLAZE_CUES, EXPLICIT_LINES_MAX, EXPLICIT_OR_STOP, SUBSTITUTION_CUES, TEXT_MENTIONS_MAX
 from nosh.data.ingredients import clean_name, normalize, parse_line
-from nosh.store import Term, connect, free_modifiers, raw_pattern, resolve_term, term_has_lines
+from nosh.tasks.targets import line_is_target
+from nosh.store import Term, connect, raw_pattern, resolve_term, term_has_lines
 
 Violates = Callable[[str, str, str, str, list[str]], str | None]
 
@@ -37,13 +38,6 @@ def _or_pattern(target: Term) -> str:
     return r"^(.*?" + raw_pattern(clean_name(target.text)) + r")\s*,?\s+or\s+(.+)$"
 
 
-# the text before "or" must itself be the target ("8 eggs"), not "Easter egg" or "ice cream"
-def is_target(head: str, target: Term) -> bool:
-    canonical, family, mapped = normalize(parse_line(head).name)
-    return canonical == target.canonical or (mapped and target.bare and family == target.family
-                                             and not set(canonical.split()) & set(free_modifiers(target)))
-
-
 def _stopped(tail: str) -> bool:
     return any(tail.startswith(s) for s in EXPLICIT_OR_STOP)
 
@@ -64,7 +58,8 @@ def explicit_or(target: Term, similar_ids: list[str], groups: list[str], violate
         [pattern, pattern, _like_word(target), pattern, EXPLICIT_LINES_MAX]).fetchall()
     sim, out, filtered = set(similar_ids), {}, []
     for rid, title, raw, head, tail in rows:
-        if not is_target(head, target):
+        # the text before "or" must itself be the target ("8 eggs"), not "Easter egg" or "ice cream"
+        if not line_is_target(head, target) or any(c in raw.lower() for c in GLAZE_CUES):
             continue
         tail = re.split(r"[,;(]", tail)[0].strip()
         if not tail or _stopped(tail):
