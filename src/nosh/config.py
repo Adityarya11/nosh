@@ -40,15 +40,37 @@ SIMILAR_N = 200
 MIN_SIMILAR = 30
 MIN_SUPPORT = 3
 MIN_LIFT = 2.0
-EXPLICIT_OR_STOP = ["to taste", "more", "less", "as needed", "as desired", "if desired", "as required", "to garnish", "to serve",
-                    "extra", "additional", "as necessary", "optional"]
+EXPLICIT_OR_STOP = [
+    "to taste",
+    "more",
+    "less",
+    "as needed",
+    "as desired",
+    "if desired",
+    "as required",
+    "to garnish",
+    "to serve",
+    "extra",
+    "additional",
+    "as necessary",
+    "optional",
+]
 CUE_REGEX = r"substitut\w*|instead of|in place of|replac(?:e|es|ed|ing)"
 MENTION_WINDOW = 15
 SUBSTITUTION_CUES = r"substitut(?:e|ed|es|ing|ion)\s+(?:for|with|in)\b|substituting|substitution|instead of|in place of|replac(?:e|ing)\b"
 CUE_WORDS = ["substitut", "instead of", "in place of", "replac"]
 EXPLICIT_LINES_MAX = 2000
 TEXT_MENTIONS_MAX = 500
-ROLES = ["binding", "moisture", "leavening", "fat", "thickening", "flavor", "texture", "main_protein"]
+ROLES = [
+    "binding",
+    "moisture",
+    "leavening",
+    "fat",
+    "thickening",
+    "flavor",
+    "texture",
+    "main_protein",
+]
 MAX_TARGETS = 5
 WIDEN_MAX_CLASSES = 3
 SUPPORT_SHOWN = 3
@@ -57,15 +79,37 @@ RECIPE_TEXT_CHARS = 2500
 PROPOSE_TEMPERATURE = 0.3
 OMIT = "omit"
 # "X or Y" lines about brushing, glazing or garnishing say nothing about binding or structure
-GLAZE_CUES = ["brush", "glaze", "garnish", "serving", "topping", "dusting", "sprinkl", "egg wash"]
+GLAZE_CUES = [
+    "brush",
+    "glaze",
+    "garnish",
+    "serving",
+    "topping",
+    "dusting",
+    "sprinkl",
+    "egg wash",
+]
 COMPOUND_AFTER = r"soda|cheese|of tartar|sauce"
 NOTE_LABEL_MAX = 40
 MAX_LLM_PROPOSALS = 8
 DATA_CANDIDATES = 4
 QUANTITY_ESTIMATE_MARK = "estimate"
 BASE_POOL = 15
-SAFETY_PHRASES = ["allergy safe", "allergy-safe", "allergen-free", "allergen free", "medically safe", "guaranteed safe", "hypoallergenic",
-                  "safe for people with", "safe for anyone with", "safe to eat", "is safe for", "will not trigger", "no risk of"]
+SAFETY_PHRASES = [
+    "allergy safe",
+    "allergy-safe",
+    "allergen-free",
+    "allergen free",
+    "medically safe",
+    "guaranteed safe",
+    "hypoallergenic",
+    "safe for people with",
+    "safe for anyone with",
+    "safe to eat",
+    "is safe for",
+    "will not trigger",
+    "no risk of",
+]
 MAX_RETRIES = 2
 
 SLOTS_TEMPERATURE = 0.0
@@ -97,7 +141,12 @@ LLM_RETRY_SECONDS = 2.0
 
 STEP_BOILERPLATE_EXACT = ["watch how to make this recipe."]
 STEP_BOILERPLATE_CONTAINS = ["©", "copyright", "all rights reserved"]
-STEP_BOILERPLATE_PREFIX = ["recipe courtesy of", "photograph by", "photography by", "photo by"]
+STEP_BOILERPLATE_PREFIX = [
+    "recipe courtesy of",
+    "photograph by",
+    "photography by",
+    "photo by",
+]
 HEADER_MAX_WORDS = 3
 MAP_COVERAGE_TARGET = 0.85
 
@@ -107,7 +156,13 @@ STATS_NOTE_TOP = 6
 LEAK_REPORT_TOP = 6
 
 # lines that point to another recipe hide its ingredients, so they count as "may contain" for every restriction
-SUB_RECIPE_PHRASES = ["recipe follows", "recipe to follow", "recipe below", "see recipe", "see below"]
+SUB_RECIPE_PHRASES = [
+    "recipe follows",
+    "recipe to follow",
+    "recipe below",
+    "see recipe",
+    "see below",
+]
 FUZZY_MIN_RATIO = 85
 FUZZY_MAX_LEN_DIFF = 3
 
@@ -115,9 +170,34 @@ FUZZY_MAX_LEN_DIFF = 3
 SEARCH_POOL = 50
 PROBE_POOL = 20
 TOKEN_MATCH_MIN = 85
-QUERY_STOPWORDS = ["a", "an", "and", "the", "of", "in", "for", "with", "without", "recipe", "recipes", "some", "any"]
+QUERY_STOPWORDS = [
+    "a",
+    "an",
+    "and",
+    "the",
+    "of",
+    "in",
+    "for",
+    "with",
+    "without",
+    "recipe",
+    "recipes",
+    "some",
+    "any",
+]
 NEAREST_TITLES = 3
-ORDINALS = {"first": 1, "1st": 1, "second": 2, "2nd": 2, "third": 3, "3rd": 3, "fourth": 4, "4th": 4, "fifth": 5, "5th": 5}
+ORDINALS = {
+    "first": 1,
+    "1st": 1,
+    "second": 2,
+    "2nd": 2,
+    "third": 3,
+    "3rd": 3,
+    "fourth": 4,
+    "4th": 4,
+    "fifth": 5,
+    "5th": 5,
+}
 EVIDENCE_LINES = 2
 # typo tolerance for restriction words: only words this long, and Damerau-Levenshtein similarity at least this high
 ALIAS_FUZZY_MIN_LEN = 5

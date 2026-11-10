@@ -11,7 +11,11 @@ from nosh.restrictions import classify_by_keywords, known_groups
 
 # tags freeze the keyword-list result; corrections found in review go into restrictions.json, then this script is re-run
 def group_tags(name: str, canonical: str, family: str) -> dict[str, str]:
-    return {g: level for g in known_groups() if (level := classify_by_keywords(name, canonical, family, g))}
+    return {
+        g: level
+        for g in known_groups()
+        if (level := classify_by_keywords(name, canonical, family, g))
+    }
 
 
 def main() -> None:
@@ -31,13 +35,21 @@ def main() -> None:
             entry["groups"] = tags
         mapping[name] = entry
         covered += n
-    for name, canonical in rules["aliases"].items():  # aliases are mapped even when the name is rare
+    for name, canonical in rules[
+        "aliases"
+    ].items():  # aliases are mapped even when the name is rare
         if name in counts and name not in mapping:
             family = family_of(canonical)
-            mapping[name] = {"canonical": canonical, "family": family, **({"groups": t} if (t := group_tags(name, canonical, family)) else {})}
+            mapping[name] = {
+                "canonical": canonical,
+                "family": family,
+                **({"groups": t} if (t := group_tags(name, canonical, family)) else {}),
+            }
     out = RESOURCES_DIR / "canonical_map.json"
     out.write_text(json.dumps(mapping, indent=0, sort_keys=True), encoding="utf-8")
-    print(f"{len(counts)} distinct names; mapped {len(mapping)} names covering {covered / total:.1%} of {total} lines")
+    print(
+        f"{len(counts)} distinct names; mapped {len(mapping)} names covering {covered / total:.1%} of {total} lines"
+    )
 
 
 if __name__ == "__main__":

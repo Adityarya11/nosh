@@ -36,25 +36,38 @@ class SessionState(BaseModel):
     pending_offer: Substitute | None = None
     history: list[tuple[str, str]] = []
 
-    def apply_constraints(self, add: list[str], drop: list[str], max_steps: int | None, prefs: list[str]) -> list[str]:
+    def apply_constraints(
+        self, add: list[str], drop: list[str], max_steps: int | None, prefs: list[str]
+    ) -> list[str]:
         notes = []
         for text in add:
             found = resolve(text)
             notes += [found.note] if found.note else []
-            target = {"group": self.filters.exclude_groups, "ingredient": self.filters.exclude_ingredients}.get(found.kind)
+            target = {
+                "group": self.filters.exclude_groups,
+                "ingredient": self.filters.exclude_ingredients,
+            }.get(found.kind)
             if target is not None and found.value not in target:
                 target.append(found.value)
         for text in drop:
             found = resolve(text)
             notes += [found.note] if found.kind == "group" and found.note else []
-            for target in (self.filters.exclude_groups, self.filters.exclude_ingredients):
+            for target in (
+                self.filters.exclude_groups,
+                self.filters.exclude_ingredients,
+            ):
                 if found.value in target:
                     target.remove(found.value)
-            if found.kind == "none" and clean_name(text) in self.filters.exclude_ingredients:
+            if (
+                found.kind == "none"
+                and clean_name(text) in self.filters.exclude_ingredients
+            ):
                 self.filters.exclude_ingredients.remove(clean_name(text))
         if max_steps is not None:
             self.filters.max_steps = max_steps
-        self.filters.preferences += [p for p in prefs if p not in self.filters.preferences]
+        self.filters.preferences += [
+            p for p in prefs if p not in self.filters.preferences
+        ]
         return notes
 
     def resolve_ref(self, ref: str | None) -> str | None:
@@ -66,7 +79,9 @@ class SessionState(BaseModel):
                 return self.last_results[n - 1] if n <= len(self.last_results) else None
         if m := re.search(r"#\s*(\d+)\b", low):
             n = int(m.group(1))
-            return self.last_results[n - 1] if 1 <= n <= len(self.last_results) else None
+            return (
+                self.last_results[n - 1] if 1 <= n <= len(self.last_results) else None
+            )
         if re.search(r"\b(this|it|that|current)\b", low):
             return self.active_recipe_id
         return ref.strip() if recipe_exists(ref.strip()) else None

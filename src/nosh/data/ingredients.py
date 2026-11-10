@@ -8,16 +8,30 @@ from typing import NamedTuple
 
 from nosh.config import HEADER_MAX_WORDS, RESOURCES_DIR
 
-VULGAR = {"¼": 0.25, "½": 0.5, "¾": 0.75, "⅓": 1 / 3, "⅔": 2 / 3, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875}
+VULGAR = {
+    "¼": 0.25,
+    "½": 0.5,
+    "¾": 0.75,
+    "⅓": 1 / 3,
+    "⅔": 2 / 3,
+    "⅛": 0.125,
+    "⅜": 0.375,
+    "⅝": 0.625,
+    "⅞": 0.875,
+}
 NUM = r"(?:\d+\s+\d+/\d+|\d+/\d+|\d+(?:\.\d+)?\s*[¼½¾⅓⅔⅛⅜⅝⅞]?|[¼½¾⅓⅔⅛⅜⅝⅞])"
 QTY_RE = re.compile(rf"^\s*({NUM})(?:\s*(?:-|to)\s*{NUM})?\s*")
 PAREN_RE = re.compile(r"\([^)]*\)")
 LEADING_PAREN_RE = re.compile(r"^(?:\s*\([^)]*\))+\s*")
 AD_RE = re.compile(r"\bADVERTISEMENT\b")
 SIZE_UNITS = "ounce|pound|package|can|jar|bottle|tablespoon|teaspoon|cup|quart|pint"
-SIZE_RE = re.compile(rf"\b(?:\d[\d./]*|one|two|three|four|five|six)[ -]?(?:{SIZE_UNITS})s?\b")
+SIZE_RE = re.compile(
+    rf"\b(?:\d[\d./]*|one|two|three|four|five|six)[ -]?(?:{SIZE_UNITS})s?\b"
+)
 NUMBER_RE = re.compile(r"\b\d[\d./-]*\b")
-LEADING_UNIT_RE = re.compile(rf"^(?:(?:one|two|three|four|five|six|ml|{SIZE_UNITS})s?\s+)+")
+LEADING_UNIT_RE = re.compile(
+    rf"^(?:(?:one|two|three|four|five|six|ml|{SIZE_UNITS})s?\s+)+"
+)
 
 
 class Parsed(NamedTuple):
@@ -40,12 +54,16 @@ def _units() -> dict[str, str]:
 def _drop_re() -> re.Pattern:
     d = _load("descriptors.json")
     phrases = sorted(d["drop_phrases"] + d["drop_words"], key=len, reverse=True)
-    return re.compile(r"(?<![\w-])(?:" + "|".join(re.escape(p) for p in phrases) + r")(?![\w-])")
+    return re.compile(
+        r"(?<![\w-])(?:" + "|".join(re.escape(p) for p in phrases) + r")(?![\w-])"
+    )
 
 
 @lru_cache(maxsize=1)
 def _noise_re() -> re.Pattern:
-    return re.compile(r"^(?:(?:" + "|".join(_load("descriptors.json")["leading_noise"]) + r")\s+)+")
+    return re.compile(
+        r"^(?:(?:" + "|".join(_load("descriptors.json")["leading_noise"]) + r")\s+)+"
+    )
 
 
 @lru_cache(maxsize=1)
@@ -65,7 +83,9 @@ def _irregular() -> dict[str, str]:
 
 # NFD, not NFKD: NFKD would turn ½ into 1⁄2 and ™ into "tm"
 def fold(text: str) -> str:
-    return "".join(c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c))
+    return "".join(
+        c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c)
+    )
 
 
 def clean_line(line: str) -> str:
@@ -125,7 +145,11 @@ def singularize(word: str) -> str:
 
 def clean_name(text: str) -> str:
     text = NUMBER_RE.sub(" ", SIZE_RE.sub(" ", PAREN_RE.sub(" ", text.lower())))
-    text = re.sub(r"^[\w ]{1,20}:\s+", "", text) if len(text.split(":")[0].split()) <= HEADER_MAX_WORDS else text
+    text = (
+        re.sub(r"^[\w ]{1,20}:\s+", "", text)
+        if len(text.split(":")[0].split()) <= HEADER_MAX_WORDS
+        else text
+    )
     for part in text.split(","):
         part = re.sub(r"\s+(?:or|such as)\s+.*$", "", part)
         part = _drop_re().sub(" ", part)

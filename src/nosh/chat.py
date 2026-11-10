@@ -51,7 +51,11 @@ def _execute(action: Action, session: SessionState, coverage: Coverage | None) -
         session.active_action = action
         f = session.filters
         result = run_match(
-            action.have, f.exclude_groups, f.exclude_ingredients, f.max_steps, f.preferences
+            action.have,
+            f.exclude_groups,
+            f.exclude_ingredients,
+            f.max_steps,
+            f.preferences,
         )
         session.last_results = [r.id for r in result.rows]
         session.last_titles = [r.title for r in result.rows]
@@ -61,7 +65,10 @@ def _execute(action: Action, session: SessionState, coverage: Coverage | None) -
         result = run_substitute(action, session.filters)
         if result.base:
             session.active_recipe_id = result.base.id
-            session.last_results, session.last_titles = [result.base.id], [result.base.title]
+            session.last_results, session.last_titles = (
+                [result.base.id],
+                [result.base.title],
+            )
         return render_sub.substitute(result)
     if isinstance(action, Stats):
         session.active_action = action

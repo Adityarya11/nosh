@@ -2,7 +2,7 @@
 
 import json
 from collections import Counter
-from typing import Iterator
+from collections.abc import Iterator
 
 from pydantic import BaseModel
 
@@ -40,7 +40,13 @@ def _clean(rid: str, source: str, rec: dict) -> RawRecipe | None:
     if not lines:
         return None
     title = " ".join((rec.get("title") or "").split()) or UNTITLED
-    return RawRecipe(id=rid, source=source, title=title, ingredient_lines=lines, instructions=rec.get("instructions") or "")
+    return RawRecipe(
+        id=rid,
+        source=source,
+        title=title,
+        ingredient_lines=lines,
+        instructions=rec.get("instructions") or "",
+    )
 
 
 def iter_lines(recipes: list[RawRecipe]) -> Iterator[str]:

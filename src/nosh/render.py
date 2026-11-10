@@ -10,7 +10,11 @@ def bullets(notes: list[str]) -> str:
     out = []
     for n in notes:
         label, sep, rest = n.partition(": ")
-        out.append(f"- **{label}:** {rest}" if sep and len(label) <= NOTE_LABEL_MAX else f"- {n}")
+        out.append(
+            f"- **{label}:** {rest}"
+            if sep and len(label) <= NOTE_LABEL_MAX
+            else f"- {n}"
+        )
     return "\n".join(out)
 
 
@@ -39,20 +43,29 @@ def _answer(r: StatsResult) -> list[str]:
     req = r.request
     if req.kind == "count":
         pct = 100 * r.n_matched / r.n_total
-        return [f"{r.n_matched:,} recipes match ({pct:.2f}% of {r.n_total:,} usable recipes)."]
+        return [
+            f"{r.n_matched:,} recipes match ({pct:.2f}% of {r.n_total:,} usable recipes)."
+        ]
     if req.kind == "top_ingredients":
-        return [f"{i + 1}. **{row['family']}**: {row['recipes']:,} recipes ({100 * row['recipes'] / r.n_matched:.1f}%)"
-                for i, row in enumerate(r.rows)]
+        return [
+            f"{i + 1}. **{row['family']}**: {row['recipes']:,} recipes ({100 * row['recipes'] / r.n_matched:.1f}%)"
+            for i, row in enumerate(r.rows)
+        ]
     if req.kind == "mean_median":
         return [f"Mean {r.mean:.2f} ingredients per recipe, median {r.median:g}."]
     head = f"**{req.order.capitalize()} steps, top {len(r.rows)}:**"
-    return [head] + [f"{i + 1}. **[{row['id']}] {row['title']}**: {row['n_steps']} step{'' if row['n_steps'] == 1 else 's'}" for i, row in enumerate(r.rows)]
+    return [head] + [
+        f"{i + 1}. **[{row['id']}] {row['title']}**: {row['n_steps']} step{'' if row['n_steps'] == 1 else 's'}"
+        for i, row in enumerate(r.rows)
+    ]
 
 
 def sub_recipe_note(count: int) -> str:
     noun, verb = ("recipe", "was") if count == 1 else ("recipes", "were")
-    return (f"Sub-recipe lines: {count:,} {noun} matching your other filters {verb} excluded only because an ingredient "
-            "line points to another recipe ('recipe follows', 'see below', ...) whose ingredients are not listed")
+    return (
+        f"Sub-recipe lines: {count:,} {noun} matching your other filters {verb} excluded only because an ingredient "
+        "line points to another recipe ('recipe follows', 'see below', ...) whose ingredients are not listed"
+    )
 
 
 def stats(r: StatsResult) -> str:
@@ -60,16 +73,20 @@ def stats(r: StatsResult) -> str:
         lines = ["No recipes match these filters."]
     else:
         lines = _answer(r)
-    notes = [f"Filters applied: {_filters(r)}",
-             f"Recipes analyzed: {r.n_matched:,}"
-             + (f" ({r.n_ranked_pool:,} ranked)" if r.n_ranked_pool is not None else ""),
-             f"Denominator: {r.n_total:,} usable recipes ({r.n_dropped:,} records dropped at build: no ingredient list)",
-             f"Calculation: {_calculation(r)}"]
+    notes = [
+        f"Filters applied: {_filters(r)}",
+        f"Recipes analyzed: {r.n_matched:,}"
+        + (f" ({r.n_ranked_pool:,} ranked)" if r.n_ranked_pool is not None else ""),
+        f"Denominator: {r.n_total:,} usable recipes ({r.n_dropped:,} records dropped at build: no ingredient list)",
+        f"Calculation: {_calculation(r)}",
+    ]
     if r.n_sub_recipe_excluded is not None:
         notes.append(sub_recipe_note(r.n_sub_recipe_excluded))
     notes += [f"Normalization: {n}" for n in r.norm_notes]
     if r.step_rule:
-        notes.append(f"Step rule {r.step_rule}: newline split, sentence fallback, duplicated text and boilerplate lines removed")
+        notes.append(
+            f"Step rule {r.step_rule}: newline split, sentence fallback, duplicated text and boilerplate lines removed"
+        )
         notes.append(no_instructions_note(r.n_no_instructions or 0))
     return "\n".join(lines) + "\n\n" + bullets(notes)
 
@@ -80,7 +97,11 @@ def _candidate(i: int, c: Candidate, r: SearchResult) -> list[str]:
     if not names:
         return [head]
     checked = "; ".join(f"no {name} match in {c.n_ingredients} lines" for name in names)
-    return [head, f"   - Ingredients: {', '.join(c.ingredients)}", f"   - Checked: {checked}"]
+    return [
+        head,
+        f"   - Ingredients: {', '.join(c.ingredients)}",
+        f"   - Checked: {checked}",
+    ]
 
 
 def _search_filters(r: SearchResult) -> str:
@@ -93,7 +114,10 @@ def _search_filters(r: SearchResult) -> str:
 
 
 def _violations(nm: NearMiss) -> str:
-    found = [f"{line.group} ({line.level.replace('_', ' ')}): \"{line.raw_line}\"" for line in nm.lines]
+    found = [
+        f'{line.group} ({line.level.replace("_", " ")}): "{line.raw_line}"'
+        for line in nm.lines
+    ]
     if nm.too_many_steps:
         found.append(f"more than the allowed steps ({nm.recipe.n_steps})")
     return "; ".join(found) or "violates a constraint"
@@ -102,8 +126,10 @@ def _violations(nm: NearMiss) -> str:
 def _evidence(r: SearchResult) -> list[str]:
     if not (r.exclude_groups or r.exclude_terms):
         return []
-    return ["Evidence is a text match against the restriction lists and ingredient lines, not a safety guarantee: "
-            "check product labels."]
+    return [
+        "Evidence is a text match against the restriction lists and ingredient lines, not a safety guarantee: "
+        "check product labels."
+    ]
 
 
 def _order(r: SearchResult) -> str:
@@ -116,18 +142,31 @@ def _order(r: SearchResult) -> str:
 def search(r: SearchResult, coverage: Coverage | None = None) -> str:
     lines: list[str] = []
     if coverage is not None and coverage.level == "near":
-        lines.append(f'No title matches "{r.query}" exactly; these are the closest titles.')
+        lines.append(
+            f'No title matches "{r.query}" exactly; these are the closest titles.'
+        )
     if r.results:
-        lines += [row for i, c in enumerate(r.results) for row in _candidate(i + 1, c, r)]
+        lines += [
+            row for i, c in enumerate(r.results) for row in _candidate(i + 1, c, r)
+        ]
     elif r.near_misses:
-        lines.append(f"**No match found under your constraints.** {r.n_pool:,} recipes matched before the constraints.")
-        lines.append("Closest alternatives (these VIOLATE your constraints, listed with the line that does):")
-        lines += [f"{i + 1}. **[{nm.recipe.id}] {nm.recipe.title}**: {_violations(nm)}" for i, nm in enumerate(r.near_misses)]
+        lines.append(
+            f"**No match found under your constraints.** {r.n_pool:,} recipes matched before the constraints."
+        )
+        lines.append(
+            "Closest alternatives (these VIOLATE your constraints, listed with the line that does):"
+        )
+        lines += [
+            f"{i + 1}. **[{nm.recipe.id}] {nm.recipe.title}**: {_violations(nm)}"
+            for i, nm in enumerate(r.near_misses)
+        ]
     else:
         lines.append("No recipes match.")
-    notes = [f"Filters applied: {_search_filters(r)}",
-             f"Matched: {r.n_matched:,} of {r.n_pool:,} recipes that match the search ({r.via}); showing {len(r.results)}",
-             _order(r)]
+    notes = [
+        f"Filters applied: {_search_filters(r)}",
+        f"Matched: {r.n_matched:,} of {r.n_pool:,} recipes that match the search ({r.via}); showing {len(r.results)}",
+        _order(r),
+    ]
     notes += _evidence(r) if r.results else []
     if r.n_sub_recipe_excluded is not None:
         notes.append(sub_recipe_note(r.n_sub_recipe_excluded))
@@ -135,14 +174,23 @@ def search(r: SearchResult, coverage: Coverage | None = None) -> str:
 
 
 def no_match(query: str, nearest: list[Hit], offer_made: bool) -> str:
-    lines = [f'**No recipe in the dataset has a title that covers "{query}".** Nearest titles:']
-    lines += [f"{i + 1}. **[{h.id}] {h.title}** (covers {h.score:.0%} of your words)" for i, h in enumerate(nearest)]
+    lines = [
+        f'**No recipe in the dataset has a title that covers "{query}".** Nearest titles:'
+    ]
+    lines += [
+        f"{i + 1}. **[{h.id}] {h.title}** (covers {h.score:.0%} of your words)"
+        for i, h in enumerate(nearest)
+    ]
     if offer_made:
-        lines.append(f"I can adapt '{nearest[0].title}' toward '{query}' (labelled as an adaptation of an existing recipe). "
-                     "Reply yes to do that.")
+        lines.append(
+            f"I can adapt '{nearest[0].title}' toward '{query}' (labelled as an adaptation of an existing recipe). "
+            "Reply yes to do that."
+        )
     return "\n".join(lines)
 
 
 def unsupported(attribute: str) -> str:
-    return (f"**The dataset does not contain {attribute}.** It has title, ingredient lines, instructions, a picture link "
-            "and the source file; I can search by name or ingredient and answer counts and rankings over those.")
+    return (
+        f"**The dataset does not contain {attribute}.** It has title, ingredient lines, instructions, a picture link "
+        "and the source file; I can search by name or ingredient and answer counts and rankings over those."
+    )

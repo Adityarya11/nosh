@@ -18,7 +18,9 @@ class Slots(BaseModel):
     drop_constraints: list[str] = []
     max_steps: int | None = None
     preferences: list[str] = []
-    aggregate: Literal["count", "percent", "rank", "mean", "median", "top_ingredients"] | None = None
+    aggregate: (
+        Literal["count", "percent", "rank", "mean", "median", "top_ingredients"] | None
+    ) = None
     aggregate_detail: str | None = None
     ask_attribute: str | None = None
     recipe_ref: str | None = None
@@ -29,10 +31,18 @@ class Slots(BaseModel):
 
 def _context(session: SessionState, text: str) -> str:
     filters = session.filters
-    lines = [f"Current filters: exclude {filters.exclude_groups or 'none'}, max steps {filters.max_steps}",
-             "Last results: " + (" | ".join(f"{i + 1}. {t}" for i, t in enumerate(session.last_titles)) or "none"),
-             "Recent turns:"]
-    lines += [f"  {role}: {content}" for role, content in session.history] or ["  (none)"]
+    lines = [
+        f"Current filters: exclude {filters.exclude_groups or 'none'}, max steps {filters.max_steps}",
+        "Last results: "
+        + (
+            " | ".join(f"{i + 1}. {t}" for i, t in enumerate(session.last_titles))
+            or "none"
+        ),
+        "Recent turns:",
+    ]
+    lines += [f"  {role}: {content}" for role, content in session.history] or [
+        "  (none)"
+    ]
     return "\n".join(lines + [f"User message: {text}"])
 
 

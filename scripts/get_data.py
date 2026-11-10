@@ -2,9 +2,9 @@
 
 import io
 import sys
-from pathlib import Path
 import urllib.request
 import zipfile
+from pathlib import Path
 
 from nosh.config import DATASET_URL, DOWNLOAD_USER_AGENT, RAW_DIR, RAW_FILES
 
@@ -15,7 +15,9 @@ def main(dest: Path = RAW_DIR) -> None:
         print(f"Dataset already present in {dest}")
         return
     print(f"Downloading {DATASET_URL}")
-    request = urllib.request.Request(DATASET_URL, headers={"User-Agent": DOWNLOAD_USER_AGENT})
+    request = urllib.request.Request(
+        DATASET_URL, headers={"User-Agent": DOWNLOAD_USER_AGENT}
+    )
     with urllib.request.urlopen(request) as resp:
         payload = resp.read()
     with zipfile.ZipFile(io.BytesIO(payload)) as zf:

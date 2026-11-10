@@ -2,13 +2,20 @@
 
 import json
 import re
-from functools import lru_cache
+from functools import cache, lru_cache
 from typing import Literal, NamedTuple
 
 from rapidfuzz import fuzz
 from rapidfuzz.distance import DamerauLevenshtein
 
-from nosh.config import ALIAS_FUZZY_MIN_LEN, ALIAS_FUZZY_MIN_SIM, FUZZY_MAX_LEN_DIFF, FUZZY_MIN_RATIO, RESOURCES_DIR, SUB_RECIPE_PHRASES
+from nosh.config import (
+    ALIAS_FUZZY_MIN_LEN,
+    ALIAS_FUZZY_MIN_SIM,
+    FUZZY_MAX_LEN_DIFF,
+    FUZZY_MIN_RATIO,
+    RESOURCES_DIR,
+    SUB_RECIPE_PHRASES,
+)
 from nosh.data.ingredients import canonical_map, fold, singularize
 
 Level = Literal["banned", "may_contain"]
@@ -55,7 +62,10 @@ def _typo_match(text: str) -> tuple[str, str] | None:
         if len(word) < ALIAS_FUZZY_MIN_LEN:
             continue
         for group in (g for g in _groups() if len(g) >= ALIAS_FUZZY_MIN_LEN):
-            if DamerauLevenshtein.normalized_similarity(word, group) >= ALIAS_FUZZY_MIN_SIM:
+            if (
+                DamerauLevenshtein.normalized_similarity(word, group)
+                >= ALIAS_FUZZY_MIN_SIM
+            ):
                 return group, word
     return None
 
@@ -75,7 +85,14 @@ def resolve_group(text: str) -> tuple[str | None, str | None]:
 # an ingredient that belongs to a group ("cheese" for dairy) is excluded as that ingredient only
 def ingredient_alias_group(text: str) -> str | None:
     padded = pad(text)
-    return next((g for g, spec in _groups().items() if phrase_re(spec.get("ingredient_aliases", [])).search(padded)), None)
+    return next(
+        (
+            g
+            for g, spec in _groups().items()
+            if phrase_re(spec.get("ingredient_aliases", [])).search(padded)
+        ),
+        None,
+    )
 
 
 def constituents(group: str) -> list[str]:
@@ -85,13 +102,18 @@ def constituents(group: str) -> list[str]:
     return out
 
 
-@lru_cache(maxsize=None)
+@cache
 def _spec(group: str) -> _Spec:
     g = _groups()[group]
-    return _Spec(frozenset(g["families"]), tuple(pad(p) for p in g["products"]),
-                 tuple(pad(k) for k in g["definite_keywords"] + g["maybe_keywords"]),
-                 tuple(pad(k).strip() for k in g.get("fuzzy_keywords", [])),
-                 phrase_re(g["definite_keywords"]), phrase_re(g["maybe_keywords"]), phrase_re(g["safe"]))
+    return _Spec(
+        frozenset(g["families"]),
+        tuple(pad(p) for p in g["products"]),
+        tuple(pad(k) for k in g["definite_keywords"] + g["maybe_keywords"]),
+        tuple(pad(k).strip() for k in g.get("fuzzy_keywords", [])),
+        phrase_re(g["definite_keywords"]),
+        phrase_re(g["maybe_keywords"]),
+        phrase_re(g["safe"]),
+    )
 
 
 @lru_cache(maxsize=1)
@@ -110,8 +132,12 @@ def _strip_safe(padded: str, spec: _Spec) -> tuple[str, bool]:
 
 # catches misspellings ("mayonaisse") that the whole-word regex misses
 def _fuzzy_hit(text: str, spec: _Spec) -> bool:
-    return any(abs(len(tok) - len(term)) <= FUZZY_MAX_LEN_DIFF and fuzz.ratio(tok, term) >= FUZZY_MIN_RATIO
-               for tok in text.split() for term in spec.fuzzy)
+    return any(
+        abs(len(tok) - len(term)) <= FUZZY_MAX_LEN_DIFF
+        and fuzz.ratio(tok, term) >= FUZZY_MIN_RATIO
+        for tok in text.split()
+        for term in spec.fuzzy
+    )
 
 
 def _keyword_level(text: str, spec: _Spec) -> Level | None:
@@ -124,8 +150,10 @@ def _worse(a: Level | None, b: Level | None) -> Level | None:
     return "banned" if "banned" in (a, b) else a or b
 
 
-@lru_cache(maxsize=None)
-def classify_by_keywords(name: str, canonical: str, family: str, group: str, use_safe: bool = True) -> Level | None:
+@cache
+def classify_by_keywords(
+    name: str, canonical: str, family: str, group: str, use_safe: bool = True
+) -> Level | None:
     spec = _spec(group)
     texts, safe_hit = [], False
     for padded in {pad(name), pad(canonical)}:
@@ -133,7 +161,9 @@ def classify_by_keywords(name: str, canonical: str, family: str, group: str, use
             padded, hit = _strip_safe(padded, spec)
             safe_hit = safe_hit or hit
         texts.append(padded)
-    if not safe_hit and (family in spec.families or any(p in t for t in texts for p in spec.products)):
+    if not safe_hit and (
+        family in spec.families or any(p in t for t in texts for p in spec.products)
+    ):
         return "banned"
     level = None
     for t in texts:
@@ -142,7 +172,9 @@ def classify_by_keywords(name: str, canonical: str, family: str, group: str, use
 
 
 # names in canonical_map.json carry reviewed group tags; names outside it fall back to the keyword lists
-def classify(name: str, canonical: str, family: str, group: str, use_safe: bool = True) -> Level | None:
+def classify(
+    name: str, canonical: str, family: str, group: str, use_safe: bool = True
+) -> Level | None:
     entry = canonical_map().get(name) if use_safe else None
     if entry is not None:
         return entry.get("groups", {}).get(group)
@@ -166,14 +198,23 @@ def keyword_inside_word(name: str, group: str) -> str | None:
     tokens = pad(name).split()
     for kw in _spec(group).keywords:
         word = kw.strip()
-        if len(word) >= 4 and " " not in word and any(word in t and t != word for t in tokens):
+        if (
+            len(word) >= 4
+            and " " not in word
+            and any(word in t and t != word for t in tokens)
+        ):
             return word
     return None
 
 
-def check_line(raw_line: str, name: str, canonical: str, family: str, group: str) -> Violation | None:
+def check_line(
+    raw_line: str, name: str, canonical: str, family: str, group: str
+) -> Violation | None:
     padded = pad(raw_line)
-    levels = {g: _worse(classify(name, canonical, family, g), _raw_level(padded, g)) for g in constituents(group)}
+    levels = {
+        g: _worse(classify(name, canonical, family, g), _raw_level(padded, g))
+        for g in constituents(group)
+    }
     for level in ("banned", "may_contain"):
         for g, found in levels.items():
             if found == level:

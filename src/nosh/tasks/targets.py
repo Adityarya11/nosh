@@ -28,12 +28,19 @@ def target_sql(text: str) -> tuple[str, list]:
     if not phrases:
         return "i.canonical IN (SELECT unnest(?))", [forms]
     pattern = "|".join(raw_pattern(p) for p in phrases)
-    return "(i.canonical IN (SELECT unnest(?)) OR regexp_matches(strip_accents(lower(i.raw_line)), ?))", [forms, pattern]
+    return (
+        "(i.canonical IN (SELECT unnest(?)) OR regexp_matches(strip_accents(lower(i.raw_line)), ?))",
+        [forms, pattern],
+    )
 
 
 def line_is_target(line: str, target: Term) -> bool:
     canonical, family, mapped = normalize(parse_line(line).name)
     if target.canonical in _forms():
         return canonical in _forms()[target.canonical]
-    return canonical == target.canonical or (mapped and target.bare and family == target.family
-                                             and not set(canonical.split()) & set(free_modifiers(target)))
+    return canonical == target.canonical or (
+        mapped
+        and target.bare
+        and family == target.family
+        and not set(canonical.split()) & set(free_modifiers(target))
+    )

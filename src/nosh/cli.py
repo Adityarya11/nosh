@@ -58,7 +58,17 @@ def main() -> None:
 
         from nosh.config import ROOT
 
-        raise SystemExit(subprocess.call([sys.executable, "-m", "streamlit", "run", str(ROOT / "src" / "nosh" / "ui" / "app.py")]))
+        raise SystemExit(
+            subprocess.call(
+                [
+                    sys.executable,
+                    "-m",
+                    "streamlit",
+                    "run",
+                    str(ROOT / "src" / "nosh" / "ui" / "app.py"),
+                ]
+            )
+        )
 
 
 if __name__ == "__main__":

@@ -30,8 +30,15 @@ def resolve(text: str) -> Resolved:
     name = clean_name(bare)
     if name and term_has_lines(resolve_term(name)):
         owner = ingredient_alias_group(bare)
-        note = (f"I read '{bare}' as the ingredient {name} only, not the whole {owner} group; say 'no {owner}' to exclude all of it."
-                if owner else None)
+        note = (
+            f"I read '{bare}' as the ingredient {name} only, not the whole {owner} group; say 'no {owner}' to exclude all of it."
+            if owner
+            else None
+        )
         return Resolved("ingredient", name, note)
-    return Resolved("none", None, f"I found no restriction or ingredient line matching '{bare or text}' in the dataset, "
-                                  "so I did not apply it.")
+    return Resolved(
+        "none",
+        None,
+        f"I found no restriction or ingredient line matching '{bare or text}' in the dataset, "
+        "so I did not apply it.",
+    )
