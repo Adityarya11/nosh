@@ -82,3 +82,12 @@ Nothing failed in this run.
 | r7b_unknown_dish_is_no_match | 7 | search_no_match | search_no_match | PASS |
 | r8_nothing_is_clarify | 8 | clarify | clarify | PASS |
 | r9_pinned_mode_blocks_other_tasks | pinned | clarify | clarify | PASS |
+
+## Known limits these cases do not cover
+
+- Allergen and diet detection is vocabulary based (restriction lists, canonical tags, a raw-line scan, sub-recipe lines treated as may-contain). The independent probe list found 0 unflagged lines in the build, but a vocabulary can never prove zero: always check labels.
+- The coverage thresholds (exact 0.99, near 0.70) were calibrated on eight probe queries; they are not tuned on a larger set.
+- T3 evidence is thin for most substitutions: the dataset has few recipes without the target in a given dish (8 egg-free banana breads, 0 gelatin-free panna cottas). The system labels such answers predicted instead of inventing support, and the validators cannot check quantities (F29).
+- The role of the target (binding, fat, ...) is tagged by the LLM and only used in the prompts; code does not verify that a cited recipe uses the substitute in the same role.
+- The evals were run with Anthropic claude-haiku-5-5; the Gemini path is the README default but was not replayed here because of the free-tier quota.
+- Conversations replay from the LLM cache, so they test the code around the LLM, not the LLM's variability.

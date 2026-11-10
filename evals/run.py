@@ -128,6 +128,7 @@ def write_results(convs: list, routing: list, limits: list[str], path: Path) -> 
             lines.append(f"  - Why: {case['why']}")
     lines += ["", "## Routing cases (decide(), no LLM)", "", "| Case | Branch | Expected | Got | Status |", "|---|---|---|---|---|"]
     lines += [f"| {r['id']} | {r['branch']} | {r['expect']} | {r['got']} | {'PASS' if r['ok'] else 'FAIL'} |" for r in routing]
+    lines += ["", "## Known limits these cases do not cover", ""] + [f"- {x}" for x in limits]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
