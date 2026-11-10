@@ -8,7 +8,20 @@ A grounded recipe chatbot over the Recipe Box dataset (about 125,000 recipes). I
 
 ## Setup
 
-Python 3.11 and [uv](https://docs.astral.sh/uv/).
+**Requirements:** Python 3.11.9 or newer (`.python-version` pins 3.11.9) and [uv](https://docs.astral.sh/uv/), which creates the virtual environment and installs the locked dependencies (`uv.lock`).
+
+```bash
+# 0. Install uv and a matching Python if you do not have them (skip if `uv --version` works)
+pip install uv            # or: https://docs.astral.sh/uv/getting-started/installation/
+uv python install 3.11    # uv downloads Python 3.11 itself; no system Python needed
+```
+
+If you do not want to use uv, the plain-pip equivalent is below (not tested here; uv is the supported path). Then run the commands in the next block without the `uv run` prefix, for example `nosh build`.
+
+```bash
+python3.11 -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scriptsctivate
+pip install -e .
+```
 
 ```bash
 uv sync                          # install dependencies
@@ -19,6 +32,24 @@ uv run nosh chat                 # terminal chat  (--mode auto|search|match|subs
 uv run nosh ui                   # Streamlit app
 uv run nosh eval                 # run evals/cases.yaml, write evals/results.md
 ```
+
+### Folder structure (and where the dataset goes)
+
+The dataset is not committed. `get_data.py` puts the three JSON files in `recipes_raw/` at the repository root, and `nosh build` writes the database into `data/`:
+
+```text
+nosh/
+  recipes_raw/                          # created by scripts/get_data.py (gitignored, ~205 MB)
+    recipes_raw_nosource_ar.json        #   Allrecipes   (source "ar")
+    recipes_raw_nosource_epi.json       #   Epicurious   (source "epi")
+    recipes_raw_nosource_fn.json        #   Food Network (source "fn")
+  data/                                 # created by `nosh build` (gitignored)
+    nosh.duckdb                         #   the database (~480 MB)
+    llm_cache/                          #   cached LLM calls (created on first chat)
+  resources/  src/nosh/  evals/  docs/  scripts/  .env  (your keys, never committed)
+```
+
+The three file names must match exactly, because the build looks for them by name (`RAW_FILES` in `src/nosh/config.py`). Running `uv run python scripts/get_data.py <folder>` unpacks them into another folder, but `nosh build` only reads `recipes_raw/`.
 
 - **Dataset:** `get_data.py` downloads `recipes_raw.zip` from `DATASET_URL` in `src/nosh/config.py` (https://eightportions.com/recipes_raw.zip, 53 MB) and unpacks the three `recipes_raw_nosource_*.json` files into `recipes_raw/`. `python scripts/get_data.py <folder>` unpacks somewhere else.
 - **LLM provider:** Gemini is the default (`GEMINI_API_KEY`, `NOSH_GEMINI_MODEL`). The Gemini free tier allows only about 20 requests per day per model, and one substitution turn uses 4-6 calls, so use Anthropic as the fallback: `NOSH_LLM_PROVIDER=anthropic`, `ANTHROPIC_API_KEY`, `NOSH_ANTHROPIC_MODEL=claude-haiku-5-5`. Current model names: the provider docs linked in `.env.example`.
