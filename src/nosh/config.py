@@ -22,7 +22,9 @@ RAW_FILES = {
     "epi": "recipes_raw_nosource_epi.json",
     "fn": "recipes_raw_nosource_fn.json",
 }
-DATASET_URL = "https://storage.googleapis.com/recipe-box/recipes_raw.zip"
+DATASET_URL = "https://eightportions.com/recipes_raw.zip"
+# the dataset host answers 403 to the default Python user agent
+DOWNLOAD_USER_AGENT = "nosh-get-data"
 
 STEP_RULE = "v2"
 MAP_VERSION = "v1"
