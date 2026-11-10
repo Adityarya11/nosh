@@ -19,7 +19,7 @@ uv python install 3.11    # uv downloads Python 3.11 itself; no system Python ne
 If you do not want to use uv, the plain-pip equivalent is below (not tested here; uv is the supported path). Then run the commands in the next block without the `uv run` prefix, for example `nosh build`.
 
 ```bash
-python3.11 -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scriptsctivate
+python3.11 -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -e .
 ```
 
