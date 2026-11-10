@@ -1,5 +1,7 @@
 # nosh
 
+Intent-first, not retrieval-first: the LLM turns the request into a typed spec, code runs exact searches over storage built from analysing this dataset, and the LLM writes only from the verified results.
+
 A grounded recipe chatbot over the Recipe Box dataset (about 125,000 recipes). It does three things in one conversation: search and answer factual questions, match recipes to the ingredients you have, and adapt a recipe when an ingredient is unavailable or restricted, citing recipes from the dataset as evidence.
 
 **The principle behind every design choice: the prompt tells the LLM what to do; the code checks that it did it.** The LLM extracts fields from what you say and writes text. Code does retrieval, filtering, counting, ranking, routing and validation. Every number you see (counts, percentages, steps, rankings) comes from SQL or Python, never from the model.
@@ -18,11 +20,11 @@ uv run nosh ui                   # Streamlit app
 uv run nosh eval                 # run evals/cases.yaml, write evals/results.md
 ```
 
-- **Dataset:** `get_data.py` downloads from `DATASET_URL` in `src/nosh/config.py`. If that link does not work, download `recipes_raw.zip` from the assignment page and put the three `recipes_raw_nosource_*.json` files in `recipes_raw/`.
+- **Dataset:** `get_data.py` downloads `recipes_raw.zip` from `DATASET_URL` in `src/nosh/config.py` (https://eightportions.com/recipes_raw.zip, 53 MB) and unpacks the three `recipes_raw_nosource_*.json` files into `recipes_raw/`. `python scripts/get_data.py <folder>` unpacks somewhere else.
 - **LLM provider:** Gemini is the default (`GEMINI_API_KEY`, `NOSH_GEMINI_MODEL`). The Gemini free tier allows only about 20 requests per day per model, and one substitution turn uses 4-6 calls, so use Anthropic as the fallback: `NOSH_LLM_PROVIDER=anthropic`, `ANTHROPIC_API_KEY`, `NOSH_ANTHROPIC_MODEL=claude-haiku-5-5`. Current model names: the provider docs linked in `.env.example`.
 - **Cache:** every LLM call is cached in `data/llm_cache/` (keyed by provider, model, prompt and input), so repeated runs and the evals replay without new requests.
 - **Without a key:** build, stats and the structured paths still work; chat tells you the key is missing.
-- **Machine safety:** the build and live runs can be heavy on a small laptop. See `AGENTS.md` section 13 (DuckDB is capped at 2 GB; run heavy jobs under `tests/guard.py`).
+- **Machine safety:** the build and live runs can be heavy on a small laptop. See `AGENTS.md` section 13 (DuckDB is capped at 2 GB; run heavy jobs under `scripts/guard.py`).
 
 ## How it works
 

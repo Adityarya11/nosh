@@ -396,5 +396,5 @@ The dev machine has little free RAM (15 GB total, often under 4 GB free); a heav
 - Ask before running a heavy command (build, full-dataset scan, a live multi-call LLM run). Check free RAM and disk first with a light command.
 - Never overlap heavy jobs: one at a time, wait for the previous one to exit.
 - DuckDB is capped in `config.py` (`DUCKDB_MEMORY_LIMIT`, `DUCKDB_THREADS`); change the cap there, not in code.
-- Run anything heavy under `python tests/guard.py <command>`: it kills the process tree on low free RAM, low disk or high VRAM, caps the job's memory, and prints the peak memory of the run.
+- Run anything heavy under `python scripts/guard.py <command>`: it kills the process tree on low free RAM, low disk or high VRAM, caps the job's memory, and prints the peak memory of the run.
 - Queries must not pull `recipe_ingredients` or `instructions_raw` wholesale into Python: prefilter in SQL (ILIKE on the words involved), regex only the result, and LIMIT open-ended results.

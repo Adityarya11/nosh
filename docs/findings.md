@@ -102,7 +102,7 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 - **Found by:** listing every canonical in the garlic/onion/tomato families with recipe counts.
 - **Fix:** replace the enumerated `distinct_forms` names with a modifier-word rule in `map_rules.json`
   (powder, granulated, dried, flake, salt, paste, sauce, juice, puree, soup, mix = processed form).
-- **Status:** FIXED. `modifier_words` rule in map_rules.json. Garlic + onion = 15,900 (12.93% of 122,968),
+- **Status:** FIXED. `modifier_words` rule in map_rules.json. Garlic + onion = 15,877 (12.91% of 122,968),
   matches an independent set-intersection query.
 
 ## F8. Fallback family picked the flavor word, not the product (step 3 review)
@@ -231,9 +231,9 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
   - Beer: of 164 unflagged beer lines, all 164 are "root beer" or "ginger beer" (safe-listed on purpose); 0 other.
     Beer was already a definite gluten keyword, so no change was made.
   - Malt: the 52 unflagged lines containing "malt" are schmaltz, isomalt and maltodextrin, not gluten sources.
-  - Sub-recipe lines: 8,392 lines, 6,345 recipes. Count check: "garlic, excluding dairy" gives 15,161 recipes, 929
+  - Sub-recipe lines: 8,392 lines, 6,345 recipes. Count check: "garlic, excluding dairy" gives 15,162 recipes, 929
     of them excluded only by a sub-recipe line; independent SQL over `line_flags` and `sub_recipe_lines` gives 929.
-  - Step 3 checkpoints unchanged: garlic + onion 15,900 (12.93%), tomato fewest-steps top 5 equal to independent SQL,
+  - Step 3 checkpoints unchanged: garlic + onion 15,877 (12.91%), tomato fewest-steps top 5 equal to independent SQL,
     penne + no dairy 28 of 164, and all 338 / 1,261 / 694 cheese-blend / cream-of-X / milk-chocolate lines banned dairy.
   - Recipes with any flag after this round: dairy 62.5%, gluten 54.7%, vegetarian 46.5%, vegan 84.8%.
 - **Not done (listed in F15 but not in the fix list):** quark (2 lines), "brioches" (plural, 5 lines; the
@@ -410,7 +410,7 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 ## F30. Validators work: planted bad outputs and live rejections (step 7)
 - **Planted, no LLM (6 cases):** valid output accepted; citing a recipe not retrieved this turn, citing a retrieved recipe with no line for the substitute, a banned ingredient ("1/2 cup butter" with dairy excluded), the phrase "allergy-safe", and evidence stronger than the verified grade were all rejected.
 - **Live rejections seen:** a citation of a recipe that was only a "mention" (not retrieved); an ingredient line "1 avocado, mashed (replaces 1 (8 ounce) container sour cream)" rejected as dairy; a substitution whose `original` was the recipe line instead of the target name. Each was fixed in the next attempt (adapt.txt now says to use the target name and no notes).
-- **Memory:** every run under `tests/guard.py` peaked at 340-445 MB (job memory), minimum system free RAM 2.7 GB.
+- **Memory:** every run under `scripts/guard.py` (then `tests/guard.py`) peaked at 340-445 MB (job memory), minimum system free RAM 2.7 GB.
 - **Status:** FIXED.
 
 ## F31. Data candidates and explicit partners need a role check (step 7 follow-up)
@@ -424,4 +424,23 @@ Status: OPEN = found, fix not verified; FIXED = fix verified with real output (n
 - **Symptom:** `t2_match_exclude_eggs` failed "candidates answer -1 vs independent 47,522" although the top-5 IDs matched.
 - **Cause:** the check parsed "Candidates: N recipes" but the Markdown renderer now prints "**Candidates:** N recipes". The product was right, the checker was stale after the Markdown change.
 - **Fix:** the regex accepts the bold form. After the fix all nine conversations and ten routing cases pass (see `evals/results.md`).
+- **Status:** FIXED.
+
+## F33. The dataset download link in the README is dead (pre-submission review)
+
+- **Symptom:** `DATASET_URL = https://storage.googleapis.com/recipe-box/recipes_raw.zip` returns HTTP 404, so the
+  README's second setup command fails on a grader's machine.
+- **Found by:** `curl -I` on the configured URL, then reading the links on the dataset page.
+- **Fix:** the dataset page links `/recipes_raw.zip`; `https://eightportions.com/recipes_raw.zip` returns 200
+  (application/x-zip-compressed, 53,355,492 bytes). Point `DATASET_URL` there and test `get_data.py` end to end.
+- **Verified:** the first run with Python's default user agent got `HTTP Error 403: Forbidden` from the host, so `get_data.py` now sends a generic `User-Agent: nosh-get-data` (`DOWNLOAD_USER_AGENT` in config). `get_data.py <temp folder>` then wrote `recipes_raw_nosource_ar.json` (49,784,325 bytes), `recipes_raw_nosource_epi.json` (61,133,971) and `recipes_raw_nosource_fn.json` (93,702,755); the archive layout needed no change, and all three files are byte-identical (SHA-256) to the ones already in `recipes_raw/`. Peak memory 337 MB under the guard.
+- **Status:** FIXED.
+
+## F34. README and AGENTS.md point to a file that is never committed (pre-submission review)
+
+- **Symptom:** both say to run heavy jobs under `tests/guard.py`, but `/tests/` is gitignored, so the file does not
+  exist in the repo.
+- **Found by:** `git grep "tests/"` against `git ls-files`.
+- **Fix:** move the guard to `scripts/guard.py` (committed) and update both references.
+- **Verified:** `scripts/guard.py` is tracked; README, AGENTS.md section 13, D26 and F30 now say `scripts/guard.py`; the guard ran the download test above and printed `GUARD: peak job memory 337 MB (cap 3500 MB)`.
 - **Status:** FIXED.
