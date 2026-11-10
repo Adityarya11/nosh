@@ -17,7 +17,7 @@ def _evidence_block(ev: TargetEvidence) -> list[str]:
     if ev.classes:
         lines.append("- Widened classes: " + ", ".join(f"{c.name} ({c.size} recipes)" for c in ev.classes))
     for c in ev.candidates:
-        lines.append(f"- **{c.name}**: {c.grade.upper()} - {c.reason}")
+        lines.append(f"- **{c.name}** ({c.origin}): {c.grade.upper()} - {c.reason}")
         lines += [f"  - {b}" for b in c.basis]
         lines += [f"  - [{x.recipe_id}] {x.title}: `{x.raw_line}`" for x in c.support[:SUPPORT_SHOWN]]
     lines += [f"- Rejected: **{name}** ({why})" for name, why in ev.filtered]
